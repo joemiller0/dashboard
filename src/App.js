@@ -1,9 +1,10 @@
 import './stylesheets/App.css';
+import Dashboard from './Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <h1>test</h1>
+      <Dashboard />
     </div>
   );
 }
