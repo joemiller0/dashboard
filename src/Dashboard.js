@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
+import Workout from './components/Workout';
 
-function Dashboard() {
+const Dashboard = () => {
     const [refreshToken, setRefreshToken] = useState(process.env.REACT_APP_STRAVA_REFRESH_TOKEN);
     const [activities, setActivities] = useState([]);
     const tokensSet = useRef(false);
@@ -35,16 +36,9 @@ function Dashboard() {
         }
     }, [refreshToken]);
 
-
     return (
-        <div className="App">
-            <ul>
-                {activities.map((a) => {
-                    return <li key={a.id}>
-                        {a.name}
-                    </li>;
-                })}
-            </ul>
+        <div className="dashobard-container">
+            <Workout activities={activities} />
         </div>
     );
 }
