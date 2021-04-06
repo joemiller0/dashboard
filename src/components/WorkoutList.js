@@ -1,11 +1,12 @@
 import '../stylesheets/workout.css';
 
-const Workout = (props) => {
+const WorkoutList = (props) => {
     const workouts = props.activities;
 
     return (
         <ul className="workout-ul">
             {workouts.map((a) => {
+                console.log(a)
                 const d = new Date(a.start_date)
                 const date = d.toDateString()
                 return <li key={a.id}>
@@ -17,4 +18,4 @@ const Workout = (props) => {
     );
 }
 
-export default Workout;
+export default WorkoutList;

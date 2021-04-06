@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import Workout from './components/Workout';
+import WorkoutList from './components/WorkoutList';
 
 const Dashboard = () => {
     const [refreshToken, setRefreshToken] = useState(process.env.REACT_APP_STRAVA_REFRESH_TOKEN);
@@ -38,7 +38,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashobard-container">
-            <Workout activities={activities} />
+            <WorkoutList activities={activities} />
         </div>
     );
 }
