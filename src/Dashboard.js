@@ -1,16 +1,13 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import WorkoutList from './components/WorkoutList';
 
 const Dashboard = () => {
-    const [refreshToken, setRefreshToken] = useState(process.env.REACT_APP_STRAVA_REFRESH_TOKEN);
     const [activities, setActivities] = useState([]);
-    const tokensSet = useRef(false);
 
     useEffect(() => {
-        if (!tokensSet.current) {
-
             const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
             const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
+            const refreshToken = process.env.REACT_APP_STRAVA_REFRESH_TOKEN;
             const authUrl = "https://www.strava.com/oauth/token"
             const refreshUrl = `${authUrl}?client_id=${clientId}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`
 
@@ -23,8 +20,6 @@ const Dashboard = () => {
             })
                 .then(res => res.json())
                 .then(tokenData => {
-                    setRefreshToken(tokenData.refresh_token);
-
                     const activitiesUrl = "https://www.strava.com/api/v3/activities";
                     const getActivitiesUrl = `${activitiesUrl}?access_token=${tokenData.access_token}`;
                     fetch(getActivitiesUrl)
@@ -32,9 +27,7 @@ const Dashboard = () => {
                         .then((activities) => setActivities(activities));
                 })
 
-            tokensSet.current = true;
-        }
-    }, [refreshToken]);
+    }, []);
 
     return (
         <div className="dashobard-container">
