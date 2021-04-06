@@ -1,4 +1,31 @@
-li {
-    padding:.5em;
-    margin:.5em;
+.workout-container{
+    width:500px;
+    border:1px solid black;
+    margin:2em;
+}
+.workout-ul{
+    /* text-align: center; */
+}
+.workout {
+    border:1px solid red;
+    list-style: none;
+    text-align:center;
+    /* padding:5px; */
+    margin:5px;
+    width: 65%;
+    height:100px;
+}
+.workout-header{
+    background-color: red;
+    height:25px;
+}
+
+.workout-start-date{
+    color:white;
+    position:relative;
+    top:3px;
+}
+.workout-name{
+    position:relative;
+    top:20px;
 }
