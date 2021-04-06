@@ -1,10 +1,9 @@
 .workout-container{
-    width:500px;
     border:1px solid black;
     margin:2em;
-}
-.workout-ul{
-    /* text-align: center; */
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .workout {
     border:1px solid red;
@@ -12,7 +11,7 @@
     text-align:center;
     /* padding:5px; */
     margin:5px;
-    width: 65%;
+    width: 15%;
     height:100px;
 }
 .workout-header{
