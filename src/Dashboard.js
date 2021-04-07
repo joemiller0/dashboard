@@ -38,3 +38,9 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
+
+
+// ----------------------------TO DO-----------------------------
+
+// ----->combine same dates
+// throw in a modal for more deets on the workout
