@@ -44,3 +44,5 @@ export default Dashboard;
 
 // ----->combine same dates
 // throw in a modal for more deets on the workout
+// get athlete details
+// see what you can get from whoop in terms of recovery.
