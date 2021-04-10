@@ -18,18 +18,20 @@ const WorkoutList = (props) => {
         }
     })
 
+    // set startDate and endDate based on first and last item in the activities array
     useEffect(()=>{
-        const latestOne = activities[0]
-        const earliestOne = activities[activities.length-1]
+        const latest = activities[0]
+        const earliest = activities[activities.length-1]
 
-        if(latestOne !== undefined) {
-            const endDate = new Date(latestOne.start_date)
+        if(latest !== undefined) {
+            const endDate = new Date(latest.start_date)
             setEndDate(endDate.toDateString())
         }
-        if(earliestOne !== undefined) {
-            const startDate = new Date(earliestOne.start_date)
+        if(earliest !== undefined) {
+            const startDate = new Date(earliest.start_date)
             setStartDate(startDate.toDateString())
         }
+
     }, [activities])
     
     console.log(startDate)
