@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import '../stylesheets/workout.css';
 
 const WorkoutList = (props) => {
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const activities = props.activities;
 
     let whoop = []
@@ -15,15 +18,22 @@ const WorkoutList = (props) => {
         }
     })
 
-    const createWorkoutArr = () => {
+    useEffect(()=>{
+        const latestOne = activities[0]
+        const earliestOne = activities[activities.length-1]
 
-    }
-
-
-    console.log(strava)
-    console.log(whoop)
-    console.log(workouts)
-
+        if(latestOne !== undefined) {
+            const endDate = new Date(latestOne.start_date)
+            setEndDate(endDate.toDateString())
+        }
+        if(earliestOne !== undefined) {
+            const startDate = new Date(earliestOne.start_date)
+            setStartDate(startDate.toDateString())
+        }
+    }, [activities])
+    
+    console.log(startDate)
+    console.log(endDate)
     return (
         <div className="workout-container">
             {}
@@ -32,17 +42,3 @@ const WorkoutList = (props) => {
 }
 
 export default WorkoutList;
-
-// {activities.map((a) => {
-//     console.log(a)
-//     const d = new Date(a.start_date)
-//     const date = d.toDateString()
-//     return (
-//         <div className="workout" key={a.id}>
-//             <div className="workout-header">
-//                 <span className="workout-start-date">{date}</span>
-//             </div>
-//             <span className="workout-name">{a.name}</span>
-//         </div>
-//     )
-// })}
