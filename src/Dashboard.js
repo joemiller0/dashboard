@@ -25,7 +25,7 @@ const Dashboard = () => {
 
                     fetch(getActivitiesUrl)
                         .then((res) => res.json())
-                        .then((activities) => setActivities(activities));
+                        .then((activities) =>  setActivities(activities));
                 })
 
     }, []);
