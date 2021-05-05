@@ -21,17 +21,18 @@ const [workouts, setWorkouts] = useState({})
         let workoutsObj = {}
         activities.forEach((workout)=>{
             const date = workout.start_date.split('T')[0];
-            if(workoutsObj[date] === null){
-                workoutsObj[date].push(workout)
-            } else {
+            if(!workoutsObj[date]){
                 workoutsObj[date] = [workout]
+            } else {
+                workoutsObj[date].push(workout)
             }
         })
         setWorkouts(workoutsObj)
     }, [activities]);
+    
 
-
-console.log(workouts)
+    console.log(activities)
+    console.log(workouts)
     return (
         
         <div className="workout-container">
