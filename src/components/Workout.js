@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import "../stylesheets/workout.css";
 
 const Workout = ({ workoutArr, date }) => {

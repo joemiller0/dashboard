@@ -23,11 +23,9 @@ const WorkoutList = ({ activities }) => {
 
     const renderWorkouts = () => {
         return dates.map(date => {
-            return <Workout workoutArr={workouts[date]} date={date} />
+            return <Workout workoutArr={workouts[date]} date={date} id={uniqid()}/>
         })
     }
-
-    console.log(workouts)
 
     return (
         <div className="workout-container">
