@@ -1,42 +1,37 @@
 import { useEffect, useState } from "react";
+import Workout from './Workout';
+import uniqid from "uniqid";
 import "../stylesheets/workout.css";
 
 const WorkoutList = ({ activities }) => {
-const [workouts, setWorkouts] = useState({})
-
-    // let whoop = [];
-    // let strava = [];
-
-    // activities.forEach((a) => {
-    //     if (a.name[0] === "W") {
-    //         whoop.push(a);
-    //     } else {
-    //         strava.push(a);
-    //     }
-    // });
-    
-
+    const [workouts, setWorkouts] = useState({})
+    const [dates, setDates] = useState([])
 
     useEffect(() => {
         let workoutsObj = {}
-        activities.forEach((workout)=>{
+        activities.forEach((workout) => {
             const date = workout.start_date_local.split('T')[0];
-            if(!workoutsObj[date]){
+            if (!workoutsObj[date]) {
                 workoutsObj[date] = [workout]
             } else {
                 workoutsObj[date].push(workout)
             }
         })
         setWorkouts(workoutsObj)
+        setDates(Object.keys(workoutsObj))
     }, [activities]);
-    
 
-    console.log(activities)
+    const renderWorkouts = () => {
+        return dates.map(date => {
+            return <Workout workoutArr={workouts[date]} date={date} />
+        })
+    }
+
     console.log(workouts)
-    return (
-        
-        <div className="workout-container">
 
+    return (
+        <div className="workout-container">
+            {renderWorkouts()}
         </div>
     );
 };
