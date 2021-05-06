@@ -20,7 +20,7 @@ const [workouts, setWorkouts] = useState({})
     useEffect(() => {
         let workoutsObj = {}
         activities.forEach((workout)=>{
-            const date = workout.start_date.split('T')[0];
+            const date = workout.start_date_local.split('T')[0];
             if(!workoutsObj[date]){
                 workoutsObj[date] = [workout]
             } else {
