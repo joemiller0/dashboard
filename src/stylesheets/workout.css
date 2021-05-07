@@ -7,16 +7,17 @@
 }
 .workout {
     border:1px solid red;
-    list-style: none;
     text-align:center;
-    /* padding:5px; */
+    padding:5px;
     margin:5px;
     width: 20%;
-    height:100px;
+    /* height:100px; */
 }
 .workout-header{
     background-color: red;
     height:25px;
+    position: relative;
+    top:-15px;
 }
 
 .workout-start-date{
@@ -28,3 +29,4 @@
     position:relative;
     top:20px;
 }
+
