@@ -13,7 +13,12 @@ const Workout = ({ workoutArr, date }) => {
             </div>
             
                 {workoutArr.map(workout => {
-                    return <p key={workout.id}>{workout.name}</p>
+                    return (
+                        <div key={workout.id}>
+                            <p>{workout.name}</p>
+                            <p>suffer score: {workout.suffer_score}</p>
+                        </div>
+                    )
                 })}
             
         </div>
