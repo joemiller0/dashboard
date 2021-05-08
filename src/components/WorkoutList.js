@@ -23,7 +23,7 @@ const WorkoutList = ({ activities }) => {
 
     const renderWorkouts = () => {
         return dates.map(date => {
-            return <Workout workoutArr={workouts[date]} date={date} key={uniqid()}/>
+            return <Workout workoutArr={workouts[date]} date={date} key={uniqid()} />
         })
     }
 

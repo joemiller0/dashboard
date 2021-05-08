@@ -26,3 +26,5 @@ const Workout = ({ workoutArr, date }) => {
 };
 
 export default Workout;
+
+// get the runs looking cool and put everything on a calendar. 
