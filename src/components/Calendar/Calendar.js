@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import "../stylesheets/workout.css";
 import Month from './Month';
 
@@ -25,7 +25,7 @@ const Calendar = ({ activities }) => {
 
     return (
         <div className="calendar">
-            <Month monthName={monthFullName} currentDate={currentDate}/>
+            <Month activities={activities} monthName={monthFullName} currentDate={currentDate}/>
         </div>
     );
 };
