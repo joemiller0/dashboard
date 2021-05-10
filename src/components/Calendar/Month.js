@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import uniqid from "uniqid";
-import Day from './Day';
+import Week from './Week';
 
 const Month = ({ activities, monthName, currentDate }) => {
     const [workouts, setWorkouts] = useState({})
@@ -29,22 +29,15 @@ const Month = ({ activities, monthName, currentDate }) => {
         "Friday",
         "Saturday",
     ];
-    const date = currentDate.getDate();
+    // const date = currentDate.getDate();
     const dayIndex = currentDate.getDay();
     const monthIndex = currentDate.getMonth();
     const year = currentDate.getFullYear();
     const firstDayIndex = new Date(year, monthIndex).getDay();
 
-    const firstWeek = () => {
-        for (let i = 0; i < 7; i++) {
-            let fullDate = new Date(year, monthIndex, i)
-            
-        }
-        
-        return <td>test</td>
-    }
     
-    //looking for a day component to populate in every square on the table, greyed out for past and future months in the first and last week of the calendar.
+    
+    //looking for a day component to populate in every square on the table
     //going to need to know about the last and next month to populate days correctly. 
     //each day should have its own full date and be mapped correctly to that space on the calendar.
     
@@ -60,9 +53,9 @@ const Month = ({ activities, monthName, currentDate }) => {
                     <tr>{dayNames}</tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        {firstWeek()}
-                    </tr>
+                    
+                    <Week key={uniqid()} workouts={workouts} workoutDates={workoutDates} firstDayIndex={firstDayIndex}/>
+                
                 </tbody>
             </table>
         </div>
