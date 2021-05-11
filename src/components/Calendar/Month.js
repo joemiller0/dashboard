@@ -60,6 +60,9 @@ const Month = ({ activities, monthName, currentDate }) => {
                         workoutDates={workoutDates} 
                         firstDayIndex={firstDayIndex}
                         totalDays={totalDays}
+                        monthIndex={monthIndex}
+                        currentDate={currentDate}
+                        year={year}
                     />
                 </tbody>
             </table>
