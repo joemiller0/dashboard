@@ -4,7 +4,7 @@ import uniqid from "uniqid";
 
 const WeeksContainer = ({workouts, workoutDates, firstDayIndex, totalDays, monthIndex, currentDate, year}) => {
 
-    const firstWeek = () => {
+    const FirstWeek = () => {
         let day = 1;
         let firstWeekArr = []
         for (let i = 0; i < 7; i++) {
@@ -19,7 +19,7 @@ const WeeksContainer = ({workouts, workoutDates, firstDayIndex, totalDays, month
 
     return (
         <>
-            {firstWeek()}
+            <FirstWeek />
         </>
     );
 };
