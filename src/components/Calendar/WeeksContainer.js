@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-// import "../stylesheets/workout.css";
 import uniqid from "uniqid";
 
-const WeeksContainer = ({workouts, workoutDates, firstDayIndex, totalDays, monthIndex, currentDate, year}) => {
+const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, monthIndex, currentDate, year }) => {
     const [firstWeek, setFirstWeek] = useState([])
+    const [firstWeekEndDate, setFirstWeekEndDate] = useState(0)
+
 
     useEffect(()=>{
         let day = 1;
@@ -12,14 +13,14 @@ const WeeksContainer = ({workouts, workoutDates, firstDayIndex, totalDays, month
             if ( i < firstDayIndex ){
                 firstWeekArr.push(<td key={uniqid()}></td>)
             } else if (i >= firstDayIndex){
-                firstWeekArr.push(<td key={uniqid()}>{day++}</td>)
+                let fullDate = new Date(year, monthIndex, day)
+                firstWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
             }
         }
-    
         setFirstWeek(<tr className="firstWeek">{firstWeekArr}</tr>)
-    }, [firstDayIndex])
+        setFirstWeekEndDate(day-1)
+    }, [firstDayIndex, monthIndex, year])
     
-    console.log(firstWeek)
     return (
         <>
             {firstWeek}
