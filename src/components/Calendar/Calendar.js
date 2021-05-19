@@ -23,10 +23,17 @@ const Calendar = ({ activities }) => {
     const monthIndex = currentDate.getMonth();
     const monthFullName = fullMonths[monthIndex];
 
+    const handlePrevMonth = () => {
+        setCurrentDate(new Date(currentDate.setMonth(monthIndex - 1)));
+    }
+    const handleNextMonth = () => {
+        setCurrentDate(new Date(currentDate.setMonth(monthIndex + 1)));
+    }
     return (
         <div className="calendar">
             <Month activities={activities} monthName={monthFullName} currentDate={currentDate}/>
-            <button>next month</button>
+            <button onClick={handleNextMonth}>next month</button>
+            <button onClick={handlePrevMonth}>prev month</button>
         </div>
     );
 };
