@@ -3,7 +3,12 @@ import uniqid from "uniqid";
 
 const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, monthIndex, currentDate, year }) => {
     const [firstWeek, setFirstWeek] = useState([])
-    const [firstWeekEndDate, setFirstWeekEndDate] = useState(0)
+    const [secondWeek, setSecondWeek] = useState([])
+    const [thirdWeek, setThirdWeek] = useState([])
+    const [fourthWeek, setFourthWeek] = useState([])
+    const [fifthWeek, setFifthWeek] = useState([])
+    const [sixthWeek, setSixthWeek] = useState([])
+
 
 
     useEffect(()=>{
@@ -18,12 +23,57 @@ const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, mont
             }
         }
         setFirstWeek(<tr className="firstWeek">{firstWeekArr}</tr>)
-        setFirstWeekEndDate(day-1)
-    }, [firstDayIndex, monthIndex, year])
+
+        let secondWeekArr = []
+        for (let j = 0; j < 7; j++) {
+            let fullDate = new Date(year, monthIndex, day)
+            secondWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
+        }
+        setSecondWeek(<tr className="secondWeek">{secondWeekArr}</tr>)
+
+        let thirdWeekArr = []
+        for (let j = 0; j < 7; j++) {
+            let fullDate = new Date(year, monthIndex, day)
+            thirdWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
+        }
+        setThirdWeek(<tr className="thirdWeek">{thirdWeekArr}</tr>)
+
+        let fourthWeekArr = []
+        for (let j = 0; j < 7; j++) {
+            let fullDate = new Date(year, monthIndex, day)
+            fourthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
+        }
+        setFourthWeek(<tr className="fourthWeek">{fourthWeekArr}</tr>)
+
+        let fifthWeekArr = []
+        for (let j = 0; j < 7; j++) {
+    
+            let fullDate = new Date(year, monthIndex, day)
+            fifthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
+        }
+        setFifthWeek(<tr className="fifthWeek">{fifthWeekArr}</tr>)
+
+        let sixthWeekArr = []
+        for (let j = 0; j < 7; j++) {
+            if(day > totalDays) {
+                sixthWeekArr.push(<td key={uniqid()}></td>)
+            }
+            let fullDate = new Date(year, monthIndex, day)
+            sixthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
+        }
+        setSixthWeek(<tr className="sixthWeek">{sixthWeekArr}</tr>)
+
+
+    }, [firstDayIndex, monthIndex, year, totalDays])
     
     return (
         <>
             {firstWeek}
+            {secondWeek}
+            {thirdWeek}
+            {fourthWeek}
+            {fifthWeek}
+            {sixthWeek}
         </>
     );
 };
