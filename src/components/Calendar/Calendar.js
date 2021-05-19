@@ -26,6 +26,7 @@ const Calendar = ({ activities }) => {
     return (
         <div className="calendar">
             <Month activities={activities} monthName={monthFullName} currentDate={currentDate}/>
+            <button>next month</button>
         </div>
     );
 };

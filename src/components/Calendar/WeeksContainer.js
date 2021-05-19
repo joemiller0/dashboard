@@ -25,28 +25,28 @@ const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, mont
         setFirstWeek(<tr className="firstWeek">{firstWeekArr}</tr>)
 
         let secondWeekArr = []
-        for (let j = 0; j < 7; j++) {
+        for (let i = 0; i < 7; i++) {
             let fullDate = new Date(year, monthIndex, day)
             secondWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
         }
         setSecondWeek(<tr className="secondWeek">{secondWeekArr}</tr>)
 
         let thirdWeekArr = []
-        for (let j = 0; j < 7; j++) {
+        for (let i = 0; i < 7; i++) {
             let fullDate = new Date(year, monthIndex, day)
             thirdWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
         }
         setThirdWeek(<tr className="thirdWeek">{thirdWeekArr}</tr>)
 
         let fourthWeekArr = []
-        for (let j = 0; j < 7; j++) {
+        for (let i = 0; i < 7; i++) {
             let fullDate = new Date(year, monthIndex, day)
             fourthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
         }
         setFourthWeek(<tr className="fourthWeek">{fourthWeekArr}</tr>)
 
         let fifthWeekArr = []
-        for (let j = 0; j < 7; j++) {
+        for (let i = 0; i < 7; i++) {
     
             let fullDate = new Date(year, monthIndex, day)
             fifthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
@@ -54,12 +54,13 @@ const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, mont
         setFifthWeek(<tr className="fifthWeek">{fifthWeekArr}</tr>)
 
         let sixthWeekArr = []
-        for (let j = 0; j < 7; j++) {
+        for (let i = 0; i < 7; i++) {
             if(day > totalDays) {
                 sixthWeekArr.push(<td key={uniqid()}></td>)
+            } else {
+                let fullDate = new Date(year, monthIndex, day)
+                sixthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
             }
-            let fullDate = new Date(year, monthIndex, day)
-            sixthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
         }
         setSixthWeek(<tr className="sixthWeek">{sixthWeekArr}</tr>)
 
