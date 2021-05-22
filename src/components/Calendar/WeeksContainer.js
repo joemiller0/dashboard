@@ -47,9 +47,12 @@ const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, mont
 
         let fifthWeekArr = []
         for (let i = 0; i < 7; i++) {
-    
-            let fullDate = new Date(year, monthIndex, day)
-            fifthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
+            if(day > totalDays) {
+                fifthWeekArr.push(<td key={uniqid()}></td>)
+            } else {
+                let fullDate = new Date(year, monthIndex, day)
+                fifthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{day++}</td>)
+            }
         }
         setFifthWeek(<tr className="fifthWeek">{fifthWeekArr}</tr>)
 
