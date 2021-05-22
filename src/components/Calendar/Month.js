@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import uniqid from "uniqid";
 import WeeksContainer from './WeeksContainer';
 
-const Month = ({ activities, monthName, currentDate }) => {
+const Month = ({ activities, monthName, selectedDate }) => {
     const [workouts, setWorkouts] = useState({})
     const [workoutDates, setWorkoutDates] = useState([])
 
@@ -35,10 +35,10 @@ const Month = ({ activities, monthName, currentDate }) => {
     const dayNames = fullDays.map(day => {
         return <th key={day}>{day}</th>;
     });
-    // const date = currentDate.getDate();
-    const dayIndex = currentDate.getDay();
-    const monthIndex = currentDate.getMonth();
-    const year = currentDate.getFullYear();
+    // const date = selectedDate.getDate();
+    const dayIndex = selectedDate.getDay();
+    const monthIndex = selectedDate.getMonth();
+    const year = selectedDate.getFullYear();
     const firstDayIndex = new Date(year, monthIndex).getDay();
     const totalDays = daysInMonth(monthIndex+1, year);
 
@@ -61,7 +61,7 @@ const Month = ({ activities, monthName, currentDate }) => {
                         firstDayIndex={firstDayIndex}
                         totalDays={totalDays}
                         monthIndex={monthIndex}
-                        currentDate={currentDate}
+                        selectedDate={selectedDate}
                         year={year}
                     />
                 </tbody>

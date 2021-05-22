@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import uniqid from "uniqid";
 
-const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, monthIndex, currentDate, year }) => {
+const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
     const [firstWeek, setFirstWeek] = useState([])
     const [secondWeek, setSecondWeek] = useState([])
     const [thirdWeek, setThirdWeek] = useState([])

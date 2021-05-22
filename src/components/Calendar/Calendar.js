@@ -4,7 +4,7 @@ import Month from './Month';
 
 const Calendar = ({ activities }) => {
     const today = new Date();
-    const [currentDate, setCurrentDate] = useState(today);
+    const [selectedDate, setSelectedDate] = useState(today);
 
     const fullMonths = [
         "January",
@@ -20,20 +20,20 @@ const Calendar = ({ activities }) => {
         "November",
         "December",
     ];
-    const monthIndex = currentDate.getMonth();
+    const monthIndex = selectedDate.getMonth();
     const monthFullName = fullMonths[monthIndex];
 
     const handlePrevMonth = () => {
-        setCurrentDate(new Date(currentDate.setMonth(monthIndex - 1)));
+        setSelectedDate(new Date(selectedDate.setMonth(monthIndex - 1)));
     }
     const handleNextMonth = () => {
-        setCurrentDate(new Date(currentDate.setMonth(monthIndex + 1)));
+        setSelectedDate(new Date(selectedDate.setMonth(monthIndex + 1)));
     }
     return (
         <div className="calendar">
-            <Month activities={activities} monthName={monthFullName} currentDate={currentDate}/>
-            <button onClick={handleNextMonth}>next month</button>
+            <Month activities={activities} monthName={monthFullName} selectedDate={selectedDate}/>
             <button onClick={handlePrevMonth}>prev month</button>
+            <button onClick={handleNextMonth}>next month</button>
         </div>
     );
 };
