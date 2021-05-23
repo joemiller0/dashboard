@@ -16,7 +16,7 @@ function useCalendarWeeks() {
                 weekOneArr.push(<td full-date={dateFormatted} key={uniqid()}>{day++}</td>)
             }
         }
-        return weekOneArr
+        return [weekOneArr, day]
     }
 
     const middleWeek = (startDate, monthIndex, year) =>{
@@ -28,11 +28,25 @@ function useCalendarWeeks() {
         return middleWeekArr
     }
 
+    const endWeek = (startDate, monthIndex, year, totalDays) => {
+        let endWeekArr = []
+        for (let i = 0; i < 7; i++) {
+            if(startDate > totalDays) {
+                endWeekArr.push(<td key={uniqid()}></td>)
+            } else {
+                let fullDate = new Date(year, monthIndex, startDate)
+                endWeekArr.push(<td full-date={fullDate} key={uniqid()}>{startDate++}</td>)
+            }
+        }
+        return endWeekArr
+    }
+
 
     
     return {
         weekOne, 
-        middleWeek
+        middleWeek, 
+        endWeek
     };
 }
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import uniqid from "uniqid";
+// import uniqid from "uniqid";
 import { useCalendarWeeks } from "../../hooks/useCalendarWeeks";
 
 const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
@@ -10,10 +10,14 @@ const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, mont
     const [fifthWeek, setFifthWeek] = useState([])
     const [sixthWeek, setSixthWeek] = useState([])
 
-    const { weekOne, middleWeek } = useCalendarWeeks();
+    const { weekOne, middleWeek, endWeek } = useCalendarWeeks();
     useEffect(()=>{
-        setFirstWeek(<tr className="firstWeek">{weekOne(firstDayIndex, monthIndex, year)}</tr>)
-
+        setFirstWeek(<tr className="firstWeek">{weekOne(firstDayIndex, monthIndex, year)[0]}</tr>)
+        setSecondWeek(<tr className="secondWeek">{middleWeek(weekOne(firstDayIndex, monthIndex, year)[1], monthIndex, year)}</tr>)
+        setThirdWeek(<tr className="thirdWeek">{middleWeek(weekOne(firstDayIndex, monthIndex, year)[1]+7, monthIndex, year)}</tr>)
+        setFourthWeek(<tr className="fourthWeek">{middleWeek(weekOne(firstDayIndex, monthIndex, year)[1]+14, monthIndex, year)}</tr>)
+        setFifthWeek(<tr className="fifthWeek">{endWeek(weekOne(firstDayIndex, monthIndex, year)[1]+21, monthIndex, year, totalDays)}</tr>)
+        setSixthWeek(<tr className="sixthWeek">{endWeek(weekOne(firstDayIndex, monthIndex, year)[1]+28, monthIndex, year, totalDays)}</tr>)
     }, [firstDayIndex, monthIndex, year])
 
 
