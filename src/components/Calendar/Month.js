@@ -35,20 +35,18 @@ const Month = ({ activities, monthName, selectedDate }) => {
     const dayNames = fullDays.map(day => {
         return <th key={day}>{day}</th>;
     });
-    // const date = selectedDate.getDate();
+
     const dayIndex = selectedDate.getDay();
     const monthIndex = selectedDate.getMonth();
     const year = selectedDate.getFullYear();
     const firstDayIndex = new Date(year, monthIndex).getDay();
     const totalDays = daysInMonth(monthIndex+1, year);
-
-    //looking for a day component to populate in every square on the table
-    //each day should have its own full date and be mapped correctly to that space on the calendar.
     
     return (
         <div className="month">
             <h3>{monthName} {year}</h3>
             <p>{fullDays[dayIndex]}</p>
+            <p>{selectedDate.toString()}</p>
             <table>
                 <thead>
                     <tr>{dayNames}</tr>
