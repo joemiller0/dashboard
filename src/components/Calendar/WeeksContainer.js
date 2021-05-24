@@ -20,6 +20,8 @@ const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, mont
         setSixthWeek(<tr className="sixthWeek">{endWeek(weekOne(firstDayIndex, monthIndex, year)[1]+28, monthIndex, year, totalDays)}</tr>)
     }, [firstDayIndex, monthIndex, year])
 
+    
+    //problem is the hook function values are causing too many renders
 
 
 
