@@ -7,7 +7,10 @@ const Month = ({ activities, monthName, selectedDate }) => {
     const [workoutDates, setWorkoutDates] = useState([])
 
     useEffect(() => {
+        if (!activities || !activities.length) return
+        
         let workoutsObj = {}
+        // debugger
         activities.forEach((workout) => {
             const date = workout.start_date_local.split('T')[0];
             if (!workoutsObj[date]) {
@@ -47,23 +50,17 @@ const Month = ({ activities, monthName, selectedDate }) => {
             <h3>{monthName} {year}</h3>
             <p>{fullDays[dayIndex]}</p>
             <p>{selectedDate.toString()}</p>
-            <table>
-                <thead>
-                    <tr>{dayNames}</tr>
-                </thead>
-                <tbody>
-                    <WeeksContainer 
-                        key={uniqid()} 
-                        workouts={workouts} 
-                        workoutDates={workoutDates} 
-                        firstDayIndex={firstDayIndex}
-                        totalDays={totalDays}
-                        monthIndex={monthIndex}
-                        selectedDate={selectedDate}
-                        year={year}
-                    />
-                </tbody>
-            </table>
+            <WeeksContainer 
+                key={uniqid()} 
+                dayNames={dayNames}
+                workouts={workouts} 
+                workoutDates={workoutDates} 
+                firstDayIndex={firstDayIndex}
+                totalDays={totalDays}
+                monthIndex={monthIndex}
+                selectedDate={selectedDate}
+                year={year}
+            />
         </div>
     );
 };
