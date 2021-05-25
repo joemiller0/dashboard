@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-// import uniqid from "uniqid";
-import { useCalendarWeeks } from "../../hooks/useCalendarWeeks";
+import { weekOne, middleWeek, endWeek } from "./utilities";
 
-const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
+const WeeksContainer = ({ dayNames, workouts, workoutDates, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
     const [firstWeek, setFirstWeek] = useState([])
     const [secondWeek, setSecondWeek] = useState([])
     const [thirdWeek, setThirdWeek] = useState([])
@@ -10,96 +9,45 @@ const WeeksContainer = ({ workouts, workoutDates, firstDayIndex, totalDays, mont
     const [fifthWeek, setFifthWeek] = useState([])
     const [sixthWeek, setSixthWeek] = useState([])
 
-    const { weekOne, middleWeek, endWeek } = useCalendarWeeks();
     useEffect(()=>{
-        setFirstWeek(<tr className="firstWeek">{weekOne(firstDayIndex, monthIndex, year)[0]}</tr>)
-        setSecondWeek(<tr className="secondWeek">{middleWeek(weekOne(firstDayIndex, monthIndex, year)[1], monthIndex, year)}</tr>)
-        setThirdWeek(<tr className="thirdWeek">{middleWeek(weekOne(firstDayIndex, monthIndex, year)[1]+7, monthIndex, year)}</tr>)
-        setFourthWeek(<tr className="fourthWeek">{middleWeek(weekOne(firstDayIndex, monthIndex, year)[1]+14, monthIndex, year)}</tr>)
-        setFifthWeek(<tr className="fifthWeek">{endWeek(weekOne(firstDayIndex, monthIndex, year)[1]+21, monthIndex, year, totalDays)}</tr>)
-        setSixthWeek(<tr className="sixthWeek">{endWeek(weekOne(firstDayIndex, monthIndex, year)[1]+28, monthIndex, year, totalDays)}</tr>)
-    }, [firstDayIndex, monthIndex, year])
+        // Didn't know what to name this, weekOne is a bad name as I have no idea what it does
+        // Rememeber, I'm not chase I'm some guy who might want to hire you
+        const standardWeekRoutine = weekOne(firstDayIndex, monthIndex, year)
 
-    
-    //problem is the hook function values are causing too many renders
-
-
-
-    // useEffect(()=>{
-    
-    //     let day = 1;
-    //     let firstWeekArr = []
-    //     for (let i = 0; i < 7; i++) {
-    //         if ( i < firstDayIndex ){
-    //             firstWeekArr.push(<td key={uniqid()}></td>)
-    //         } else if (i >= firstDayIndex){
-    //             let fullDate = new Date(year, monthIndex, day)
-    //             const dateFormatted = fullDate.toString().split('00')[0]
-    //             firstWeekArr.push(<td full-date={dateFormatted} key={uniqid()}>{day++}</td>)
-    //         }
-    //     }
-    //     setFirstWeek(<tr className="firstWeek">{firstWeekArr}</tr>)
-
-    //     let secondWeekArr = []
-    //     let weekTwoStartDate = firstWeekArr[firstWeekArr.length-1].props.children + 1
-    //     for (let i = 0; i < 7; i++) {
-    //         let fullDate = new Date(year, monthIndex, weekTwoStartDate)
-    //         secondWeekArr.push(<td full-date={fullDate} key={uniqid()}>{weekTwoStartDate++}</td>)
-    //     }
-    //     setSecondWeek(<tr className="secondWeek">{secondWeekArr}</tr>)
-
-    //     let thirdWeekArr = []
-    //     let weekThreeStartDate = secondWeekArr[secondWeekArr.length-1].props.children + 1
-    //     for (let i = 0; i < 7; i++) {
-    //         let fullDate = new Date(year, monthIndex, weekThreeStartDate)
-    //         thirdWeekArr.push(<td full-date={fullDate} key={uniqid()}>{weekThreeStartDate++}</td>)
-    //     }
-    //     setThirdWeek(<tr className="thirdWeek">{thirdWeekArr}</tr>)
-
-    //     let fourthWeekArr = []
-    //     let weekFourStartDate = thirdWeekArr[thirdWeekArr.length-1].props.children + 1
-    //     for (let i = 0; i < 7; i++) {
-    //         let fullDate = new Date(year, monthIndex, weekFourStartDate)
-    //         fourthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{weekFourStartDate++}</td>)
-    //     }
-    //     setFourthWeek(<tr className="fourthWeek">{fourthWeekArr}</tr>)
-
-    //     let fifthWeekArr = []
-    //     let weekFiveStartDate = fourthWeekArr[fourthWeekArr.length-1].props.children + 1
-    //     for (let i = 0; i < 7; i++) {
-    //         if(day > totalDays) {
-    //             fifthWeekArr.push(<td key={uniqid()}></td>)
-    //         } else {
-    //             let fullDate = new Date(year, monthIndex, weekFiveStartDate)
-    //             fifthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{weekFiveStartDate++}</td>)
-    //         }
-    //     }
-    //     setFifthWeek(<tr className="fifthWeek">{fifthWeekArr}</tr>)
-
-    //     let sixthWeekArr = []
-    //     let weekSixStartDate = fifthWeekArr[fifthWeekArr.length-1].props.children + 1
-    //     for (let i = 0; i < 7; i++) {
-    //         if(day > totalDays) {
-    //             sixthWeekArr.push(<td key={uniqid()}></td>)
-    //         } else {
-    //             let fullDate = new Date(year, monthIndex, weekSixStartDate)
-    //             sixthWeekArr.push(<td full-date={fullDate} key={uniqid()}>{weekSixStartDate++}</td>)
-    //         }
-    //     }
-    //     setSixthWeek(<tr className="sixthWeek">{sixthWeekArr}</tr>)
-
-
-    // }, [firstDayIndex, monthIndex, year, totalDays])
+        setFirstWeek(standardWeekRoutine.tableCells)
+        setSecondWeek(middleWeek(standardWeekRoutine.day, monthIndex, year))
+        setThirdWeek(middleWeek(standardWeekRoutine.day+7, monthIndex, year))
+        setFourthWeek(middleWeek(standardWeekRoutine.day+14, monthIndex, year))
+        setFifthWeek(endWeek(standardWeekRoutine.day+21, monthIndex, year, totalDays))
+        setSixthWeek(endWeek(standardWeekRoutine.day+28, monthIndex, year, totalDays))
+    }, [firstDayIndex, monthIndex, year, totalDays])
     
     return (
-        <>
-            {firstWeek}
-            {secondWeek}
-            {thirdWeek}
-            {fourthWeek}
-            {fifthWeek}
-            {sixthWeek}
-        </>
+        <table>
+            <thead>
+                <tr>{dayNames}</tr>
+            </thead>
+            <tbody>
+                <tr className="firstWeek">
+                    {firstWeek}
+                </tr>
+                <tr className="secondWeek">
+                    {secondWeek}
+                </tr>
+                <tr className="thirdWeek">
+                    {thirdWeek}
+                </tr>
+                <tr className="fourthWeek">
+                    {fourthWeek}
+                </tr>
+                <tr className="fifthWeek">
+                    {fifthWeek}
+                </tr>
+                <tr className="sixthWeek">
+                    {sixthWeek}
+                </tr>
+            </tbody>
+        </table>
     );
 };
 
