@@ -1,4 +1,6 @@
 import uniqid from "uniqid";
+import Day from './Day';
+
 
 export const buildWeekOne = (firstDayIndex, monthIndex, year) => {
     let date = 1;
@@ -8,8 +10,8 @@ export const buildWeekOne = (firstDayIndex, monthIndex, year) => {
             weekOneArr.push(<td key={uniqid()}></td>)
         } else if (i >= firstDayIndex){
             let fullDate = new Date(year, monthIndex, date)
-            const dateFormatted = fullDate.toString().split('00')[0]
-            weekOneArr.push(<td full-date={dateFormatted} key={uniqid()}>{date++}</td>)
+            // const dateFormatted = fullDate.toString().split('00')[0]
+            weekOneArr.push(<Day date={date++} fullDate={fullDate} key={uniqid()}/>)
         }
     }
     return {tableCells: weekOneArr, date}
@@ -19,7 +21,7 @@ export const buildMiddleWeek = (startDate, monthIndex, year) =>{
     let middleWeekArr = []
     for (let i = 0; i < 7; i++) {
         let fullDate = new Date(year, monthIndex, startDate)
-        middleWeekArr.push(<td full-date={fullDate} key={uniqid()}>{startDate++}</td>)
+        middleWeekArr.push(<Day date={startDate++} fullDate={fullDate} key={uniqid()}/>)
     }
     return middleWeekArr
 }
@@ -31,7 +33,7 @@ export const buildEndWeek = (startDate, monthIndex, year, totalDays) => {
             endWeekArr.push(<td key={uniqid()}></td>)
         } else {
             let fullDate = new Date(year, monthIndex, startDate)
-            endWeekArr.push(<td full-date={fullDate} key={uniqid()}>{startDate++}</td>)
+            endWeekArr.push(<Day date={startDate++} fullDate={fullDate} key={uniqid()}/>)
         }
     }
     return endWeekArr
