@@ -35,7 +35,7 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <div className="dashobard-container">
+        <div className="dashboard-container">
             {/* <WorkoutList activities={activities} /> */}
             <Calendar activities={activities} />
         </div>

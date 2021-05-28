@@ -1,10 +1,13 @@
-
-
-const Day = ({ date, fullDate }) => {
-    console.log(fullDate)
+const Day = ({ date, fullDate, workouts }) => {
+    console.log(workouts)
     return (
-        <td className="day" full-date={fullDate}>
+        <td className={!fullDate ? "blank" : "day"} full-date={fullDate}>
             {date}
+            {workouts !== undefined && 
+                workouts.map((workout)=>{
+                    return <p>{workout.name}</p>
+                })
+            }
         </td>
     );
 };
