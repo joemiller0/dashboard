@@ -4,7 +4,6 @@ import WeeksContainer from './WeeksContainer';
 
 const Month = ({ activities, monthName, selectedDate }) => {
     const [workouts, setWorkouts] = useState({})
-    const [workoutDates, setWorkoutDates] = useState([])
 
     useEffect(() => {
         if (!activities || !activities.length) return
@@ -20,7 +19,6 @@ const Month = ({ activities, monthName, selectedDate }) => {
             }
         })
         setWorkouts(workoutsObj)
-        setWorkoutDates(Object.keys(workoutsObj))
     }, [activities]);
 
     const fullDays = [
@@ -54,7 +52,6 @@ const Month = ({ activities, monthName, selectedDate }) => {
                 key={uniqid()} 
                 dayNames={dayNames}
                 workouts={workouts} 
-                workoutDates={workoutDates} 
                 firstDayIndex={firstDayIndex}
                 totalDays={totalDays}
                 monthIndex={monthIndex}

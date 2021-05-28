@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { buildWeekOne, buildMiddleWeek, buildEndWeek } from "./utilities";
 
-const WeeksContainer = ({ dayNames, workouts, workoutDates, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
+const WeeksContainer = ({ dayNames, workouts, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
     const [firstWeek, setFirstWeek] = useState([])
     const [secondWeek, setSecondWeek] = useState([])
     const [thirdWeek, setThirdWeek] = useState([])
@@ -11,15 +11,7 @@ const WeeksContainer = ({ dayNames, workouts, workoutDates, firstDayIndex, total
 
 
     useEffect(()=>{
-        
         const initializeMonth = buildWeekOne(firstDayIndex, monthIndex, year, workouts)
-        
-        // initializeMonth.tableCells.map((cell) => {
-        //     if(cell.props.fullDate){
-        //         console.log(cell.props.fullDate)
-        //         console.log(workouts[cell.props.fullDate])
-        //     }
-        // })
     
         setFirstWeek(initializeMonth.tableCells)
         setSecondWeek(buildMiddleWeek(initializeMonth.date, monthIndex, year, workouts))
