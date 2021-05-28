@@ -28,7 +28,7 @@ const WeeksContainer = ({ dayNames, workouts, workoutDates, firstDayIndex, total
         setFifthWeek(buildEndWeek(initializeMonth.date+21, monthIndex, year, totalDays, workouts))
         setSixthWeek(buildEndWeek(initializeMonth.date+28, monthIndex, year, totalDays, workouts))
 
-    }, [firstDayIndex, monthIndex, year, totalDays])
+    }, [firstDayIndex, monthIndex, year, totalDays, workouts])
     
     return (
         <table>

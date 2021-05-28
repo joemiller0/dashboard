@@ -8,10 +8,9 @@ export const buildWeekOne = (firstDayIndex, monthIndex, year, workouts) => {
     for (let i = 0; i < 7; i++) {
         if ( i < firstDayIndex ){
             weekOneArr.push(<Day key={uniqid()} />)
-        } else if (i >= firstDayIndex){
+        } else {
             let fullDate = new Date(year, monthIndex, date).toISOString().split('T')[0]
-            weekOneArr.push(<Day date={date++} fullDate={fullDate} key={uniqid()}/>)
-
+                weekOneArr.push(<Day workouts={workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()}/>)
         }
     }
     return {tableCells: weekOneArr, date}
@@ -33,7 +32,7 @@ export const buildEndWeek = (startDate, monthIndex, year, totalDays, workouts) =
             endWeekArr.push(<Day key={uniqid()} />)
         } else {
             let fullDate = new Date(year, monthIndex, startDate).toISOString().split('T')[0]
-            endWeekArr.push(<Day date={startDate++} fullDate={fullDate} key={uniqid()}/>)
+            endWeekArr.push(<Day workouts={workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()}/>)
         }
     }
     return endWeekArr
