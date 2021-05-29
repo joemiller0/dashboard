@@ -1,0 +1,31 @@
+
+.dashboard{
+    display:flex;
+    justify-content: center;
+}
+.calendar{
+    /* width:30%; */
+    text-align:center;
+}
+.month-header{
+    text-align: left;
+}
+
+/* .date{
+    position:relative;
+    top:-40px;
+} */
+
+
+table{
+    border:2px solid black;
+    border-collapse: collapse;
+}
+td{
+    border:1px solid black;
+    max-height:100px;
+    height:100px;
+    width:100px;
+    margin:0;
+}
+

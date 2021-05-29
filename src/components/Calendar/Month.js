@@ -9,7 +9,6 @@ const Month = ({ activities, monthName, selectedDate }) => {
         if (!activities || !activities.length) return
         
         let workoutsObj = {}
-        // debugger
         activities.forEach((workout) => {
             const date = workout.start_date_local.split('T')[0];
             if (!workoutsObj[date]) {
@@ -22,13 +21,13 @@ const Month = ({ activities, monthName, selectedDate }) => {
     }, [activities]);
 
     const fullDays = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
+        "Sun",
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
     ];
     const daysInMonth = (month, year) => {
         return new Date(year, month, 0).getDate();
@@ -45,9 +44,11 @@ const Month = ({ activities, monthName, selectedDate }) => {
     
     return (
         <div className="month">
-            <h3>{monthName} {year}</h3>
-            <p>{fullDays[dayIndex]}</p>
-            <p>{selectedDate.toString()}</p>
+            <div className="month-header">
+                <h3>{monthName} {year}</h3>
+                <p>{fullDays[dayIndex]}</p>
+                <p>{selectedDate.toISOString().split('T')[0]}</p>
+            </div>
             <WeeksContainer 
                 key={uniqid()} 
                 dayNames={dayNames}

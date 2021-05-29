@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import "../stylesheets/workout.css";
+import "../../stylesheets/calendar.css";
 import Month from './Month';
 
 const Calendar = ({ activities }) => {
@@ -31,9 +31,9 @@ const Calendar = ({ activities }) => {
     }
     return (
         <div className="calendar">
-            <Month activities={activities} monthName={monthFullName} selectedDate={selectedDate}/>
             <button onClick={handlePrevMonth}>prev month</button>
             <button onClick={handleNextMonth}>next month</button>
+            <Month activities={activities} monthName={monthFullName} selectedDate={selectedDate}/>
         </div>
     );
 };
