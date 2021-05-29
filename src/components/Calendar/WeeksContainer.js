@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { buildWeekOne, buildMiddleWeek, buildEndWeek } from "./utilities";
 
-
 const WeeksContainer = ({ dayNames, workouts, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
     const [firstWeek, setFirstWeek] = useState([])
     const [secondWeek, setSecondWeek] = useState([])

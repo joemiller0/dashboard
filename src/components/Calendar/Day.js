@@ -22,7 +22,16 @@ const Day = ({ date, fullDate, workouts }) => {
                                 </div>
                             )
                         } 
-                        return <div className="workout strava" key={workout.upload_id}>{workout.name}</div>
+                        return (
+                            <div className="workout strava" key={workout.upload_id}>
+                                <div className="stravaRun">
+                                    {workout.name}
+                                </div>
+                                <div className="sufferScore">
+                                    {workout.suffer_score} suffer
+                                </div>
+                            </div>
+                        )
                     })
                 }
 
