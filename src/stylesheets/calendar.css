@@ -4,17 +4,41 @@
     justify-content: center;
 }
 .calendar{
-    /* width:30%; */
     text-align:center;
 }
 .month-header{
     text-align: left;
 }
 
-/* .date{
+.date{
     position:relative;
-    top:-40px;
-} */
+    left:-40px;
+    
+}
+.workout{
+    font-size: 11px;
+}
+.workoutsContainer{
+    margin-left:10px;
+    margin-top:10px;
+}
+.activity{
+    text-align: left;
+}
+.dayStrain{
+    font-size: 8px;
+    /* text-align: right; */
+    width:50%;
+    /* padding-right:15px; */
+    background-color: rgba(133, 255, 0, .5);
+    /* position: relative;
+    top:-2px;
+    left:-20px; */
+}
+.strava{
+    color:red;
+    text-align: left;
+}
 
 
 table{
@@ -23,7 +47,7 @@ table{
 }
 td{
     border:1px solid black;
-    max-height:100px;
+    /* max-height:100px; */
     height:100px;
     width:100px;
     margin:0;

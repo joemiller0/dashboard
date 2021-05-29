@@ -1,18 +1,32 @@
 const Day = ({ date, fullDate, workouts }) => {
     return (
-        <td className={!fullDate ? "blank" : "day"} full-date={fullDate}>
-            <span className="date">{date}</span>
-            {workouts !== undefined && 
-                workouts.map((workout)=>{
-                    console.log(workout)
-                    if (workout.name[0] === "W") {
-                        const workoutName = workout.name.split("→")[1]
-                        return <span>{workoutName}</span>
-                        // console.log(typeof workoutName[1])
-                    } 
-                    return <span key={workout.upload_id}>{workout.name}</span>
-                })
-            }
+        <td valign="top" className={!fullDate ? "blank" : "day"} full-date={fullDate}>
+            <div className="date">{date}</div>
+            <div className="workoutsContainer">
+                {workouts !== undefined && 
+                    workouts.map((workout)=>{
+                        console.log(workout)
+                        if (workout.name[0] === "W") {
+                            const whoopDayStrain = workout.name.split("→")[1]
+                            const strain = whoopDayStrain.split(" ")[1]
+                            const whoopActivity = workout.name.split("→")[0]
+                            const activity = whoopActivity.slice(6)
+                            return (
+                                <div key={workout.upload_id} className="workout whoop">
+                                    <div className="activity">
+                                        {activity}
+                                    </div>
+                                    <div className="dayStrain">
+                                        {strain} Strain
+                                    </div>
+                                </div>
+                            )
+                        } 
+                        return <div className="workout strava" key={workout.upload_id}>{workout.name}</div>
+                    })
+                }
+
+            </div>
         </td>
     );
 };
