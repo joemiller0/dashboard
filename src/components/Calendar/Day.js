@@ -5,7 +5,6 @@ const Day = ({ date, fullDate, workouts }) => {
             <div className="workoutsContainer">
                 {workouts !== undefined && 
                     workouts.map((workout)=>{
-                        console.log(workout)
                         if (workout.name[0] === "W") {
                             const whoopDayStrain = workout.name.split("→")[1]
                             const strain = whoopDayStrain.split(" ")[1]
@@ -34,7 +33,6 @@ const Day = ({ date, fullDate, workouts }) => {
                         )
                     })
                 }
-
             </div>
         </td>
     );

@@ -18,10 +18,10 @@ const WeeksContainer = ({ dayNames, workouts, firstDayIndex, totalDays, monthInd
         setThirdWeek(buildMiddleWeek(initializeMonth.date+7, monthIndex, year, workouts))
         setFourthWeek(buildMiddleWeek(initializeMonth.date+14, monthIndex, year, workouts))
         setFifthWeek(buildEndWeek(initializeMonth.date+21, monthIndex, year, totalDays, workouts))
+        if (initializeMonth.date+28 > totalDays) return
         setSixthWeek(buildEndWeek(initializeMonth.date+28, monthIndex, year, totalDays, workouts))
 
     }, [firstDayIndex, monthIndex, year, totalDays, workouts])
-    
     return (
         <table>
             <thead>
@@ -43,6 +43,7 @@ const WeeksContainer = ({ dayNames, workouts, firstDayIndex, totalDays, monthInd
                 <tr>
                     {fifthWeek}
                 </tr>
+                {}
                 <tr>
                     {sixthWeek}
                 </tr>
