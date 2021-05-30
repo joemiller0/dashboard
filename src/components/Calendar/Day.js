@@ -1,7 +1,17 @@
 const Day = ({ date, fullDate, workouts }) => {
-    const getDecimal = (n) => {
-        return (n - Math.floor(n));
+
+    const getMinMileAvg = (speed) => {
+        const milesPerMin = speed * 0.037282272
+        const decimalTime = 1 / milesPerMin
+        const min = Math.floor(decimalTime)
+        const decimal = decimalTime - Math.floor(decimalTime)
+        const secDec = decimal * 60
+        const sec = Math.floor(secDec)
+        
+        if(sec < 10) return `${min}:0${sec}/mi avg`
+        return `${min}:${sec}/mi avg`
     }
+
     const roundDistance = (distance) => {
         return Math.round(distance * 100) / 100
     }
@@ -28,18 +38,9 @@ const Day = ({ date, fullDate, workouts }) => {
                                 </div>
                             )
                         } 
-                        console.log(workout)
-
-                        const milesPerMin = workout.average_speed * 0.037282272
-                        const decimalTime = 1 / milesPerMin
-                        const min = Math.floor(decimalTime)
-                        const decimal = getDecimal(decimalTime)
-                        const secDec = decimal * 60
-                        const sec = Math.floor(secDec)
-
-                        const toMiles = workout.distance / 1609
-                        const totalDistance = roundDistance(toMiles)
-
+                        const metersToMiles = workout.distance / 1609
+                        const totalDistance = roundDistance(metersToMiles)
+                        const minMileAvg = getMinMileAvg(workout.average_speed)
                         return (
                             <div className="workout strava" key={workout.upload_id}>
                                 <div className="stravaRun">
@@ -47,7 +48,7 @@ const Day = ({ date, fullDate, workouts }) => {
                                 </div>
                                 <div className="highlight">
                                     {totalDistance} miles<br></br>
-                                    {min}:{sec}/mi avg <br></br>
+                                    {minMileAvg} <br></br>
                                     {workout.suffer_score} suffer
                                 </div>
                             </div>
