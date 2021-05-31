@@ -9,7 +9,7 @@ const Dashboard = () => {
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
         const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
         const refreshToken = process.env.REACT_APP_STRAVA_REFRESH_TOKEN;
-        
+
         if (!clientId || !clientSecret) return
 
         const authUrl = "https://www.strava.com/oauth/token";
