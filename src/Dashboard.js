@@ -10,7 +10,6 @@ const Dashboard = () => {
         const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
         const refreshToken = process.env.REACT_APP_STRAVA_REFRESH_TOKEN;
 
-        // I don't have the .env (correctly) so I had to add this to keep from calling their servers a bunch with undefined as my token
         if (!clientId || !clientSecret) return
 
         const authUrl = "https://www.strava.com/oauth/token";
@@ -36,7 +35,7 @@ const Dashboard = () => {
     }, []);
 
     return (
-        <div className="dashobard-container">
+        <div className="dashboard">
             {/* <WorkoutList activities={activities} /> */}
             <Calendar activities={activities} />
         </div>

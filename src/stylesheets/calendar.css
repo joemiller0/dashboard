@@ -1,0 +1,52 @@
+
+.dashboard{
+    display:flex;
+    justify-content: center;
+}
+.calendar{
+    text-align:center;
+}
+.month-header{
+    text-align: left;
+}
+
+.date{
+    position:relative;
+    left:-40px;
+    
+}
+.workout{
+    font-size: 11px;
+}
+.workoutsContainer{
+    margin-left:10px;
+    margin-top:5px;
+}
+.activity{
+    text-align: left;
+}
+.highlight{
+    font-size: 8px;
+    text-align: right;
+    background-color: rgba(133, 255, 0, .5);
+}
+
+.strava{
+    text-align: left;
+}
+.selectedDate{
+    border:crimson 4px solid;
+}
+
+
+table{
+    border:2px solid black;
+    border-collapse: collapse;
+}
+td{
+    border:1px solid black;
+    height:100px;
+    width:100px;
+    margin:0;
+}
+

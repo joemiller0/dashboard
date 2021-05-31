@@ -1,40 +1,43 @@
 import uniqid from "uniqid";
+import Day from './Day';
 
-export const weekOne = (firstDayIndex, monthIndex, year) => {
-    let day = 1;
+
+export const buildWeekOne = (firstDayIndex, monthIndex, year, workouts, selectedDate) => {
+    let date = 1;
     let weekOneArr = []
     for (let i = 0; i < 7; i++) {
         if ( i < firstDayIndex ){
-            weekOneArr.push(<td key={uniqid()}></td>)
-        } else if (i >= firstDayIndex){
-            let fullDate = new Date(year, monthIndex, day)
-            const dateFormatted = fullDate.toString().split('00')[0]
-            weekOneArr.push(<td full-date={dateFormatted} key={uniqid()}>{day++}</td>)
+            weekOneArr.push(<Day key={uniqid()} />)
+        } else {
+            let fullDate = new Date(year, monthIndex, date).toISOString().split('T')[0]
+                weekOneArr.push(<Day workouts={workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()}/>)
         }
     }
-
-    // When returning multiple variables from a function, React likes object notation
-    // This makes it easier to consume, as you can reference the name instead of the array index
-    return {tableCells: weekOneArr, day}
+    return {tableCells: weekOneArr, date}
 }
 
-export const middleWeek = (startDate, monthIndex, year) =>{
+export const buildMiddleWeek = (startDate, monthIndex, year, workouts, selectedDate) => {
     let middleWeekArr = []
     for (let i = 0; i < 7; i++) {
-        let fullDate = new Date(year, monthIndex, startDate)
-        middleWeekArr.push(<td full-date={fullDate} key={uniqid()}>{startDate++}</td>)
+        let fullDate = new Date(year, monthIndex, startDate).toISOString().split('T')[0]
+        middleWeekArr.push(<Day workouts={workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()}/>)
     }
     return middleWeekArr
 }
 
-export const endWeek = (startDate, monthIndex, year, totalDays) => {
+export const buildEndWeek = (startDate, monthIndex, year, totalDays, workouts, selectedDate) => {
     let endWeekArr = []
     for (let i = 0; i < 7; i++) {
         if(startDate > totalDays) {
-            endWeekArr.push(<td key={uniqid()}></td>)
+            endWeekArr.push(<Day key={uniqid()} />)
         } else {
-            let fullDate = new Date(year, monthIndex, startDate)
-            endWeekArr.push(<td full-date={fullDate} key={uniqid()}>{startDate++}</td>)
+            let fullDate = new Date(year, monthIndex, startDate).toISOString().split('T')[0]
+            if (fullDate === selectedDate.toISOString().split('T')[0]){
+                endWeekArr.push(<Day workouts={workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} selectedDate={selectedDate}/>)
+            } else {
+        
+                endWeekArr.push(<Day workouts={workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()}/>)
+            }
         }
     }
     return endWeekArr

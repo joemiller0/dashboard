@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { weekOne, middleWeek, endWeek } from "./utilities";
+import { buildWeekOne, buildMiddleWeek, buildEndWeek } from "./utilities";
 
-const WeeksContainer = ({ dayNames, workouts, workoutDates, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
+const WeeksContainer = ({ dayNames, workouts, firstDayIndex, totalDays, monthIndex, selectedDate, year }) => {
     const [firstWeek, setFirstWeek] = useState([])
     const [secondWeek, setSecondWeek] = useState([])
     const [thirdWeek, setThirdWeek] = useState([])
@@ -10,40 +10,39 @@ const WeeksContainer = ({ dayNames, workouts, workoutDates, firstDayIndex, total
     const [sixthWeek, setSixthWeek] = useState([])
 
     useEffect(()=>{
-        // Didn't know what to name this, weekOne is a bad name as I have no idea what it does
-        // Rememeber, I'm not chase I'm some guy who might want to hire you
-        const standardWeekRoutine = weekOne(firstDayIndex, monthIndex, year)
-
-        setFirstWeek(standardWeekRoutine.tableCells)
-        setSecondWeek(middleWeek(standardWeekRoutine.day, monthIndex, year))
-        setThirdWeek(middleWeek(standardWeekRoutine.day+7, monthIndex, year))
-        setFourthWeek(middleWeek(standardWeekRoutine.day+14, monthIndex, year))
-        setFifthWeek(endWeek(standardWeekRoutine.day+21, monthIndex, year, totalDays))
-        setSixthWeek(endWeek(standardWeekRoutine.day+28, monthIndex, year, totalDays))
-    }, [firstDayIndex, monthIndex, year, totalDays])
+        const initializeMonth = buildWeekOne(firstDayIndex, monthIndex, year, workouts, selectedDate)
     
+        setFirstWeek(initializeMonth.tableCells)
+        setSecondWeek(buildMiddleWeek(initializeMonth.date, monthIndex, year, workouts, selectedDate))
+        setThirdWeek(buildMiddleWeek(initializeMonth.date+7, monthIndex, year, workouts, selectedDate))
+        setFourthWeek(buildMiddleWeek(initializeMonth.date+14, monthIndex, year, workouts, selectedDate))
+        setFifthWeek(buildEndWeek(initializeMonth.date+21, monthIndex, year, totalDays, workouts, selectedDate))
+        if (initializeMonth.date+28 > totalDays) return
+        setSixthWeek(buildEndWeek(initializeMonth.date+28, monthIndex, year, totalDays, workouts, selectedDate))
+
+    }, [firstDayIndex, monthIndex, year, totalDays, workouts, selectedDate])
     return (
         <table>
             <thead>
                 <tr>{dayNames}</tr>
             </thead>
             <tbody>
-                <tr className="firstWeek">
+                <tr>
                     {firstWeek}
                 </tr>
-                <tr className="secondWeek">
+                <tr>
                     {secondWeek}
                 </tr>
-                <tr className="thirdWeek">
+                <tr>
                     {thirdWeek}
                 </tr>
-                <tr className="fourthWeek">
+                <tr>
                     {fourthWeek}
                 </tr>
-                <tr className="fifthWeek">
+                <tr>
                     {fifthWeek}
                 </tr>
-                <tr className="sixthWeek">
+                <tr>
                     {sixthWeek}
                 </tr>
             </tbody>
