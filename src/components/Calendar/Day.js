@@ -3,9 +3,9 @@ const Day = ({ date, fullDate, workouts, selectedDate }) => {
     const getMinMileAvg = (metersPerSecond) => {
         const milesPerMin = metersPerSecond * 0.037282272
         // 1 meter per second (m/s) = 0.037282272 mile per minute (mi/min)
-        const decimalTime = 1 / milesPerMin
-        const min = Math.floor(decimalTime)
-        const decimal = decimalTime - Math.floor(decimalTime)
+        const decimalMins = 1 / milesPerMin
+        const min = Math.floor(decimalMins)
+        const decimal = decimalMins - Math.floor(decimalMins)
         const secDec = decimal * 60
         const sec = Math.floor(secDec)
 
