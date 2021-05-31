@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import uniqid from "uniqid";
 import WeeksContainer from './WeeksContainer';
 
-const Month = ({ activities, monthName, selectedDate }) => {
+const Month = ({ activities, selectedDate }) => {
     const [workouts, setWorkouts] = useState({})
 
     useEffect(() => {

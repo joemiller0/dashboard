@@ -9,19 +9,18 @@ const WeeksContainer = ({ dayNames, workouts, firstDayIndex, totalDays, monthInd
     const [fifthWeek, setFifthWeek] = useState([])
     const [sixthWeek, setSixthWeek] = useState([])
 
-
     useEffect(()=>{
-        const initializeMonth = buildWeekOne(firstDayIndex, monthIndex, year, workouts)
+        const initializeMonth = buildWeekOne(firstDayIndex, monthIndex, year, workouts, selectedDate)
     
         setFirstWeek(initializeMonth.tableCells)
-        setSecondWeek(buildMiddleWeek(initializeMonth.date, monthIndex, year, workouts))
-        setThirdWeek(buildMiddleWeek(initializeMonth.date+7, monthIndex, year, workouts))
-        setFourthWeek(buildMiddleWeek(initializeMonth.date+14, monthIndex, year, workouts))
-        setFifthWeek(buildEndWeek(initializeMonth.date+21, monthIndex, year, totalDays, workouts))
+        setSecondWeek(buildMiddleWeek(initializeMonth.date, monthIndex, year, workouts, selectedDate))
+        setThirdWeek(buildMiddleWeek(initializeMonth.date+7, monthIndex, year, workouts, selectedDate))
+        setFourthWeek(buildMiddleWeek(initializeMonth.date+14, monthIndex, year, workouts, selectedDate))
+        setFifthWeek(buildEndWeek(initializeMonth.date+21, monthIndex, year, totalDays, workouts, selectedDate))
         if (initializeMonth.date+28 > totalDays) return
-        setSixthWeek(buildEndWeek(initializeMonth.date+28, monthIndex, year, totalDays, workouts))
+        setSixthWeek(buildEndWeek(initializeMonth.date+28, monthIndex, year, totalDays, workouts, selectedDate))
 
-    }, [firstDayIndex, monthIndex, year, totalDays, workouts])
+    }, [firstDayIndex, monthIndex, year, totalDays, workouts, selectedDate])
     return (
         <table>
             <thead>
@@ -43,7 +42,6 @@ const WeeksContainer = ({ dayNames, workouts, firstDayIndex, totalDays, monthInd
                 <tr>
                     {fifthWeek}
                 </tr>
-                {}
                 <tr>
                     {sixthWeek}
                 </tr>

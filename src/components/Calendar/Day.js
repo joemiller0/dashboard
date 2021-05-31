@@ -1,14 +1,15 @@
-const Day = ({ date, fullDate, workouts }) => {
-
-    const getMinMileAvg = (speed) => {
-        const milesPerMin = speed * 0.037282272
+const Day = ({ date, fullDate, workouts, selectedDate }) => {
+    // console.log(selectedDate)
+    const getMinMileAvg = (metersPerSecond) => {
+        const milesPerMin = metersPerSecond * 0.037282272
+        // 1 meter per second (m/s) = 0.037282272 mile per minute (mi/min)
         const decimalTime = 1 / milesPerMin
         const min = Math.floor(decimalTime)
         const decimal = decimalTime - Math.floor(decimalTime)
         const secDec = decimal * 60
         const sec = Math.floor(secDec)
-        
-        if(sec < 10) return `${min}:0${sec}/mi avg`
+
+        if (sec < 10) return `${min}:0${sec}/mi avg`
         return `${min}:${sec}/mi avg`
     }
 
@@ -17,7 +18,7 @@ const Day = ({ date, fullDate, workouts }) => {
     }
 
     return (
-        <td valign="top" className={!fullDate ? "blank" : "day"} full-date={fullDate}>
+        <td valign="top" className={selectedDate ? "selectedDate" : "day"} full-date={fullDate}>
             <div className="date">{date}</div>
             <div className="workoutsContainer">
                 {workouts !== undefined && 
