@@ -9,6 +9,7 @@ const Month = ({ activities, selectedDate }) => {
         if (!activities || !activities.length) return
         
         let workoutsObj = {}
+        debugger
         activities.forEach((workout) => {
             const date = workout.start_date_local.split('T')[0];
             if (!workoutsObj[date]) {
@@ -47,6 +48,7 @@ const Month = ({ activities, selectedDate }) => {
             <div className="month-header">
                 <h3>{selectedDate.toDateString()}</h3>
             </div>
+
             <WeeksContainer 
                 key={uniqid()} 
                 dayNames={dayNames}

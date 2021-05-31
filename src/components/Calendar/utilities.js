@@ -38,7 +38,6 @@ export const buildEndWeek = (startDate, monthIndex, year, totalDays, workouts, s
         
                 endWeekArr.push(<Day workouts={workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()}/>)
             }
-    
         }
     }
     return endWeekArr
