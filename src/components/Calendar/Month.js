@@ -9,7 +9,6 @@ const Month = ({ activities, selectedDate }) => {
         if (!activities || !activities.length) return
         
         let workoutsObj = {}
-        debugger
         activities.forEach((workout) => {
             const date = workout.start_date_local.split('T')[0];
             if (!workoutsObj[date]) {
