@@ -10,12 +10,11 @@ export const buildWeekOne = (firstDayIndex, monthIndex, year, workouts, selected
             weekOneArr.push(<Day key={uniqid()} />)
         } else {
             selectedDate.setHours(19)
-            //if the hour is past 20, or 10pm the selected day appears as tthe next day, this is to avoid that. 
+            //a question for chase - why is does this need to be before 20-8pm- for the correct day to appear? if its past 8pm it rounds to the next day?
             let fullDate = new Date(year, monthIndex, date).toISOString().split('T')[0]
             let dateStr =  selectedDate.toISOString().split('T')[0]
             if (fullDate === dateStr){
                 weekOneArr.push(<Day workouts={workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} selectedDate={selectedDate}/>)
-                console.log(selectedDate)
             } else {
                 weekOneArr.push(<Day workouts={workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} />)
             }

@@ -1,12 +1,13 @@
+.dashboard {
+    display: flex;
+    justify-content: left;
+}
 
-.dashboard{
-    display:flex;
-    justify-content: center;
+.calendar {
+    text-align: center;
 }
-.calendar{
-    text-align:center;
-}
-.month-header{
+
+.month-header {
     text-align: left;
 }
 
@@ -15,48 +16,55 @@
     left:-40px;
     
 } */
-.workout{
+.workout {
     font-size: 11px;
 }
-.workoutsContainer{
-    margin-left:10px;
-    margin-top:5px;
-}
-.activity{
-    text-align: left;
-}
-.highlight{
-    font-size: 7px;
-    text-align: right;
-    background-color: rgba(133, 255, 0, .5);
+
+.workoutsContainer {
+    margin-left: 10px;
+    margin-top: 5px;
 }
 
-.strava{
+.activity {
     text-align: left;
 }
-.selectedDate{
-    border:crimson 4px solid;
+
+.highlight {
+    font-size: 7px;
+    text-align: right;
+    background-color: rgba(133, 255, 0, 0.5);
 }
-.suffer{
-    color:red;
+
+.strava {
+    text-align: left;
+}
+
+.selectedDate {
+    border: crimson 4px solid;
+}
+
+.suffer {
+    color: red;
     font-weight: bolder;
 }
 
-
-table{
-    border:2px solid black;
+table {
+    border: 2px solid black;
     border-collapse: collapse;
-    height:30vh;
-    width:30vh;
 }
-td{
-    border:1px solid black;
+
+td {
+    border: 1px solid black;
     /* height:50px;
     width:50px; */
-    margin:0;
-}
-button{
-    position: relative;
-    top:10px;
+    margin: 0;
 }
 
+button {
+    
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
