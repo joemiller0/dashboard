@@ -10,11 +10,11 @@
     text-align: left;
 }
 
-.date{
+/* .date{
     position:relative;
     left:-40px;
     
-}
+} */
 .workout{
     font-size: 11px;
 }
@@ -26,7 +26,7 @@
     text-align: left;
 }
 .highlight{
-    font-size: 8px;
+    font-size: 7px;
     text-align: right;
     background-color: rgba(133, 255, 0, .5);
 }
@@ -37,16 +37,26 @@
 .selectedDate{
     border:crimson 4px solid;
 }
+.suffer{
+    color:red;
+    font-weight: bolder;
+}
 
 
 table{
     border:2px solid black;
     border-collapse: collapse;
+    height:30vh;
+    width:30vh;
 }
 td{
     border:1px solid black;
-    height:100px;
-    width:100px;
+    /* height:50px;
+    width:50px; */
     margin:0;
+}
+button{
+    position: relative;
+    top:10px;
 }
 

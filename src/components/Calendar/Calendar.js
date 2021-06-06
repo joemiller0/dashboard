@@ -31,8 +31,8 @@ const Calendar = ({ activities }) => {
     }
     return (
         <div className="calendar">
-            <button onClick={handlePrevMonth}>prev month</button>
-            <button onClick={handleNextMonth}>next month</button>
+            <button onClick={handlePrevMonth}>⬅️</button>
+            <button onClick={handleNextMonth}>➡️</button>
             <Month activities={activities} selectedDate={selectedDate}/>
         </div>
     );

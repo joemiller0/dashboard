@@ -10,7 +10,7 @@ const Day = ({ date, fullDate, workouts, selectedDate }) => {
         const sec = Math.floor(secDec)
 
         if (sec < 10) return `${min}:0${sec}/mi avg`
-        return `${min}:${sec}/mi avg`
+        return `${min}:${sec}/mi`
     }
 
     const roundDistance = (distance) => {
@@ -30,12 +30,12 @@ const Day = ({ date, fullDate, workouts, selectedDate }) => {
                             const activity = whoopActivity.slice(6)
                             return (
                                 <div key={workout.upload_id} className="workout whoop">
-                                    <div className="activity">
+                                    {/* <div className="activity">
                                         {activity}
                                     </div>
                                     <div className="highlight">
                                         {strain} Strain
-                                    </div>
+                                    </div> */}
                                 </div>
                             )
                         } 
@@ -44,14 +44,12 @@ const Day = ({ date, fullDate, workouts, selectedDate }) => {
                         const minMileAvg = getMinMileAvg(workout.average_speed)
                         return (
                             <div className="workout strava" key={workout.upload_id}>
-                                <div className="stravaRun">
+                                {/* <div className="stravaRun">
                                     {workout.name}
                                 </div>
                                 <div className="highlight">
-                                    {totalDistance} miles<br></br>
-                                    {minMileAvg} <br></br>
-                                    {workout.suffer_score} suffer
-                                </div>
+                                    {totalDistance} mi - {minMileAvg} - <span className="suffer">{workout.suffer_score}</span>
+                                </div> */}
                             </div>
                         )
                     })
