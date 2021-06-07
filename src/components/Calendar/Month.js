@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import uniqid from "uniqid";
 import WeeksContainer from './WeeksContainer';
 
-const Month = ({ activities }) => {
-    const today = new Date();
-    const [workouts, setWorkouts] = useState({})
-    const [selectedDate, setSelectedDate] = useState(today);
+const Month = ({ selectedDate, workouts }) => {
+
     const abrevDays = [
         "Sun",
         "Mon",
@@ -23,39 +21,14 @@ const Month = ({ activities }) => {
     }
     const monthIndex = selectedDate.getMonth();
     const year = selectedDate.getFullYear();
-    const firstDayIndex = new Date(year, monthIndex).getDay();
     const totalDays = daysInMonth(monthIndex+1, year);
+    const firstDayIndex = new Date(year, monthIndex).getDay();
 
-    const handlePrevMonth = () => {
-        setSelectedDate(new Date(selectedDate.setMonth(monthIndex - 1)));
-    }
-    const handleNextMonth = () => {
-        setSelectedDate(new Date(selectedDate.setMonth(monthIndex + 1)));
-    }
-
-    useEffect(() => {
-        if (!activities || !activities.length) return
-        
-        let workoutsObj = {}
-        activities.forEach((workout) => {
-            const date = workout.start_date_local.split('T')[0];
-            if (!workoutsObj[date]) {
-                workoutsObj[date] = [workout]
-            } else {
-                workoutsObj[date].push(workout)
-            }
-        })
-        setWorkouts(workoutsObj)
-    }, [activities]);
-
-    
     return (
         <div className="month">
             <div className="month-header">
                 <h3>{selectedDate.toDateString()}</h3>
             </div>
-            <button onClick={handlePrevMonth}>prev</button>
-            <button onClick={handleNextMonth}>next</button>
             <WeeksContainer 
                 key={uniqid()} 
                 dayNames={dayNames}
