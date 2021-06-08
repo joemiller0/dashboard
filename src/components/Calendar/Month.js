@@ -10,6 +10,14 @@ const Month = ({ selectedDate, workouts }) => {
     const [fifthWeek, setFifthWeek] = useState([])
     const [sixthWeek, setSixthWeek] = useState([])
 
+    const daysInMonth = (month, year) => {
+        return new Date(year, month, 0).getDate();
+    }
+    const monthIndex = selectedDate.getMonth();
+    const year = selectedDate.getFullYear();
+    const totalDays = daysInMonth(monthIndex+1, year);
+    const firstDayIndex = new Date(year, monthIndex).getDay();
+
     const abrevDays = [
         "Sun",
         "Mon",
@@ -22,25 +30,24 @@ const Month = ({ selectedDate, workouts }) => {
     const dayNames = abrevDays.map(day => {
         return <th key={day}>{day}</th>;
     });
-    const daysInMonth = (month, year) => {
-        return new Date(year, month, 0).getDate();
-    }
-    const monthIndex = selectedDate.getMonth();
-    const year = selectedDate.getFullYear();
-    const totalDays = daysInMonth(monthIndex+1, year);
-    const firstDayIndex = new Date(year, monthIndex).getDay();
 
     useEffect(()=>{
-        const weekData = buildWeekOne(firstDayIndex, monthIndex, year, workouts, selectedDate)
+        const weekData = {
+            monthIndex: monthIndex,
+            year: year,
+            selectedDate: selectedDate,
+            workouts: workouts
+        }
+        const initialWeek = buildWeekOne(firstDayIndex, weekData)
     
-        setFirstWeek(weekData.tableCells)
-        setSecondWeek(buildMiddleWeek(weekData.date, monthIndex, year, workouts, selectedDate))
-        setThirdWeek(buildMiddleWeek(weekData.date+7, monthIndex, year, workouts, selectedDate))
-        setFourthWeek(buildMiddleWeek(weekData.date+14, monthIndex, year, workouts, selectedDate))
-        setFifthWeek(buildEndWeek(weekData.date+21, monthIndex, year, totalDays, workouts, selectedDate))
+        setFirstWeek(initialWeek.tableCells)
+        setSecondWeek(buildMiddleWeek(initialWeek.endDate, weekData))
+        setThirdWeek(buildMiddleWeek(initialWeek.endDate+7, weekData))
+        setFourthWeek(buildMiddleWeek(initialWeek.endDate+14, weekData))
+        setFifthWeek(buildEndWeek(initialWeek.endDate+21, weekData, totalDays))
         
-        if (weekData.date+28 > totalDays) return
-        setSixthWeek(buildEndWeek(weekData.date+28, monthIndex, year, totalDays, workouts, selectedDate))
+        if (initialWeek.endDate+28 > totalDays) return
+        setSixthWeek(buildEndWeek(initialWeek.endDate+28, weekData, totalDays))
 
     }, [firstDayIndex, monthIndex, year, totalDays, workouts, selectedDate])
     

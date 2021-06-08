@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import "../../stylesheets/calendar.css";
 import Month from './Month';
+import "../../stylesheets/calendar.css";
 
 const Calendar = ({ activities }) => {
     const today = new Date();
