@@ -48,7 +48,6 @@ const Month = ({ selectedDate, workouts }) => {
         
         if (initialWeek.endDate+28 > totalDays) return
         setSixthWeek(buildEndWeek(initialWeek.endDate+28, weekData, totalDays))
-
     }, [firstDayIndex, monthIndex, year, totalDays, workouts, selectedDate])
     
     return (
