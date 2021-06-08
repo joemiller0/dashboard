@@ -1,4 +1,4 @@
-const Day = ({ date, fullDate, workouts, selectedDate }) => {
+const Day = ({ date, fullDate, workouts, isToday }) => {
     // const getMinMileAvg = (metersPerSecond) => {
     //     const milesPerMin = metersPerSecond * 0.037282272
     //     // 1 meter per second (m/s) = 0.037282272 mile per minute (mi/min)
@@ -17,7 +17,7 @@ const Day = ({ date, fullDate, workouts, selectedDate }) => {
     // }
 
     return (
-        <td valign="top" className={selectedDate ? "selectedDate" : "day"} full-date={fullDate}>
+        <td valign="top" className={isToday ? "today" : "day"} full-date={fullDate}>
             <div className="date">{date}</div>
             <div className="workoutsContainer">
                 {workouts !== undefined && 

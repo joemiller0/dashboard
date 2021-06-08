@@ -9,12 +9,12 @@ export const buildWeekOne = (firstDayIndex, weekData) => {
         if ( i < firstDayIndex ){
             weekOneArr.push(<Day key={uniqid()} />)
         } else {
-            weekData.selectedDate.setHours(19)
+            weekData.today.setHours(19)
             //a question for chase - why is does this need to be before 20-8pm- for the correct day to appear? if its past 8pm it rounds to the next day?
             let fullDate = new Date(weekData.year, weekData.monthIndex, date).toISOString().split('T')[0]
-            let dateStr =  weekData.selectedDate.toISOString().split('T')[0]
+            let dateStr =  weekData.today.toISOString().split('T')[0]
             if (fullDate === dateStr){
-                weekOneArr.push(<Day workouts={weekData.workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} selectedDate={weekData.selectedDate}/>)
+                weekOneArr.push(<Day workouts={weekData.workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} isToday={weekData.today}/>)
             } else {
                 weekOneArr.push(<Day workouts={weekData.workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} />)
             }
@@ -26,11 +26,11 @@ export const buildWeekOne = (firstDayIndex, weekData) => {
 export const buildMiddleWeek = (startDate, weekData) => {
     let middleWeekArr = []
     for (let i = 0; i < 7; i++) {
-        weekData.selectedDate.setHours(19)
+        weekData.today.setHours(19)
         let fullDate = new Date(weekData.year, weekData.monthIndex, startDate).toISOString().split('T')[0]
-        let dateStr =  weekData.selectedDate.toISOString().split('T')[0]
+        let dateStr =  weekData.today.toISOString().split('T')[0]
         if (fullDate === dateStr){
-            middleWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} selectedDate={weekData.selectedDate}/>)
+            middleWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} isToday={weekData.today}/>)
         } else {
             middleWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} />)
         }
@@ -44,11 +44,11 @@ export const buildEndWeek = (startDate, weekData, totalDays) => {
         if(startDate > totalDays) {
             endWeekArr.push(<Day key={uniqid()} />)
         } else {
-            weekData.selectedDate.setHours(19)
+            weekData.today.setHours(19)
             let fullDate = new Date(weekData.year, weekData.monthIndex, startDate).toISOString().split('T')[0]
-            let dateStr =  weekData.selectedDate.toISOString().split('T')[0]
+            let dateStr =  weekData.today.toISOString().split('T')[0]
             if (fullDate === dateStr){
-                endWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} selectedDate={weekData.selectedDate}/>)
+                endWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} isToday={weekData.today}/>)
             } else {
                 endWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()}/>)
             }

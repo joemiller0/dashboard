@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { buildWeekOne, buildMiddleWeek, buildEndWeek } from "./utilities";
 
-const Month = ({ selectedDate, workouts }) => {
+const Month = ({ monthOriginDate, workouts }) => {
     const [firstWeek, setFirstWeek] = useState([])
     const [secondWeek, setSecondWeek] = useState([])
     const [thirdWeek, setThirdWeek] = useState([])
@@ -10,11 +10,12 @@ const Month = ({ selectedDate, workouts }) => {
     const [fifthWeek, setFifthWeek] = useState([])
     const [sixthWeek, setSixthWeek] = useState([])
 
-    const daysInMonth = (month, year) => {
-        return new Date(year, month, 0).getDate();
+    const daysInMonth = (m, y) => {
+        return new Date(y, m, 0).getDate();
     }
-    const monthIndex = selectedDate.getMonth();
-    const year = selectedDate.getFullYear();
+
+    const year = monthOriginDate.getFullYear();
+    const monthIndex = monthOriginDate.getMonth();
     const totalDays = daysInMonth(monthIndex+1, year);
     const firstDayIndex = new Date(year, monthIndex).getDay();
 
@@ -35,7 +36,7 @@ const Month = ({ selectedDate, workouts }) => {
         const weekData = {
             monthIndex: monthIndex,
             year: year,
-            selectedDate: selectedDate,
+            today: new Date(),
             workouts: workouts
         }
         const initialWeek = buildWeekOne(firstDayIndex, weekData)
@@ -48,12 +49,12 @@ const Month = ({ selectedDate, workouts }) => {
         
         if (initialWeek.endDate+28 > totalDays) return
         setSixthWeek(buildEndWeek(initialWeek.endDate+28, weekData, totalDays))
-    }, [firstDayIndex, monthIndex, year, totalDays, workouts, selectedDate])
+    }, [firstDayIndex, monthIndex, year, totalDays, workouts])
     
     return (
         <div className="month">
             <div className="month-header">
-                <h3>{selectedDate.toDateString()}</h3>
+                <h3>{monthOriginDate.toDateString()}</h3>
             </div>
             <table>
                 <thead>

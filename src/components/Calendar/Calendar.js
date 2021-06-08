@@ -3,9 +3,9 @@ import Month from './Month';
 import "../../stylesheets/calendar.css";
 
 const Calendar = ({ activities }) => {
-    const today = new Date();
     const [workouts, setWorkouts] = useState({})
-    const [selectedDate, setSelectedDate] = useState(today);
+    const today = new Date();
+    // const [selectedDate, setSelectedDate] = useState(today);
     
     useEffect(() => {
         if (!activities || !activities.length) return
@@ -21,25 +21,16 @@ const Calendar = ({ activities }) => {
         })
         setWorkouts(workoutsObj)
     }, [activities]);
-    
-    const nextMonthDate = (selectedDate) => {
-        return new Date(selectedDate.setMonth(selectedDate.getMonth()+1))
-    }
-    console.log(nextMonthDate(selectedDate))
-    // const nextMonthSelectedDate = new Date(selectedDate.setMonth(selectedDate.getMonth()+1))
-    // console.log(nextMonthSelectedDate)
 
-
-
-    //ok one way would be to feed the month a selectedDate that suits the month you want which is what youa re trying and failling to do so far. 
-    //maybe its possible to do that check in the month component? somehow?
-
-    // goal to have a four month calendar view that shows the length of a program
+    const year = today.getFullYear();
+    const currentMonthIndex = today.getMonth();
+    // is it better to pass these as props instead of redeclaring them in the lower components?
 
     return (
         <div className="calendar">
-            {/* <Month selectedDate={nextMonthSelectedDate} workouts={workouts}/> */}
-            <Month selectedDate={selectedDate} workouts={workouts}/>
+            <Month monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
+            <Month monthOriginDate={today} workouts={workouts}/>
+            {/* <Month selectedDate={selectedDate} workouts={workouts}/> */}
         </div>
     );
 };

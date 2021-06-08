@@ -5,6 +5,7 @@
 
 .calendar {
     text-align: center;
+    display:flex;
 }
 
 .month-header {
@@ -39,7 +40,7 @@
     text-align: left;
 }
 
-.selectedDate {
+.today {
     border: crimson 4px solid;
 }
 
