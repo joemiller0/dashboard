@@ -1,22 +1,24 @@
 .dashboard {
     display: flex;
-    justify-content: left;
+    justify-content: center;
 }
 
 .calendar {
-    text-align: center;
+    border:2px solid black;
     display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width:500px;
+    padding:20px;
 }
 
 .month-header {
-    text-align: left;
+    text-align: center;
+}
+.month-header p{
+    margin:0;
 }
 
-/* .date{
-    position:relative;
-    left:-40px;
-    
-} */
 .workout {
     font-size: 11px;
 }

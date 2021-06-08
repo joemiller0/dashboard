@@ -50,11 +50,16 @@ const Month = ({ monthOriginDate, workouts }) => {
         if (initialWeek.endDate+28 > totalDays) return
         setSixthWeek(buildEndWeek(initialWeek.endDate+28, weekData, totalDays))
     }, [firstDayIndex, monthIndex, year, totalDays, workouts])
+
+    // const headerText =( )=> {
+    //     if 
+    // }
+    const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
     
     return (
         <div className="month">
             <div className="month-header">
-                <h3>{monthOriginDate.toDateString()}</h3>
+                <p>{monthLabels[monthOriginDate.getMonth()]}</p>
             </div>
             <table>
                 <thead>

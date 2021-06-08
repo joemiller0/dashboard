@@ -4,7 +4,6 @@ import "../../stylesheets/calendar.css";
 
 const Calendar = ({ activities }) => {
     const [workouts, setWorkouts] = useState({})
-    const today = new Date();
     // const [selectedDate, setSelectedDate] = useState(today);
     
     useEffect(() => {
@@ -21,7 +20,8 @@ const Calendar = ({ activities }) => {
         })
         setWorkouts(workoutsObj)
     }, [activities]);
-
+    
+    const today = new Date();
     const year = today.getFullYear();
     const currentMonthIndex = today.getMonth();
     // is it better to pass these as props instead of redeclaring them in the lower components?
@@ -30,7 +30,8 @@ const Calendar = ({ activities }) => {
         <div className="calendar">
             <Month monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
             <Month monthOriginDate={today} workouts={workouts}/>
-            {/* <Month selectedDate={selectedDate} workouts={workouts}/> */}
+            <Month monthOriginDate={new Date(year, currentMonthIndex+1, 1)} workouts={workouts}/>
+            <Month monthOriginDate={new Date(year, currentMonthIndex+2, 1)} workouts={workouts}/>
         </div>
     );
 };
