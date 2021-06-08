@@ -50,6 +50,9 @@
     color: red;
     font-weight: bolder;
 }
+.hasWorkout{
+    background-color: crimson;
+}
 
 table {
     border: 2px solid black;
