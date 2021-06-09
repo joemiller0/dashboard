@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-// import WorkoutList from './components/WorkoutList';
+import WorkoutList from './components/WorkoutList/WorkoutList';
 import Calendar from './components/Calendar/Calendar';
+import "./stylesheets/dashboard.css";
 
 const Dashboard = () => {
     const [activities, setActivities] = useState([]);
@@ -36,8 +37,8 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            {/* <WorkoutList activities={activities} /> */}
             <Calendar activities={activities} />
+            <WorkoutList activities={activities} />
         </div>
     );
 }

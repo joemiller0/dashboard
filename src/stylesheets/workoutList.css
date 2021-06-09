@@ -1,0 +1,56 @@
+.workout-container{
+    /* border:1px solid black; */
+    margin:2em;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.workout {
+    /* border:1px solid red; */
+    text-align:center;
+    padding:5px;
+    margin:5px;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(121,9,9,1) 0%, rgba(255,255,255,1) 100%);
+    
+    /* height:100px; */
+}
+.workout-header{
+    /* background-color: rgba(121,9,9,1); */
+    height:25px;
+    position: relative;
+    top:-15px;
+}
+
+.workout-start-date{
+    color:white;
+    position:relative;
+    top:3px;
+}
+.workouts{
+    position:relative;
+    top:20px;
+}
+.workout-name{
+    font-size: 14px;
+    text-align: left;;
+}
+
+.suffer {
+    color: greenyellow;
+    font-weight: bolder;
+}
+
+.highlight {
+    font-size: 9px;
+    text-align: right;
+    background-color: rgba(255, 0, 0, 0.5);
+    color:black;
+    font-weight:bold;
+    width:105%;
+    padding:2px;
+}
+
+.strava {
+    text-align: left;
+}

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import Workout from './Workout';
 import uniqid from "uniqid";
-import "../stylesheets/workout.css";
+import "../../stylesheets/workoutList.css";
 
 const WorkoutList = ({ activities }) => {
     const [workouts, setWorkouts] = useState({})
     const [dates, setDates] = useState([])
 
     useEffect(() => {
+        if (!activities || !activities.length) return
+        
         let workoutsObj = {}
         activities.forEach((workout) => {
             const date = workout.start_date_local.split('T')[0];

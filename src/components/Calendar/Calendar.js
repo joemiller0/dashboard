@@ -4,7 +4,6 @@ import "../../stylesheets/calendar.css";
 
 const Calendar = ({ activities }) => {
     const [workouts, setWorkouts] = useState({})
-    // const [selectedDate, setSelectedDate] = useState(today);
     
     useEffect(() => {
         if (!activities || !activities.length) return
@@ -28,10 +27,10 @@ const Calendar = ({ activities }) => {
 
     return (
         <div className="calendar">
+            <h5>{year}</h5>
             <Month monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
             <Month monthOriginDate={today} workouts={workouts}/>
             <Month monthOriginDate={new Date(year, currentMonthIndex+1, 1)} workouts={workouts}/>
-            <Month monthOriginDate={new Date(year, currentMonthIndex+2, 1)} workouts={workouts}/>
         </div>
     );
 };

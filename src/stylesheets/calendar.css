@@ -1,15 +1,18 @@
-.dashboard {
-    display: flex;
-    justify-content: center;
-}
-
 .calendar {
-    border:2px solid black;
+    margin:auto;
+    margin-top:20px;
+    /* border:2px solid black; */
     display:flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-evenly;
-    width:500px;
+    width:800px;
     padding:20px;
+    position:relative;
+}
+.calendar h5{
+    position:absolute;
+    top:-20px;
 }
 
 .month-header {
@@ -19,37 +22,10 @@
     margin:0;
 }
 
-.workout {
-    font-size: 11px;
-}
-
-.workoutsContainer {
-    margin-left: 10px;
-    margin-top: 5px;
-}
-
-.activity {
-    text-align: left;
-}
-
-.highlight {
-    font-size: 7px;
-    text-align: right;
-    background-color: rgba(133, 255, 0, 0.5);
-}
-
-.strava {
-    text-align: left;
-}
-
 .today {
     border: crimson 4px solid;
 }
 
-.suffer {
-    color: red;
-    font-weight: bolder;
-}
 .hasWorkout{
     background-color: crimson;
 }
@@ -61,8 +37,8 @@ table {
 
 td {
     border: 1px solid black;
-    /* height:50px;
-    width:50px; */
+    height:30px;
+    width:30px;
     margin: 0;
 }
 
