@@ -19,9 +19,6 @@ const Workout = ({ workoutArr, date }) => {
         return Math.round(distance * 100) / 100
     }
 
-    console.log(date)
-    console.log(workoutArr)
-
     return (
         <div className="workout">
             <div className="workout-header">
@@ -66,5 +63,3 @@ const Workout = ({ workoutArr, date }) => {
 };
 
 export default Workout;
-
-// get the runs looking cool and put everything on a calendar. 

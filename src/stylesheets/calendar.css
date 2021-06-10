@@ -29,6 +29,9 @@
 .hasWorkout{
     background-color: crimson;
 }
+.displayNone{
+    display:none;
+}
 
 table {
     border: 2px solid black;

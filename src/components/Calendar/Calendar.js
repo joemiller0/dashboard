@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import Month from './Month';
+import Workout from '../WorkoutList/Workout';
 import "../../stylesheets/calendar.css";
 
 const Calendar = ({ activities }) => {
     const [workouts, setWorkouts] = useState({})
+    const [viewState, setViewState] = useState(false);
     
     useEffect(() => {
         if (!activities || !activities.length) return
@@ -25,8 +27,13 @@ const Calendar = ({ activities }) => {
     const currentMonthIndex = today.getMonth();
     // is it better to pass these as props instead of redeclaring them in the lower components?
 
+    const showWorkout =()=> {
+        setViewState(true)
+    }
+
     return (
-        <div className="calendar">
+        <div className={viewState === true ? "displayNone" : "calendar"}>
+            {viewState === true ? <Workout /> : null }
             <h5>{year}</h5>
             <Month monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
             <Month monthOriginDate={today} workouts={workouts}/>
