@@ -3,25 +3,7 @@ import Workout from './Workout';
 import uniqid from "uniqid";
 import "../../stylesheets/workoutList.css";
 
-const WorkoutList = ({ activities }) => {
-    const [workouts, setWorkouts] = useState({})
-    const [dates, setDates] = useState([])
-
-    useEffect(() => {
-        if (!activities || !activities.length) return
-        
-        let workoutsObj = {}
-        activities.forEach((workout) => {
-            const date = workout.start_date_local.split('T')[0];
-            if (!workoutsObj[date]) {
-                workoutsObj[date] = [workout]
-            } else {
-                workoutsObj[date].push(workout)
-            }
-        })
-        setWorkouts(workoutsObj)
-        setDates(Object.keys(workoutsObj))
-    }, [activities]);
+const WorkoutList = ({ workouts, dates }) => {
 
     const renderWorkouts = () => {
         return dates.map(date => {

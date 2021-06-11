@@ -5,6 +5,8 @@ import "./stylesheets/dashboard.css";
 
 const Dashboard = () => {
     const [activities, setActivities] = useState([]);
+    const [workouts, setWorkouts] = useState({})
+    const [dates, setDates] = useState([])
 
     useEffect(() => {
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
@@ -30,15 +32,28 @@ const Dashboard = () => {
 
                 fetch(getActivitiesUrl)
                     .then((res) => res.json())
-                    .then((activities) =>  setActivities(activities));
+                    .then((activities) => {
+                        let workoutsObj = {}
+                        activities.forEach((workout) => {
+                            const date = workout.start_date_local.split('T')[0];
+                            if (!workoutsObj[date]) {
+                                workoutsObj[date] = [workout]
+                            } else {
+                                workoutsObj[date].push(workout)
+                            }
+                        })
+                        setWorkouts(workoutsObj)
+                        setDates(Object.keys(workoutsObj))
+                    });
             })
+
 
     }, []);
 
     return (
         <div className="dashboard">
-            <Calendar activities={activities} />
-            <WorkoutList activities={activities} />
+            <Calendar workouts={workouts} />
+            <WorkoutList workouts={workouts} dates={dates} />
         </div>
     );
 }
