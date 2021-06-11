@@ -1,6 +1,6 @@
-const Day = ({ date, fullDate, workouts, isToday }) => {
+const Day = ({ showWorkout, workouts, date, fullDate, isToday }) => {
     return(
-        <td valign="top" className={isToday ? "today" : workouts ? "hasWorkout" : "day"} full-date={fullDate}>{date}</td>
+        <td valign="top" onClick={showWorkout} className={isToday ? "today" : workouts ? "hasWorkout" : "day"} fulldate={fullDate}>{date}</td>
     )
 };
 

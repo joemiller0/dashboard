@@ -10,7 +10,6 @@ const WorkoutList = ({ workouts, dates }) => {
             return <Workout workoutArr={workouts[date]} date={date} key={uniqid()} />
         })
     }
-
     return (
         <div className="workout-container">
             {renderWorkouts()}

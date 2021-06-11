@@ -3,7 +3,7 @@ import Day from './Day';
 import { useEffect, useState } from "react";
 // import { buildWeekOne, buildMiddleWeek, buildEndWeek } from "./utilities";
 
-const Month = ({ monthOriginDate, workouts }) => {
+const Month = ({ showWorkout, monthOriginDate, workouts }) => {
     const [firstWeek, setFirstWeek] = useState([])
     const [secondWeek, setSecondWeek] = useState([])
     const [thirdWeek, setThirdWeek] = useState([])
@@ -47,9 +47,9 @@ const Month = ({ monthOriginDate, workouts }) => {
                 let fullDate = new Date(weekData.year, weekData.monthIndex, date).toISOString().split('T')[0]
                 let dateStr = weekData.today.toISOString().split('T')[0]
                 if (fullDate === dateStr) {
-                    weekOneArr.push(<Day workouts={weekData.workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} isToday={weekData.today} />)
+                    weekOneArr.push(<Day showWorkout={showWorkout} workouts={weekData.workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} isToday={weekData.today} />)
                 } else {
-                    weekOneArr.push(<Day workouts={weekData.workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} />)
+                    weekOneArr.push(<Day showWorkout={showWorkout} workouts={weekData.workouts[fullDate]} date={date++} fullDate={fullDate} key={uniqid()} />)
                 }
             }
         }
@@ -63,9 +63,9 @@ const Month = ({ monthOriginDate, workouts }) => {
             let fullDate = new Date(weekData.year, weekData.monthIndex, startDate).toISOString().split('T')[0]
             let dateStr = weekData.today.toISOString().split('T')[0]
             if (fullDate === dateStr) {
-                middleWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} isToday={weekData.today} />)
+                middleWeekArr.push(<Day showWorkout={showWorkout} workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} isToday={weekData.today} />)
             } else {
-                middleWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} />)
+                middleWeekArr.push(<Day showWorkout={showWorkout} workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} />)
             }
         }
         return middleWeekArr
@@ -81,9 +81,9 @@ const Month = ({ monthOriginDate, workouts }) => {
                 let fullDate = new Date(weekData.year, weekData.monthIndex, startDate).toISOString().split('T')[0]
                 let dateStr = weekData.today.toISOString().split('T')[0]
                 if (fullDate === dateStr) {
-                    endWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} isToday={weekData.today} />)
+                    endWeekArr.push(<Day showWorkout={showWorkout} workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} isToday={weekData.today} />)
                 } else {
-                    endWeekArr.push(<Day workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} />)
+                    endWeekArr.push(<Day showWorkout={showWorkout} workouts={weekData.workouts[fullDate]} date={startDate++} fullDate={fullDate} key={uniqid()} />)
                 }
             }
         }
@@ -109,7 +109,7 @@ const Month = ({ monthOriginDate, workouts }) => {
 
         if (initialWeek.endDate + 28 > totalDays) return
         setSixthWeek(buildEndWeek(initialWeek.endDate + 28, weekData, totalDays))
-    }, [firstDayIndex, monthIndex, year, totalDays, workouts])
+    }, [firstDayIndex, monthIndex, year, totalDays, workouts,])
 
     const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
