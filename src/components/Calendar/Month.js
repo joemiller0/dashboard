@@ -46,28 +46,16 @@ const Month = ({ showWorkout, monthOriginDate, workouts }) => {
             .toISOString()
             .split("T")[0];
           let dateStr = weekData.today.toISOString().split("T")[0];
-          if (fullDate === dateStr) {
-            weekOneArr.push(
-              <Day
-                showWorkout={showWorkout}
-                workouts={weekData.workouts[fullDate]}
-                date={date++}
-                fullDate={fullDate}
-                key={uniqid()}
-                isToday={weekData.today}
-              />
-            );
-          } else {
-            weekOneArr.push(
-              <Day
-                showWorkout={showWorkout}
-                workouts={weekData.workouts[fullDate]}
-                date={date++}
-                fullDate={fullDate}
-                key={uniqid()}
-              />
-            );
-          }
+          weekOneArr.push(
+            <Day
+              showWorkout={showWorkout}
+              workouts={weekData.workouts[fullDate]}
+              date={date++}
+              fullDate={fullDate}
+              key={uniqid()}
+              isToday={fullDate === dateStr ? weekData.today : undefined}
+            />
+          );
         }
       }
       return { tableCells: weekOneArr, endDate: date };
@@ -84,28 +72,16 @@ const Month = ({ showWorkout, monthOriginDate, workouts }) => {
           .toISOString()
           .split("T")[0];
         let dateStr = weekData.today.toISOString().split("T")[0];
-        if (fullDate === dateStr) {
-          middleWeekArr.push(
-            <Day
-              showWorkout={showWorkout}
-              workouts={weekData.workouts[fullDate]}
-              date={startDate++}
-              fullDate={fullDate}
-              key={uniqid()}
-              isToday={weekData.today}
-            />
-          );
-        } else {
-          middleWeekArr.push(
-            <Day
-              showWorkout={showWorkout}
-              workouts={weekData.workouts[fullDate]}
-              date={startDate++}
-              fullDate={fullDate}
-              key={uniqid()}
-            />
-          );
-        }
+        middleWeekArr.push(
+          <Day
+            showWorkout={showWorkout}
+            workouts={weekData.workouts[fullDate]}
+            date={startDate++}
+            fullDate={fullDate}
+            key={uniqid()}
+            isToday={fullDate === dateStr ? weekData.today : undefined}
+          />
+        );
       }
       return middleWeekArr;
     },
@@ -124,28 +100,16 @@ const Month = ({ showWorkout, monthOriginDate, workouts }) => {
             .toISOString()
             .split("T")[0];
           let dateStr = weekData.today.toISOString().split("T")[0];
-          if (fullDate === dateStr) {
-            endWeekArr.push(
-              <Day
-                showWorkout={showWorkout}
-                workouts={weekData.workouts[fullDate]}
-                date={startDate++}
-                fullDate={fullDate}
-                key={uniqid()}
-                isToday={weekData.today}
-              />
-            );
-          } else {
-            endWeekArr.push(
-              <Day
-                showWorkout={showWorkout}
-                workouts={weekData.workouts[fullDate]}
-                date={startDate++}
-                fullDate={fullDate}
-                key={uniqid()}
-              />
-            );
-          }
+          endWeekArr.push(
+            <Day
+              showWorkout={showWorkout}
+              workouts={weekData.workouts[fullDate]}
+              date={startDate++}
+              fullDate={fullDate}
+              key={uniqid()}
+              isToday={fullDate === dateStr ? weekData.today : undefined}
+            />
+          );
         }
       }
       return endWeekArr;
