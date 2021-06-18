@@ -1,7 +1,7 @@
 // import { useEffect, useState } from "react";
-// import "../stylesheets/workout.css";
+import "../../stylesheets/workout.css";
 
-const Workout = ({ workoutArr, date }) => {
+const Workout = ({ viewSwitch, workoutArr, date }) => {
     const getMinMileAvg = (metersPerSecond) => {
         const milesPerMin = metersPerSecond * 0.037282272
         // 1 meter per second (m/s) = 0.037282272 mile per minute (mi/min)
@@ -21,6 +21,7 @@ const Workout = ({ workoutArr, date }) => {
 
     return (
         <div className="workout">
+                <button onClick={viewSwitch}>x</button>
             <div className="workout-header">
                 <p className="workout-start-date">{date}</p>
             </div>
@@ -52,7 +53,7 @@ const Workout = ({ workoutArr, date }) => {
                                 {workout.name}
                             </div>
                             <div className="highlight">
-                                {totalDistance} mi - {minMileAvg} - <span className="suffer">{workout.suffer_score}</span>
+                                {totalDistance} mi - {minMileAvg} - <span className="suffer">Suffer Score: {workout.suffer_score}</span>
                             </div>
                         </div>
                     )

@@ -12,16 +12,16 @@ const Calendar = ({ workouts }) => {
     const currentMonthIndex = today.getMonth();
     // is it better to pass these as props instead of redeclaring them in the lower components?
 
-    const showWorkout =(e)=> {
-        setViewState(true)
+    const viewSwitch =(e)=> {
+        setViewState(!viewState)
+        if (e.target.innerHTML === "x") return
         setModalDate(e.target.attributes.fulldate.value)
-        
     }
 
     if (viewState === true){
         return (
             <div className="workout-modal">
-                <Workout workoutArr={workouts[modalDate]} date={modalDate}/>
+                <Workout viewSwitch={viewSwitch} workoutArr={workouts[modalDate]} date={modalDate}/>
             </div>
         )
     }
@@ -29,9 +29,9 @@ const Calendar = ({ workouts }) => {
     return (
         <div className="calendar">
             <h5>{year}</h5>
-            <Month showWorkout={showWorkout} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
-            <Month showWorkout={showWorkout} monthOriginDate={today} workouts={workouts}/>
-            <Month showWorkout={showWorkout} monthOriginDate={new Date(year, currentMonthIndex+1, 1)} workouts={workouts}/>
+            <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
+            <Month viewSwitch={viewSwitch} monthOriginDate={today} workouts={workouts}/>
+            <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex+1, 1)} workouts={workouts}/>
         </div>
     );
 };

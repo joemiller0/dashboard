@@ -1,0 +1,18 @@
+.workout-modal{
+    border: grey solid 2px;
+    width:300px;
+    height:200px;
+    margin:auto;
+    margin-top:100px;
+}
+.workout-header{
+    position: relative;
+    bottom:40px;
+    padding-left:40px;
+    background-color: palegreen;
+}
+.workout button{
+    position: relative;
+    left:272px;
+    z-index: 1;
+}
