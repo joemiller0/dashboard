@@ -21,7 +21,7 @@ const Workout = ({ viewSwitch, workoutArr, date }) => {
 
     return (
         <div className="workout">
-                <button onClick={viewSwitch}>x</button>
+            <button onClick={viewSwitch}>x</button>
             <div className="workout-header">
                 <p className="workout-start-date">{date}</p>
             </div>
@@ -40,7 +40,7 @@ const Workout = ({ viewSwitch, workoutArr, date }) => {
                                 </div>
                                 <div className="highlight">
                                     {strain} Strain
-                                    </div>
+                                </div>
                             </div>
                         )
                     }

@@ -15,24 +15,27 @@ const Calendar = ({ workouts }) => {
     const viewSwitch =(e)=> {
         setViewState(!viewState)
         if (e.target.innerHTML === "x") return
+        if(e.target.className === "dimmed-bg") return
         setModalDate(e.target.attributes.fulldate.value)
     }
 
-    if (viewState === true){
-        return (
-            <div className="workout-modal">
-                <Workout viewSwitch={viewSwitch} workoutArr={workouts[modalDate]} date={modalDate}/>
-            </div>
-        )
-    }
-
     return (
-        <div className="calendar">
-            <h5>{year}</h5>
-            <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
-            <Month viewSwitch={viewSwitch} monthOriginDate={today} workouts={workouts}/>
-            <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex+1, 1)} workouts={workouts}/>
-        </div>
+        <>
+            <div className="calendar">
+                <h5>{year}</h5>
+                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={today} workouts={workouts}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex+1, 1)} workouts={workouts}/>
+            </div>
+            {viewState === true &&
+                <div className="modal-container">
+                    <div className="workout-modal">
+                        <Workout viewSwitch={viewSwitch} workoutArr={workouts[modalDate]} date={modalDate}/>
+                    </div>
+                    <div onClick={viewSwitch} className="dimmed-bg"></div>
+                </div>
+            }
+        </>
     );
 };
 
