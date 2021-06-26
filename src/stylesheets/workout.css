@@ -2,13 +2,7 @@
     position:absolute;
     top:0;
 }
-.dimmed-bg{
-    height:100vh;
-    width:100vw;
-    background-color: black;
-    opacity: 0.5;
-    z-index: 1;
-}
+
 .workout-modal{
     border: grey solid 2px;
     width:300px;
@@ -16,15 +10,16 @@
     margin:auto;
     background-color: white;
     position:absolute;
-    left:40%;
+    left:40px;
     top:50px;
     z-index: 2;
+    box-shadow: 5px 10px 20px #000000;
 }
 .workout-header{
     position: relative;
     bottom:40px;
     padding-left:40px;
-    background-color: palegreen;
+    background-color: red;
 }
 .workout button{
     position: relative;

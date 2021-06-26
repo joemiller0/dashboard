@@ -20,7 +20,7 @@ const Calendar = ({ workouts }) => {
     }
 
     return (
-        <>
+        <div className="calendar-container">
             <div className="calendar">
                 <h5>{year}</h5>
                 <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
@@ -32,10 +32,10 @@ const Calendar = ({ workouts }) => {
                     <div className="workout-modal">
                         <Workout viewSwitch={viewSwitch} workoutArr={workouts[modalDate]} date={modalDate}/>
                     </div>
-                    <div onClick={viewSwitch} className="dimmed-bg"></div>
+                    <div onClick={viewSwitch} className="dimmed-bg" />
                 </div>
             }
-        </>
+        </div>
     );
 };
 
