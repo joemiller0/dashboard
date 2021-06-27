@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Month from './Month';
-import Workout from '../WorkoutList/Workout';
+import Workout from './Workout';
 import "../../stylesheets/calendar.css";
 
 const Calendar = ({ workouts }) => {

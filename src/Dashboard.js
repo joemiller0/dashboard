@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-// import WorkoutList from './components/WorkoutList/WorkoutList';
 import Calendar from './components/Calendar/Calendar';
+import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 import "./stylesheets/dashboard.css";
 
 const Dashboard = () => {
@@ -52,7 +52,7 @@ const Dashboard = () => {
     return (
         <div className="dashboard">
             <Calendar workouts={workouts} />
-            {/* <WorkoutList workouts={workouts} dates={dates} /> */}
+            <WeekPlanner />
         </div>
     );
 }

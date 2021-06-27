@@ -1,0 +1,9 @@
+.weekPlanner-container{
+    text-align: center;
+    background-color: rgb(51, 51, 51);
+    padding:30px;
+}
+.weekPlanner{
+    width:80vw;
+    margin:0 auto;
+}
