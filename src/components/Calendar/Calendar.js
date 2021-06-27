@@ -29,10 +29,8 @@ const Calendar = ({ workouts }) => {
             </div>
             {viewState === true &&
                 <div className="modal-container">
-                    <div className="workout-modal">
-                        <Workout viewSwitch={viewSwitch} workoutArr={workouts[modalDate]} date={modalDate}/>
-                    </div>
                     <div onClick={viewSwitch} className="dimmed-bg" />
+                    <Workout viewSwitch={viewSwitch} workoutArr={workouts[modalDate]} date={modalDate}/>
                 </div>
             }
         </div>

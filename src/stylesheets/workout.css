@@ -1,28 +1,39 @@
-.modal-container{
-    position:absolute;
-    top:0;
+.modal-container {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top:40px;
+    border: grey solid 2px;
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    background-color: rgb(68, 68, 68);
+    box-shadow: 5px 10px 20px #000000;
+    color: white;
 }
 
-.workout-modal{
-    border: grey solid 2px;
-    width:300px;
-    height:200px;
-    margin:auto;
-    background-color: white;
-    position:absolute;
-    left:40px;
-    top:50px;
-    z-index: 2;
-    box-shadow: 5px 10px 20px #000000;
-}
-.workout-header{
-    position: relative;
+.workout-container{
+    position:relative;
     bottom:40px;
-    padding-left:40px;
-    background-color: red;
+    left:20px;
 }
-.workout button{
+
+.workout-header {
     position: relative;
-    left:272px;
+    color: black;
+    bottom: 40px;
+    padding-left: 40px;
+    background-color: rgb(212, 212, 212);
+}
+
+.workout button {
+    position: relative;
+    left: 272px;
     z-index: 1;
+}
+.workout-name{
+    font-weight:700;
+    text-decoration: underline;
 }
