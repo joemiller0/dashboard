@@ -19,7 +19,7 @@ const WeekPlanner = () => {
                     <th></th>{dayNames}
                 </thead>
                 <tbody>
-                    <tr><td>am</td><td></td></tr>
+                    <tr><td>am</td><td></td><td></td></tr>
                     <tr><td>lunch</td></tr>
                     <tr><td>pm</td></tr>
                 </tbody>
