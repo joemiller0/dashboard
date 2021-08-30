@@ -5,6 +5,7 @@ import "./stylesheets/dashboard.css";
 
 const Dashboard = () => {
     const [workouts, setWorkouts] = useState({})
+    const [athlete, setAthlete] = useState({});
     // const [dates, setDates] = useState([])
 
     useEffect(() => {
@@ -26,12 +27,13 @@ const Dashboard = () => {
         })
             .then(res => res.json())
             .then(tokenData => {
-                const activitiesUrl = "https://www.strava.com/api/v3/activities";
-                const getActivitiesUrl = `${activitiesUrl}?access_token=${tokenData.access_token}`;
+                const activitiesUrl = `https://www.strava.com/api/v3/activities?access_token=${tokenData.access_token}`;
+                const athleteUrl = `https://www.strava.com/api/v3/athlete?access_token=${tokenData.access_token}`;
 
-                fetch(getActivitiesUrl)
+                fetch(activitiesUrl)
                     .then((res) => res.json())
                     .then((activities) => {
+                        console.log(activities)
                         let workoutsObj = {}
                         activities.forEach((workout) => {
                             const date = workout.start_date_local.split('T')[0];
@@ -43,16 +45,21 @@ const Dashboard = () => {
                         })
                         setWorkouts(workoutsObj)
                         // setDates(Object.keys(workoutsObj))
+                        fetch(athleteUrl)
+                            .then((res)=> res.json())
+                            .then(athlete => setAthlete(athlete))
                     });
             })
 
 
     }, []);
 
+    console.log(athlete)
+
     return (
         <div className="dashboard">
             <Calendar workouts={workouts} />
-            <WeekPlanner />
+            {/* <WeekPlanner /> */}
         </div>
     );
 }

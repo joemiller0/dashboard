@@ -25,7 +25,6 @@ const Calendar = ({ workouts }) => {
                 <h5>{year}</h5>
                 <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
                 <Month viewSwitch={viewSwitch} monthOriginDate={today} workouts={workouts}/>
-                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex+1, 1)} workouts={workouts}/>
             </div>
             {viewState === true &&
                 <div className="modal-container">
