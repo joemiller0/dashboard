@@ -1,7 +1,6 @@
 import uniqid from "uniqid";
 import Day from "./Day";
 import { useCallback, useEffect, useState } from "react";
-// import { buildWeekOne, buildMiddleWeek, buildEndWeek } from "./utilities";
 
 const Month = ({ viewSwitch, monthOriginDate, workouts }) => {
     const [firstWeek, setFirstWeek] = useState([]);

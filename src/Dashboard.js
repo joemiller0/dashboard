@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Nav from './components/UI/Nav';
 import Calendar from './components/Calendar/Calendar';
 import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 import "./stylesheets/dashboard.css";
@@ -33,7 +34,6 @@ const Dashboard = () => {
                 fetch(activitiesUrl)
                     .then((res) => res.json())
                     .then((activities) => {
-                        console.log(activities)
                         let workoutsObj = {}
                         activities.forEach((workout) => {
                             const date = workout.start_date_local.split('T')[0];
@@ -54,10 +54,9 @@ const Dashboard = () => {
 
     }, []);
 
-    console.log(athlete)
-
     return (
         <div className="dashboard">
+            <Nav athlete={athlete}/>
             <Calendar workouts={workouts} />
             {/* <WeekPlanner /> */}
         </div>

@@ -1,0 +1,9 @@
+.nav-container{
+    background-color: rgb(191, 191, 191);
+    border-bottom: 10px rgb(135, 135, 135) solid;
+    text-align: center;
+    padding:8px;
+}
+.nav-container a{
+    padding:10px;
+}
