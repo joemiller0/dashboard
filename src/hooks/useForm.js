@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-function useInput(initialState) {
+function useForm(initialState) {
     const [input, setInput] = useState(initialState);
 
     console.log(input)
 
-    const onChangeInput = e => setInput(e.target.value);
+    const onChangeInput =(e)=> setInput(e.target.value);
 
     function onSubmitInput(e, submitCallback) {
         console.log(e)
@@ -19,5 +19,5 @@ function useInput(initialState) {
     return { input, onChangeInput, onSubmitInput };
 }
 
-export { useInput };
+export { useForm };
 
