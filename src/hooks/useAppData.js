@@ -44,8 +44,8 @@ function useAppData() {
             })
     }, []);
 
-    const createWorkout =(input)=> {
-        console.log(input);
+    const createWorkout =(object)=> {
+        console.log(object);
     }
 
     return {
