@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function useAppData() {
-    const [workouts, setWorkouts] = useState({})
+    const [stravaLogs, SetStravaLogs] = useState({});
     const [athlete, setAthlete] = useState({});
 
     useEffect(() => {
@@ -26,17 +26,17 @@ function useAppData() {
                 fetch(activitiesUrl)
                     .then((res) => res.json())
                     .then((activities) => {
-                        let workoutsObj = {}
-                        activities.forEach((workout) => {
-                            const date = workout.start_date_local.split('T')[0];
-                            if (!workoutsObj[date]) {
-                                workoutsObj[date] = [workout]
+                        let stravaLogsObj = {}
+                        activities.forEach((stravaLog) => {
+                            const date = stravaLog.start_date_local.split('T')[0];
+                            if (!stravaLogsObj[date]) {
+                                stravaLogsObj[date] = [stravaLog]
                             } else {
-                                workoutsObj[date].push(workout)
+                                stravaLogsObj[date].push(stravaLog)
                             }
                         })
-                        setWorkouts(workoutsObj)
-                        // setDates(Object.keys(workoutsObj))
+                        SetStravaLogs(stravaLogsObj)
+                        // setDates(Object.keys(stravaLogsObj))
                         fetch(athleteUrl)
                             .then((res)=> res.json())
                             .then(athlete => setAthlete(athlete))
@@ -49,7 +49,7 @@ function useAppData() {
     }
 
     return {
-        workouts,
+        stravaLogs,
         athlete, 
         createWorkout
     };

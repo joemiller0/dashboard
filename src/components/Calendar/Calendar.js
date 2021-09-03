@@ -3,7 +3,7 @@ import Month from './Month';
 import Workout from './Workout';
 import "../../stylesheets/calendar.css";
 
-const Calendar = ({ workouts }) => {
+const Calendar = ({ stravaLogs }) => {
     const [viewState, setViewState] = useState(false);
     const [modalDate, setModalDate] = useState("");
     
@@ -23,13 +23,13 @@ const Calendar = ({ workouts }) => {
         <div className="calendar-container">
             <div className="calendar">
                 <h5>{year}</h5>
-                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} workouts={workouts}/>
-                <Month viewSwitch={viewSwitch} monthOriginDate={today} workouts={workouts}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} stravaLogs={stravaLogs}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={today} stravaLogs={stravaLogs}/>
             </div>
             {viewState === true &&
                 <div className="modal-container">
                     <div onClick={viewSwitch} className="dimmed-bg" />
-                    <Workout viewSwitch={viewSwitch} workoutArr={workouts[modalDate]} date={modalDate}/>
+                    <Workout viewSwitch={viewSwitch} workoutArr={stravaLogs[modalDate]} date={modalDate}/>
                 </div>
             }
         </div>

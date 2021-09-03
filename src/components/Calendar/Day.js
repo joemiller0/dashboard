@@ -1,6 +1,6 @@
-const Day = ({ viewSwitch, workouts, date, fullDate, isToday }) => {
+const Day = ({ viewSwitch, stravaLogs, date, fullDate, isToday }) => {
     return(
-        <td valign="top" onClick={viewSwitch} className={isToday ? "today" : workouts ? "hasWorkout" : "day"} fulldate={fullDate}>{date}</td>
+        <td valign="top" onClick={viewSwitch} className={isToday ? "today" : stravaLogs ? "hasWorkout" : "day"} fulldate={fullDate}>{date}</td>
     )
 };
 
