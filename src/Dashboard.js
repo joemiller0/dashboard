@@ -4,6 +4,7 @@ import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
 import Calendar from './components/Calendar/Calendar';
 import { useAppData } from "./hooks/hooks";
 import "./stylesheets/dashboard.css";
+import "./stylesheets/calendar.css";
 // import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 
 const Dashboard = () => {
@@ -17,7 +18,12 @@ const Dashboard = () => {
         <div className="dashboard">
             <Nav athlete={athlete}/>
             <Calendar workouts={workouts} />
-            <CreateWorkoutForm createWorkout={createWorkout} />
+            {formViewState === true &&
+                <div className="modal-container">
+                    <div onClick={formViewSwitch} className="dimmed-bg" />
+                    <CreateWorkoutForm createWorkout={createWorkout} />
+                </div>
+            }
             {/* <WeekPlanner /> */}
         </div>
     );

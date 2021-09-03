@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { useForm } from "../../hooks/hooks";
+import "../../stylesheets/workoutform.css";
 
 const CreateWorkoutForm = ({ createWorkout }) => {
     const { title, desc, onChangeInput, onSubmitInput } = useForm('');
 
     return (
-        <form onSubmit={(e)=>onSubmitInput( e, createWorkout)} >
-            <label></label>
-            <input type="text" value={title} name="title" onChange={onChangeInput} placeholder="test" />
-            <input type="text" value={desc} name="desc" onChange={onChangeInput} placeholder="test2" />
-            <button type="submit" value="submit">Submit</button>
-        </form>
+        <div className="workout-form-container">
+            <form onSubmit={(e)=>onSubmitInput( e, createWorkout)} >
+                <input type="text" value={title} name="title" onChange={onChangeInput} placeholder="title" />
+                <input type="text" name="program" disabled placeholder="program: not available yet" />
+                <textarea rows="5" type="text" value={desc} name="desc" onChange={onChangeInput} placeholder="desc" />
+                <button type="submit" value="submit">Add Workout</button>
+            </form>
+        </div>
     );
 };
 
