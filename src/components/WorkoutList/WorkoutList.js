@@ -6,7 +6,7 @@ const WorkoutList = ({workouts}) => {
         <div className="workout-list-container">
             {workouts ? 
                 workouts.map((workout) => {
-                    return <p key={()=>uniqid()}>{workout.title}</p>
+                    return <p key={uniqid()}>{workout.title}</p>
                 })
             :
                 null

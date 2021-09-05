@@ -12,18 +12,18 @@ const Dashboard = () => {
     const { createWorkout, stravaLogs, athlete, workouts } = useAppData();
     const [formViewState, setFormViewState] = useState(false);
 
-    const formViewSwitch =(e)=> {
+    const workoutFormViewSwitch =(e)=> {
         setFormViewState(!formViewState)
     }
     return (
         <div className="dashboard">
-            <Nav formViewSwitch={formViewSwitch} athlete={athlete}/>
+            <Nav workoutFormViewSwitch={workoutFormViewSwitch} athlete={athlete}/>
             <Calendar stravaLogs={stravaLogs} />
             <WorkoutList workouts={workouts}/>
             {formViewState === true &&
                 <div className="workout-modal-container">
-                    <div onClick={formViewSwitch} className="dimmed-bg" />
-                    <CreateWorkoutForm formViewSwitch={formViewSwitch} createWorkout={createWorkout} />
+                    <div onClick={workoutFormViewSwitch} className="dimmed-bg" />
+                    <CreateWorkoutForm workoutFormViewSwitch={workoutFormViewSwitch} createWorkout={createWorkout} />
                 </div>
             }
         </div>
