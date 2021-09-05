@@ -14,7 +14,7 @@ function useForm(initialState) {
         }
     };
 
-    function onSubmitInput(e, submitCallback) {
+    function onSubmitInput(e, submitCallback, viewSwitchFunction) {
         e.preventDefault();
         if (title || desc) {
             const newWorkoutObj = {
@@ -22,6 +22,7 @@ function useForm(initialState) {
                 "desc":desc
             }
             submitCallback(newWorkoutObj);
+            viewSwitchFunction();
             setTitle("");
             setDesc("");
         }

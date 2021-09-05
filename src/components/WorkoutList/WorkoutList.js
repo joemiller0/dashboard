@@ -1,4 +1,4 @@
-
+import uniqid from 'uniqid';
 
 const WorkoutList = ({workouts}) => {
     console.log(workouts)
@@ -6,10 +6,10 @@ const WorkoutList = ({workouts}) => {
         <div className="workout-list-container">
             {workouts ? 
                 workouts.map((workout) => {
-                    return <p>{workout.title}</p>
+                    return <p key={()=>uniqid()}>{workout.title}</p>
                 })
             :
-            console.log('else')
+                null
             }
         </div>
     )
