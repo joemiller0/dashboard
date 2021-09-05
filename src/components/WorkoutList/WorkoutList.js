@@ -4,13 +4,13 @@ const WorkoutList = ({workouts}) => {
     console.log(workouts)
     return (
         <div className="workout-list-container">
-            {/* {workouts ? 
+            {workouts ? 
                 workouts.map((workout) => {
-                    <p>{workout.title}</p>
+                    return <p>{workout.title}</p>
                 })
             :
-            null
-            } */}
+            console.log('else')
+            }
         </div>
     )
 };

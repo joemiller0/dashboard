@@ -46,9 +46,14 @@ function useAppData() {
     }, []);
 
     const createWorkout =(object)=> {
-
+        if (workouts) {
+            workouts.push(object)
+        } else {
+            setWorkouts(object)
+        }
     }
 
+    console.log(workouts)
     return {
         workouts, 
         stravaLogs,
