@@ -53,7 +53,6 @@ function useAppData() {
         }
     }
 
-    console.log(workouts)
     return {
         workouts, 
         stravaLogs,

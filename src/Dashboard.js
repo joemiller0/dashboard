@@ -18,8 +18,10 @@ const Dashboard = () => {
     return (
         <div className="dashboard">
             <Nav workoutFormViewSwitch={workoutFormViewSwitch} athlete={athlete}/>
-            <Calendar stravaLogs={stravaLogs} />
-            <WorkoutList workouts={workouts}/>
+            <div className="inner-dash">
+                <WorkoutList workouts={workouts}/>
+                <Calendar stravaLogs={stravaLogs} />
+            </div>
             {formViewState === true &&
                 <div className="workout-modal-container">
                     <div onClick={workoutFormViewSwitch} className="dimmed-bg" />

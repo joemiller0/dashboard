@@ -1,3 +1,13 @@
-/* .dashboard{
-    
-} */
+.inner-dash{
+    display:flex;
+}
+.workout-list-container{
+    width:15%;
+    height:auto;
+    background: rgb(110, 110, 110);
+    border-bottom: black solid 10px;
+}
+.calendar-container{
+    width:85%;
+    height:auto;
+}
