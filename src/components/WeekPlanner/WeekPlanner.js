@@ -7,6 +7,7 @@ const WeekPlanner = () => {
     });
     return (
         <div className="weekPlanner-container">
+            <h3>Current Weekly Schedule</h3>
             <table className="weekPlanner">
                 <thead>
                     <tr>

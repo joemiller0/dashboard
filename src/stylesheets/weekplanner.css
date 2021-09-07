@@ -1,8 +1,12 @@
 .weekPlanner-container{
     text-align: center;
     background-color: rgb(51, 51, 51);
-    padding:30px;
+    padding-bottom:30px;
     border-bottom: black solid 10px;
+    width:100%;
+}
+.weekPlanner-container h3{
+    color:white;
 }
 .weekPlanner{
     width:80vw;

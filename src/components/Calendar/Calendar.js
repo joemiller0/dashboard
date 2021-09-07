@@ -21,7 +21,7 @@ const Calendar = ({ stravaLogs }) => {
     return (
         <div className="calendar-container">
             <div className="calendar">
-                <h5>{year}</h5>
+                <h5>Recent Logs</h5>
                 <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} stravaLogs={stravaLogs}/>
                 <Month viewSwitch={viewSwitch} monthOriginDate={today} stravaLogs={stravaLogs}/>
             </div>
