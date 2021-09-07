@@ -3,7 +3,6 @@ import "../../stylesheets/workoutlist.css";
 
 
 const WorkoutList = ({workouts}) => {
-    console.log(workouts)
     return (
         <div className="workout-list-container">
             <div className="workoutlist">

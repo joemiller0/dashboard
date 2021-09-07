@@ -29,7 +29,7 @@ const Dashboard = () => {
 
             <div className="inner-dash">
                 <WorkoutList workouts={workouts}/>
-                <WeekPlanner />
+                <WeekPlanner workouts={workouts}/>
             </div>
                 <Calendar stravaLogs={stravaLogs} />
 
