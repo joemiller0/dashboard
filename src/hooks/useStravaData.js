@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 
-function useAppData() {
+function useStravaData() {
     const [stravaLogs, SetStravaLogs] = useState({});
-    const [workouts, setWorkouts] = useState([]);
     const [athlete, setAthlete] = useState({});
 
     useEffect(() => {
@@ -45,20 +44,11 @@ function useAppData() {
             })
     }, []);
 
-    const createWorkout =(object)=> {
-        if (workouts) {
-            workouts.push(object)
-        } else {
-            setWorkouts(object)
-        }
-    }
 
     return {
-        workouts, 
         stravaLogs,
         athlete, 
-        createWorkout
     };
 }
 
-export { useAppData };
+export { useStravaData };

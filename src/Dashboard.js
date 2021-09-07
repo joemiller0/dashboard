@@ -3,17 +3,26 @@ import Nav from './components/UI/Nav';
 import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
 import Calendar from './components/Calendar/Calendar';
 import WorkoutList from './components/WorkoutList/WorkoutList';
-import { useAppData } from "./hooks/hooks";
+import { useStravaData } from "./hooks/hooks";
 import "./stylesheets/dashboard.css";
 // import "./stylesheets/calendar.css";
 // import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 
 const Dashboard = () => {
-    const { createWorkout, stravaLogs, athlete, workouts } = useAppData();
+    const { stravaLogs, athlete } = useStravaData();
     const [formViewState, setFormViewState] = useState(false);
+    const [workouts, setWorkouts] = useState([]);
+
 
     const workoutFormViewSwitch =(e)=> {
         setFormViewState(!formViewState)
+    }
+    const createWorkout =(object)=> {
+        if (workouts) {
+            workouts.push(object)
+        } else {
+            setWorkouts(object)
+        }
     }
     return (
         <div className="dashboard">

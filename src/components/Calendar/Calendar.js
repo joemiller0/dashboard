@@ -6,7 +6,6 @@ import "../../stylesheets/calendar.css";
 const Calendar = ({ stravaLogs }) => {
     const [viewState, setViewState] = useState(false);
     const [modalDate, setModalDate] = useState("");
-    
     const today = new Date();
     const year = today.getFullYear();
     const currentMonthIndex = today.getMonth();
