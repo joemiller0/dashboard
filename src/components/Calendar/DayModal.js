@@ -1,8 +1,7 @@
 // import { useEffect, useState } from "react";
 import "../../stylesheets/workout.css";
 
-const Workout = ({ viewSwitch, workoutArr, date }) => {
-
+const DayModal = ({ viewSwitch, workoutArr, date }) => {
     const getMinMileAvg = (metersPerSecond) => {
         const milesPerMin = metersPerSecond * 0.037282272
         // 1 meter per second (m/s) = 0.037282272 mile per minute (mi/min)
@@ -23,7 +22,6 @@ const Workout = ({ viewSwitch, workoutArr, date }) => {
     return (
         <div className="workout">
             <button onClick={viewSwitch}>x</button>
-
             <div className="workout-header">
                 <p className="workout-start-date">{date}</p>
             </div>
@@ -31,7 +29,6 @@ const Workout = ({ viewSwitch, workoutArr, date }) => {
                 {workoutArr !== undefined &&
                     workoutArr.map((workout) => {
                         if (workout.name[0] === "W") {
-
                             const whoopDayStrain = workout.name.split("→")[1]
                             const strain = whoopDayStrain.split(" ")[1]
 
@@ -69,4 +66,4 @@ const Workout = ({ viewSwitch, workoutArr, date }) => {
     );
 };
 
-export default Workout;
+export default DayModal;

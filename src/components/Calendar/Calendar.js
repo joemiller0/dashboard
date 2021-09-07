@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Month from './Month';
-import Workout from './Workout';
+import DayModal from './DayModal';
 import "../../stylesheets/calendar.css";
 
 const Calendar = ({ stravaLogs }) => {
@@ -29,7 +29,7 @@ const Calendar = ({ stravaLogs }) => {
             {viewState === true &&
                 <div className="modal-container">
                     <div onClick={viewSwitch} className="dimmed-bg" />
-                    <Workout viewSwitch={viewSwitch} workoutArr={stravaLogs[modalDate]} date={modalDate}/>
+                    <DayModal viewSwitch={viewSwitch} workoutArr={stravaLogs[modalDate]} date={modalDate}/>
                 </div>
             }
         </div>
