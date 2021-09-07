@@ -18,7 +18,6 @@ const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
     const monthIndex = monthOriginDate.getMonth();
     const totalDays = daysInMonth(monthIndex + 1, year);
     const firstDayIndex = new Date(year, monthIndex).getDay();
-
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const dayNames = abrevDays.map((day) => {
         return <th key={day}>{day}</th>;

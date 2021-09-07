@@ -6,7 +6,7 @@ import WorkoutList from './components/WorkoutList/WorkoutList';
 import { useStravaData } from "./hooks/hooks";
 import "./stylesheets/dashboard.css";
 // import "./stylesheets/calendar.css";
-// import WeekPlanner from './components/WeekPlanner/WeekPlanner';
+import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 
 const Dashboard = () => {
     const { stravaLogs, athlete } = useStravaData();
@@ -29,8 +29,9 @@ const Dashboard = () => {
 
             <div className="inner-dash">
                 <WorkoutList workouts={workouts}/>
-                <Calendar stravaLogs={stravaLogs} />
+                <WeekPlanner />
             </div>
+                <Calendar stravaLogs={stravaLogs} />
 
             {formViewState === true &&
                 <div>
