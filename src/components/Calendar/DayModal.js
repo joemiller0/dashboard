@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import "../../stylesheets/workout.css";
+import "../../stylesheets/dayModal.css";
 
 const DayModal = ({ viewSwitch, workoutArr, date }) => {
     const getMinMileAvg = (metersPerSecond) => {

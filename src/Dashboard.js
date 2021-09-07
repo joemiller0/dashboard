@@ -13,7 +13,6 @@ const Dashboard = () => {
     const [formViewState, setFormViewState] = useState(false);
     const [workouts, setWorkouts] = useState([]);
 
-
     const workoutFormViewSwitch =(e)=> {
         setFormViewState(!formViewState)
     }
@@ -27,12 +26,14 @@ const Dashboard = () => {
     return (
         <div className="dashboard">
             <Nav workoutFormViewSwitch={workoutFormViewSwitch} athlete={athlete}/>
+
             <div className="inner-dash">
                 <WorkoutList workouts={workouts}/>
                 <Calendar stravaLogs={stravaLogs} />
             </div>
+
             {formViewState === true &&
-                <div className="workout-modal-container">
+                <div>
                     <div onClick={workoutFormViewSwitch} className="dimmed-bg" />
                     <CreateWorkoutForm workoutFormViewSwitch={workoutFormViewSwitch} createWorkout={createWorkout} />
                 </div>
