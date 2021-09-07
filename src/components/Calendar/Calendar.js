@@ -28,7 +28,7 @@ const Calendar = ({ stravaLogs }) => {
             {viewState === true &&
                 <div className="modal-container">
                     <div onClick={viewSwitch} className="dimmed-bg" />
-                    <DayModal viewSwitch={viewSwitch} workoutArr={stravaLogs[modalDate]} date={modalDate}/>
+                    <DayModal viewSwitch={viewSwitch} logsArr={stravaLogs[modalDate]} date={modalDate}/>
                 </div>
             }
         </div>

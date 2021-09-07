@@ -1,10 +1,10 @@
-.workout-container{
+.log-container{
     position:relative;
     bottom:40px;
     left:20px;
 }
 
-.workout-header {
+.log-header {
     position: relative;
     color: black;
     bottom: 40px;
@@ -12,12 +12,12 @@
     background-color: rgb(212, 212, 212);
 }
 
-.workout button {
+.log button {
     position: relative;
     left: 272px;
     z-index: 1;
 }
-.workout-name{
+.log-name{
     font-weight:700;
     text-decoration: underline;
 }

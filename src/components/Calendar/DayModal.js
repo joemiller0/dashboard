@@ -1,7 +1,7 @@
 // import { useEffect, useState } from "react";
 import "../../stylesheets/dayModal.css";
 
-const DayModal = ({ viewSwitch, workoutArr, date }) => {
+const DayModal = ({ viewSwitch, logsArr, date }) => {
     const getMinMileAvg = (metersPerSecond) => {
         const milesPerMin = metersPerSecond * 0.037282272
         // 1 meter per second (m/s) = 0.037282272 mile per minute (mi/min)
@@ -20,24 +20,22 @@ const DayModal = ({ viewSwitch, workoutArr, date }) => {
     }
 
     return (
-        <div className="workout">
+        <div className="log">
             <button onClick={viewSwitch}>x</button>
-            <div className="workout-header">
-                <p className="workout-start-date">{date}</p>
+            <div className="log-header">
+                <p className="log-start-date">{date}</p>
             </div>
-            <div className="workout-container">
-                {workoutArr !== undefined &&
-                    workoutArr.map((workout) => {
-                        if (workout.name[0] === "W") {
-                            const whoopDayStrain = workout.name.split("→")[1]
+            <div className="log-container">
+                {logsArr !== undefined &&
+                    logsArr.map((log) => {
+                        if (log.name[0] === "W") {
+                            const whoopDayStrain = log.name.split("→")[1]
                             const strain = whoopDayStrain.split(" ")[1]
-
-                            const whoopActivity = workout.name.split("→")[0]
+                            const whoopActivity = log.name.split("→")[0]
                             const activity = whoopActivity.slice(6)
-
                             return (
-                                <div key={workout.upload_id} className="whoop">
-                                    <div className="workout-name">
+                                <div key={log.upload_id} className="whoop">
+                                    <div className="log-name">
                                         {activity}
                                     </div>
                                     <div className="highlight">
@@ -46,16 +44,16 @@ const DayModal = ({ viewSwitch, workoutArr, date }) => {
                                 </div>
                             )
                         }
-                        const metersToMiles = workout.distance / 1609
+                        const metersToMiles = log.distance / 1609
                         const totalDistance = roundDistance(metersToMiles)
-                        const minMileAvg = getMinMileAvg(workout.average_speed)
+                        const minMileAvg = getMinMileAvg(log.average_speed)
                         return (
-                            <div className="strava" key={workout.upload_id}>
-                                <div className="workout-name">
-                                    {workout.name}
+                            <div className="strava" key={log.upload_id}>
+                                <div className="log-name">
+                                    {log.name}
                                 </div>
                                 <div className="highlight">
-                                    {totalDistance} mi - {minMileAvg} - <span className="suffer">Suffer Score: {workout.suffer_score}</span>
+                                    {totalDistance} mi - {minMileAvg} - <span className="suffer">Suffer Score: {log.suffer_score}</span>
                                 </div><br />
                             </div>
                         )
