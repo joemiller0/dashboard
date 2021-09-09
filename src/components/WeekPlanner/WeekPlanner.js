@@ -10,7 +10,9 @@ const WeekPlanner = ({workouts}) => {
 
         useEffect(()=>{
             // if (!workouts) return
-
+            // const am =[];
+            // const lunch = []
+            // const pm = []
             workouts.map((w)=>{
                 if(w.time ==='am'){
                     setAMWorkouts(w)
@@ -29,12 +31,11 @@ const WeekPlanner = ({workouts}) => {
 
         }, [workouts])
 
-        console.log(`${amWorkouts} AM`)
-        console.log(`${lunchWorkouts} Lunch`)
-        console.log(`${pmWorkouts} PM`)
+        console.log(amWorkouts)
+        console.log(lunchWorkouts)
+        console.log(pmWorkouts)
 
-
-    console.log(workouts)
+        // console.log(workouts)
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const dayNames = abrevDays.map((day) => {
         return <td key={day}>{day}</td>;
@@ -43,7 +44,6 @@ const WeekPlanner = ({workouts}) => {
     return (
         <div className="weekPlanner-container">
             <h3>Current Weekly Schedule</h3>
-            
                 <table className="weekPlanner">
                     <thead>
                         <tr>
@@ -51,6 +51,9 @@ const WeekPlanner = ({workouts}) => {
                         </tr>
                     </thead>
                     <tbody>
+                        {amWorkouts.map((w)=>{
+                            
+                        })}
                         <tr><td>am</td></tr>
                         <tr><td>lunch</td></tr>
                         <tr><td>pm</td></tr>

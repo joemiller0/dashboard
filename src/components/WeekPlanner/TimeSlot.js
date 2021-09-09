@@ -1,7 +1,6 @@
-
 const TimeSlot = () => {
     return (
-        <h1>timeslot</h1>
+        <td>timeslot</td>
     )
 };
 
