@@ -1,5 +1,5 @@
- ## Dashboard
-This is my my most recent project
+ # Dashboard
+This is my my most recent project.
 Built with React, React-hooks, the Strava API, and an extremely small dependency list. I wanted to build as much as I could from scratch for experience. 
 
 A training dashboard where I can show a simple bird's eye view of my entire program to my athletic coaches. 
@@ -10,7 +10,7 @@ Its two month-calendars, with days highlights which have workout logs on them. T
 A modal appears to show the workout log details when the day is clicked. 
 There were no pre-built npm packages used for the calendar component.  
 
-# What I am adding now
+## What I am adding now
 A modular weekly training schedule which shows a sample week in training.
 As an athlete, I find the best way to plan my training is by the week, and then by groups of weeks (not necessarily months). This component is for planning a sample single week. 
 
