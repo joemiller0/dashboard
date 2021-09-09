@@ -13,7 +13,6 @@ const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
     const daysInMonth = (m, y) => {
         return new Date(y, m, 0).getDate();
     };
-
     const year = monthOriginDate.getFullYear();
     const monthIndex = monthOriginDate.getMonth();
     const totalDays = daysInMonth(monthIndex + 1, year);
