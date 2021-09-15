@@ -1,7 +1,10 @@
 import "../../stylesheets/weekplanner.css";
 import { useState, useEffect } from "react";
 import uniqid from "uniqid";
-import TimeSlot from './TimeSlot';
+import AmWorkoutRow from './AmWorkoutRow';
+import LunchWorkoutRow from './LunchWorkoutRow';
+import PmWorkoutRow from './PmWorkoutRow';
+
 
 const WeekPlanner = ({workouts}) => {
     const [amWorkouts, setAMWorkouts] = useState([]);
@@ -9,32 +12,35 @@ const WeekPlanner = ({workouts}) => {
     const [pmWorkouts, setPMWorkouts] = useState([]);
 
         useEffect(()=>{
-            // if (!workouts) return
-            // const am =[];
-            // const lunch = []
-            // const pm = []
+            const am =[];
+            const lunch = []
+            const pm = []
             workouts.map((w)=>{
                 if(w.time ==='am'){
-                    setAMWorkouts(w)
+                    am.push()
+                    setAMWorkouts(am)
                 }
-                if(w.time ==='lunch'){
-                    setLunchWorkouts(w)
+                if(w.time ==='lunch'){ 
+                    lunch.push(w)
+                    setLunchWorkouts(lunch)
                 }
                 if(w.time ==='pm'){
-                    setPMWorkouts(w)
+                    pm.push(w)
+                    setPMWorkouts(pm)
                 }
-
+                return null;
                 // these are going to be arrays of TimeSlots, maybe better to think of them as rows.
                 // will need to insert at a partiuclar index based on day and fill in slots with empty timeslots  
 
             })
 
+
         }, [workouts])
 
-        console.log(amWorkouts)
-        console.log(lunchWorkouts)
-        console.log(pmWorkouts)
 
+        // console.log(amWorkouts)
+        // console.log(lunchWorkouts)
+        // console.log(pmWorkouts)
         // console.log(workouts)
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const dayNames = abrevDays.map((day) => {
@@ -51,12 +57,9 @@ const WeekPlanner = ({workouts}) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {amWorkouts.map((w)=>{
-                            
-                        })}
-                        <tr><td>am</td></tr>
-                        <tr><td>lunch</td></tr>
-                        <tr><td>pm</td></tr>
+                        <AmWorkoutRow />
+                        <LunchWorkoutRow />
+                        <PmWorkoutRow />
                     </tbody>
                 </table>
 
