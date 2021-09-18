@@ -1,4 +1,4 @@
-const PmWorkoutRow = (w) => {
+const PmWorkoutRow = (workouts) => {
     // console.log(w)
     return (
         <tr><td>pm</td></tr>

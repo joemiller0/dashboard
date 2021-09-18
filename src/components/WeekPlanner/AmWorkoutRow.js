@@ -1,7 +1,9 @@
-const AmWorkoutRow = (w) => {
-    // console.log(w)
+const AmWorkoutRow = (workouts) => {
+    console.log(workouts)
+    
     return (
         <tr><td>am</td></tr>
+
 
     )
 };

@@ -38,10 +38,10 @@ const WeekPlanner = ({workouts}) => {
         }, [workouts])
 
 
-        // console.log(amWorkouts)
+        console.log(amWorkouts)
         // console.log(lunchWorkouts)
         // console.log(pmWorkouts)
-        // console.log(workouts)
+        console.log(workouts)
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const dayNames = abrevDays.map((day) => {
         return <td key={day}>{day}</td>;
@@ -57,9 +57,11 @@ const WeekPlanner = ({workouts}) => {
                         </tr>
                     </thead>
                     <tbody>
-                        <AmWorkoutRow />
-                        <LunchWorkoutRow />
-                        <PmWorkoutRow />
+                        <AmWorkoutRow workouts={amWorkouts}/>
+                        <LunchWorkoutRow workouts={lunchWorkouts} />
+                        <PmWorkoutRow workouts={pmWorkouts} />
+
+                        {/* combining the repeated logic in these componenets might just be a larger compoent which returns <tbody></tbody> elemtn entirely */}
                     </tbody>
                 </table>
 
