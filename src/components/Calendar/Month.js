@@ -1,6 +1,6 @@
+import { useCallback, useEffect, useState } from "react";
 import uniqid from "uniqid";
 import Day from "./Day";
-import { useCallback, useEffect, useState } from "react";
 
 const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
     const [firstWeek, setFirstWeek] = useState([]);
