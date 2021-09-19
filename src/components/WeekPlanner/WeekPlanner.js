@@ -55,7 +55,9 @@ const WeekPlanner = ({workouts}) => {
                             <td></td>{dayNames}
                         </tr>
                     </thead>
+
                     <TimeSlotContainer workouts={workouts}/>
+                    
                 </table>
 
         </div>
