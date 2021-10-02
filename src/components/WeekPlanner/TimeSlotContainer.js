@@ -1,28 +1,23 @@
-import { useCallback, useEffect, useState } from "react";
+import AMSlots from './AMSlots';
+import PMSlots from './PMSlots';
+import LunchSlots from './LunchSlots';
 import uniqid from "uniqid";
-import Month from "../Calendar/Month";
-import TimeSlot from "./TimeSlot";
+
 
 const TimeSlotContainer = ({workouts}) => {
-    const [amWorkouts, setAMworkouts] = useState([])
-    const [lunchWorkouts, setLunchworkouts] = useState([])
-    const [pmWorkouts, setPMworkouts] = useState([])
 
-    console.log(workouts)
-    // you want each of the arrays in the state to be an array of TimeSlot components - mirror Month.js
-    
     return (
         <tbody>
-            <tr>
-                <td>am</td>
-                {amWorkouts}
-            </tr>
-            <tr>
-                <td>lunch</td>
-            </tr>
-            <tr>
-                <td>pm</td>
-            </tr>
+            {workouts.map((w)=>{
+                if (w.time === "am"){
+                    return <AMSlots key={uniqid()} workouts={w} />
+                } else if (w.time === "lunch"){
+                    return <LunchSlots key={uniqid()} workouts={w} />
+                } else if (w.time === "pm"){
+                    return <PMSlots key={uniqid()} workouts={w} />
+                } 
+                return null
+            })}
         </tbody>
     )
 };
