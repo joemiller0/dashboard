@@ -14,7 +14,7 @@ const Calendar = ({ stravaLogs }) => {
     const viewSwitch =(e)=> {
         setViewState(!viewState)
         if (e.target.innerHTML === "x") return
-        if(e.target.className === "dimmed-bg") return
+        if (e.target.className === "dimmed-bg") return
         setModalDate(e.target.attributes.fulldate.value)
     }
 
