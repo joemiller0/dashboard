@@ -22,4 +22,6 @@ const TimeSlotContainer = ({workouts}) => {
     )
 };
 
+// need some check to make sure am is always on top, lunch is always in the middle and pm is always on the bottom
+
 export default TimeSlotContainer;
