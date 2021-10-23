@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-const AMSlots = (workouts) => {
+import { useState, useEffect, useCallback } from "react";
+const AMSlots = ({ workouts }) => {
     const [sunday, setSunday] = useState("sunday");
     const [monday, setMonday] = useState("monday");
     const [tuesday, setTuesday] = useState("tuesday");
@@ -9,12 +9,23 @@ const AMSlots = (workouts) => {
     const [saturday, setSaturday] = useState("saturday");
 
 
+    const buildSlots = useCallback((
+        (workouts) => {
+            console.log(workouts)
+            workouts.map((w)=>{
+                console.log(w)
+            })
+        }
+    ))
+
     useEffect(()=>{
 
+        // buildSlots();
 
-
-    }, [workouts, sunday])
+    }, [buildSlots])
     console.log(sunday)
+    console.log(workouts)
+
 
     return(
         <tr>

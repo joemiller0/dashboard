@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import AMSlots from './AMSlots';
 import PMSlots from './PMSlots';
 import LunchSlots from './LunchSlots';
@@ -5,7 +6,7 @@ import uniqid from "uniqid";
 
 
 const TimeSlotContainer = ({workouts}) => {
-
+    console.log(workouts)
     return (
         <tbody>
             {workouts.map((w)=>{
