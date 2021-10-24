@@ -9,15 +9,17 @@ const WeekPlanner = ({workouts}) => {
 
     return (
         <div className="weekPlanner-container">
-            <h3>Current Weekly Schedule</h3>
-                <table className="weekPlanner">
-                    <thead>
-                        <tr>
-                            <td></td>{dayNames}
-                        </tr>
-                    </thead>
-                    <TimeSlotContainer workouts={workouts} />
-                </table>
+            <div className="coming-soon"><span>Coming Soon</span>
+                <h3>Current Weekly Schedule</h3>
+                    <table className="weekPlanner">
+                        <thead>
+                            <tr>
+                                <td></td>{dayNames}
+                            </tr>
+                        </thead>
+                        <TimeSlotContainer workouts={workouts} />
+                    </table>
+            </div>
         </div>
     )
 };

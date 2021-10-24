@@ -9,22 +9,22 @@ const AMSlots = ({ workouts }) => {
     const [saturday, setSaturday] = useState("saturday");
 
 
-    const buildSlots = useCallback((
-        (workouts) => {
-            console.log(workouts)
-            workouts.map((w)=>{
-                console.log(w)
-            })
-        }
-    ))
+    // const buildSlots = useCallback((
+    //     (workouts) => {
+    //         console.log(workouts)
+    //         workouts.map((w)=>{
+    //             console.log(w)
+    //         })
+    //     }
+    // ))
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        // buildSlots();
+    //     // buildSlots();
 
-    }, [buildSlots])
-    console.log(sunday)
-    console.log(workouts)
+    // }, [buildSlots])
+    // console.log(sunday)
+    // console.log(workouts)
 
 
     return(
