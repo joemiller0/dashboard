@@ -21,6 +21,7 @@ const WeekPlanner = ({workouts}) => {
                     </table>
             </div>
         </div>
+        
     )
 };
 
