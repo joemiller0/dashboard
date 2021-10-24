@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import AMSlots from './AMSlots';
 import PMSlots from './PMSlots';
 import LunchSlots from './LunchSlots';
@@ -5,7 +6,7 @@ import uniqid from "uniqid";
 
 
 const TimeSlotContainer = ({workouts}) => {
-
+    console.log(workouts)
     return (
         <tbody>
             {workouts.map((w)=>{
@@ -21,5 +22,7 @@ const TimeSlotContainer = ({workouts}) => {
         </tbody>
     )
 };
+
+// need some check to make sure am is always on top, lunch is always in the middle and pm is always on the bottom
 
 export default TimeSlotContainer;
