@@ -24,3 +24,6 @@ yarn-error.log*
 
 # API deets
 .env
+
+# Server has its own Repo
+/server

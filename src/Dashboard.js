@@ -28,10 +28,10 @@ const Dashboard = () => {
             <Nav workoutFormViewSwitch={workoutFormViewSwitch} athlete={athlete}/>
 
             <div className="inner-dash">
+                <Calendar stravaLogs={stravaLogs} />
                 <WorkoutList workouts={workouts}/>
                 <WeekPlanner workouts={workouts}/>
             </div>
-                <Calendar stravaLogs={stravaLogs} />
 
             {formViewState === true &&
                 <div>
