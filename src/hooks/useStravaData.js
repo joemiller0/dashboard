@@ -22,24 +22,39 @@ function useStravaData() {
             .then(tokenData => {
                 const activitiesUrl = `https://www.strava.com/api/v3/activities?access_token=${tokenData.access_token}`;
                 const athleteUrl = `https://www.strava.com/api/v3/athlete?access_token=${tokenData.access_token}`;
+                fetch(athleteUrl)
+                    .then((res)=> res.json())
+                    .then(athlete => setAthlete(athlete))
 
                 fetch(activitiesUrl)
                     .then((res) => res.json())
-                    .then((activities) => {
-                        let stravaLogsObj = {}
-                        activities.forEach((stravaLog) => {
-                            const date = stravaLog.start_date_local.split('T')[0];
-                            if (!stravaLogsObj[date]) {
-                                stravaLogsObj[date] = [stravaLog]
-                            } else {
-                                stravaLogsObj[date].push(stravaLog)
-                            }
-                        })
-                        SetStravaLogs(stravaLogsObj)
-                        // setDates(Object.keys(stravaLogsObj))
-                        fetch(athleteUrl)
-                            .then((res)=> res.json())
-                            .then(athlete => setAthlete(athlete))
+                    .then(activities => {
+
+                        const localLogsURL = "http://localhost:5000/logs" 
+                        fetch(localLogsURL)
+                            .then((res)=>res.json())
+                            .then(localLogs => {
+                                console.log(localLogs)
+                                console.log(activities)
+
+                                const allLogs = [...localLogs, ...activities];
+                                console.log(allLogs)
+
+                                let stravaLogsObj = {}
+                                activities.forEach((stravaLog) => {
+                                    const date = stravaLog.start_date_local.split('T')[0];
+                                    if (!stravaLogsObj[date]) {
+                                        stravaLogsObj[date] = [stravaLog]
+                                    } else {
+                                        stravaLogsObj[date].push(stravaLog)
+                                    }
+                                })
+                                SetStravaLogs(stravaLogsObj)
+                                // setDates(Object.keys(stravaLogsObj))
+                            })
+
+
+
                     });
             })
     }, []);

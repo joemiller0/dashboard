@@ -27,8 +27,8 @@ const Dashboard = () => {
         <div className="dashboard">
             <Nav workoutFormViewSwitch={workoutFormViewSwitch} athlete={athlete}/>
 
-            <div className="inner-dash">
                 <Calendar stravaLogs={stravaLogs} />
+            <div className="inner-dash">
                 <WorkoutList workouts={workouts}/>
                 <WeekPlanner workouts={workouts}/>
             </div>
