@@ -23,33 +23,36 @@ function useStravaData() {
                 const activitiesUrl = `https://www.strava.com/api/v3/activities?access_token=${tokenData.access_token}`;
                 const athleteUrl = `https://www.strava.com/api/v3/athlete?access_token=${tokenData.access_token}`;
                 fetch(athleteUrl)
-                    .then((res) => res.json())
-                    .then((athlete) => setAthlete(athlete));
+                    .then(res => res.json())
+                    .then(athlete => setAthlete(athlete));
 
                 fetch(activitiesUrl)
-                    .then((res) => res.json())
-                    .then((activities) => {
-                        const localLogsURL = "http://localhost:5000/logs";
+                    .then(res => res.json())
+                    .then(activities => {
 
-                        activities.forEach(log=>{
+                        activities.forEach( log =>{
 
-                            console.log(log)
+                            console.log(log.upload_id)
 
-                            // fetch(localLogsURL, {
-                            //     method: "POST",
-                            //     headers: {
-                            //         "Content-Type": "application/json",
-                            //         Accept: "application/json",
-                            //     },
-                            //     body: JSON.stringify(log)
-                            // })
-                            //     .then(res=>res.json())
-                            //     .then(logs=>console.log(logs))
+                            fetch("http://localhost:5000/logs", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Accept: "application/json",
+                                },
+                                body: JSON.stringify({
+                                    "upload_id": log.upload_id,
+                                    "body": log,
+                                    "date": log.date, 
+                                    "time": log.time
+                                })
+                            })
+                                .then(res=>res.json())
+                                .then(logs=>console.log(logs))
 
                         })
 
-
-                        // fetch(localLogsURL)
+                        // fetch("http://localhost:5000/logs")
                         //     .then((res)=>res.json())
                         //     .then(localLogs => {
                         //         console.log(localLogs)
