@@ -29,11 +29,16 @@ function useStravaData() {
                 fetch(activitiesUrl)
                     .then(res => res.json())
                     .then(activities => {
+                        // const idCheck = [];
+                        activities.forEach( log => {
 
-                        activities.forEach( log =>{
-
-                            console.log(log.upload_id)
-
+                            // if (log.upload_id === null) {
+                            //     const mid = log.map.id.substring(1);
+                            //     idCheck.push(parseInt(mid))
+                            // } else {
+                            //     idCheck.push(log.upload_id)
+                            // }
+                            
                             fetch("http://localhost:5000/logs", {
                                 method: "POST",
                                 headers: {
@@ -41,15 +46,16 @@ function useStravaData() {
                                     Accept: "application/json",
                                 },
                                 body: JSON.stringify({
+                                    "lid": log.upload_id,
                                     "upload_id": log.upload_id,
-                                    "body": log,
-                                    "date": log.date, 
-                                    "time": log.time
+                                    "body": null,
+                                    "date": null, 
+                                    "time": null,
+                                    "stravaLog": log
                                 })
                             })
                                 .then(res=>res.json())
                                 .then(logs=>console.log(logs))
-
                         })
 
                         // fetch("http://localhost:5000/logs")
