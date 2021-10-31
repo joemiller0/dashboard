@@ -1,2 +1,2 @@
-export { useStravaData } from "./useStravaData";
+export { useApiData } from "./useApiData";
 export { useForm } from "./useForm";

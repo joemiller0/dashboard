@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function useStravaData() {
+function useApiData() {
     const [logs, setLogs] = useState([]);
     const [athlete, setAthlete] = useState({});
 
@@ -50,7 +50,6 @@ function useStravaData() {
                             .then(logs => {
                                 let logsObj = {}
                                 logs.forEach((log) => {
-                                    console.log(log)
                                     if (log.date === null){
                                         const date = log.stravalog.start_date_local.split('T')[0];
                                         if (!logsObj[date]) {
@@ -66,9 +65,8 @@ function useStravaData() {
                                         }
                                     }
                                 })
-                                console.log(logsObj)
-                                // setDates(Object.keys(logsObj))
                                 setLogs(logsObj)
+                                // setDates(Object.keys(logsObj))
                             })
 
                     });
@@ -81,4 +79,4 @@ function useStravaData() {
     };
 }
 
-export { useStravaData };
+export { useApiData };

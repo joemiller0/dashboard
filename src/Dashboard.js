@@ -3,13 +3,13 @@ import Nav from './components/UI/Nav';
 import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
 import Calendar from './components/Calendar/Calendar';
 import WorkoutList from './components/WorkoutList/WorkoutList';
-import { useStravaData } from "./hooks/hooks";
+import { useApiData } from "./hooks/hooks";
 import "./stylesheets/dashboard.css";
 // import "./stylesheets/calendar.css";
 import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 
 const Dashboard = () => {
-    const { logs, athlete } = useStravaData();
+    const { logs, athlete } = useApiData();
     console.log(logs)
     const [formViewState, setFormViewState] = useState(false);
     const [workouts, setWorkouts] = useState([]);
