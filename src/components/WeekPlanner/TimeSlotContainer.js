@@ -6,7 +6,7 @@ import uniqid from "uniqid";
 
 
 const TimeSlotContainer = ({workouts}) => {
-    console.log(workouts)
+    // console.log(workouts)
     return (
         <tbody>
             {workouts.map((w)=>{

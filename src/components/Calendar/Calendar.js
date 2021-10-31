@@ -3,7 +3,7 @@ import Month from './Month';
 import DayModal from './DayModal';
 import "../../stylesheets/calendar.css";
 
-const Calendar = ({ stravaLogs }) => {
+const Calendar = ({ logs }) => {
     const [viewState, setViewState] = useState(false);
     const [modalDate, setModalDate] = useState("");
     const today = new Date();
@@ -22,13 +22,13 @@ const Calendar = ({ stravaLogs }) => {
         <div className="calendar-container">
             <div className="calendar">
                 <h5>Recent Logs</h5>
-                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} stravaLogs={stravaLogs}/>
-                <Month viewSwitch={viewSwitch} monthOriginDate={today} stravaLogs={stravaLogs}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} logs={logs}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={today} logs={logs}/>
             </div>
             {viewState === true &&
                 <div className="modal-container">
                     <div onClick={viewSwitch} className="dimmed-bg" />
-                    <DayModal viewSwitch={viewSwitch} logsArr={stravaLogs[modalDate]} date={modalDate}/>
+                    <DayModal viewSwitch={viewSwitch} logs={logs[modalDate]} date={modalDate}/>
                 </div>
             }
         </div>

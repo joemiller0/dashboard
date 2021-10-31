@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import uniqid from "uniqid";
 import Day from "./Day";
 
-const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
+const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const [firstWeek, setFirstWeek] = useState([]);
     const [secondWeek, setSecondWeek] = useState([]);
     const [thirdWeek, setThirdWeek] = useState([]);
@@ -40,7 +40,7 @@ const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
                     weekOneArr.push(
                         <Day
                             viewSwitch={viewSwitch}
-                            stravaLogs={weekData.stravaLogs[fullDate]}
+                            logs={weekData.logs[fullDate]}
                             date={date++}
                             fullDate={fullDate}
                             key={uniqid()}
@@ -66,7 +66,7 @@ const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
                 middleWeekArr.push(
                     <Day
                         viewSwitch={viewSwitch}
-                        stravaLogs={weekData.stravaLogs[fullDate]}
+                        logs={weekData.logs[fullDate]}
                         date={startDate++}
                         fullDate={fullDate}
                         key={uniqid()}
@@ -94,7 +94,7 @@ const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
                     endWeekArr.push(
                         <Day
                             viewSwitch={viewSwitch}
-                            stravaLogs={weekData.stravaLogs[fullDate]}
+                            logs={weekData.logs[fullDate]}
                             date={startDate++}
                             fullDate={fullDate}
                             key={uniqid()}
@@ -115,7 +115,7 @@ const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
             monthIndex: monthIndex,
             year: year,
             today: new Date(),
-            stravaLogs: stravaLogs,
+            logs: logs,
         };
         const initialWeek = buildWeekOne(firstDayIndex, weekData);
 
@@ -132,7 +132,7 @@ const Month = ({ viewSwitch, monthOriginDate, stravaLogs }) => {
         monthIndex,
         year,
         totalDays,
-        stravaLogs,
+        logs,
         buildWeekOne,
         buildMiddleWeek,
         buildEndWeek,

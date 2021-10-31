@@ -9,7 +9,8 @@ import "./stylesheets/dashboard.css";
 import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 
 const Dashboard = () => {
-    const { stravaLogs, athlete } = useStravaData();
+    const { logs, athlete } = useStravaData();
+    console.log(logs)
     const [formViewState, setFormViewState] = useState(false);
     const [workouts, setWorkouts] = useState([]);
 
@@ -27,7 +28,7 @@ const Dashboard = () => {
         <div className="dashboard">
             <Nav workoutFormViewSwitch={workoutFormViewSwitch} athlete={athlete}/>
 
-                <Calendar stravaLogs={stravaLogs} />
+                <Calendar logs={logs} />
             <div className="inner-dash">
                 <WorkoutList workouts={workouts}/>
                 <WeekPlanner workouts={workouts}/>
