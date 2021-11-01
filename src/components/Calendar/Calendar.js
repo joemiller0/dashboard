@@ -22,6 +22,7 @@ const Calendar = ({ logs }) => {
         <div className="calendar-container">
             <div className="calendar">
                 <h5>Recent Logs</h5>
+                {/* <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-2, 1)} logs={logs}/> */}
                 <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} logs={logs}/>
                 <Month viewSwitch={viewSwitch} monthOriginDate={today} logs={logs}/>
             </div>

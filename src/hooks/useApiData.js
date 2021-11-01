@@ -27,7 +27,7 @@ function useApiData() {
                     .then(res => res.json())
                     .then(activities => {
                         activities.forEach( stravaLog => {
-                                fetch("http://localhost:5000/logs", {
+                                fetch("http://localhost:5000/import", {
                                     method: "POST",
                                     headers: {
                                         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ function useApiData() {
                                     })
                                 })
                                     .then(res => res.json())
-                                    .then(logs => console.log('log created'))
+                                    .then(logs => console.log(logs))
                         })
 
                         fetch("http://localhost:5000/logs")
@@ -73,9 +73,29 @@ function useApiData() {
             });
     }, []);
 
+    const createLog = log => {
+        fetch("http://localhost:5000/logs", {
+            mehod: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "lid": log.stravaLog.id,
+                "body": log.body,
+                "date": log.date, 
+                "time": log.time,
+                "stravaLog": log.stravalog
+            })
+        })
+            .then(res => res.json())
+            .then(console.log('Log Created'))
+    }
+
     return {
         logs,
         athlete,
+        createLog
     };
 }
 
