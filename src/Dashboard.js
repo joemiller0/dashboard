@@ -1,29 +1,38 @@
 import { useState } from "react";
+import { useApiData } from "./hooks/hooks";
+
 import Nav from './components/UI/Nav';
 import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
+import CreateLogForm from './components/Forms/CreateLogForm.js';
 import Calendar from './components/Calendar/Calendar';
 import WorkoutList from './components/WorkoutList/WorkoutList';
 import LogList from './components/LogList/LogList';
-import { useApiData } from "./hooks/hooks";
-import "./stylesheets/dashboard.css";
-// import "./stylesheets/calendar.css";
 import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 
+import "./stylesheets/dashboard.css";
+import { useEffect } from "react/cjs/react.development";
+
+
 const Dashboard = () => {
-    const { logs, athlete } = useApiData();
+    const { logs, athlete, createLog, initialCall } = useApiData();
     console.log(logs)
     const [logFormView, setLogFormView] = useState(false);
     const [workoutFormView, setwWorkoutFormView] = useState(false);
     const [workouts, setWorkouts] = useState([]);
 
+    useEffect(()=>{
+        initialCall();
+    },[])
+
     const logFormViewSwitch = e => {
         setLogFormView(!logFormView)
     }
 
-    const workoutFormViewSwitch =(e)=> {
+    const workoutFormViewSwitch = e => {
         setwWorkoutFormView(!workoutFormView)
     }
-    const createWorkout =(object)=> {
+
+    const createWorkout = object => {
         if (workouts) {
             workouts.push(object)
         } else {
@@ -32,7 +41,11 @@ const Dashboard = () => {
     }
     return (
         <div className="dashboard">
-            <Nav workoutFormViewSwitch={workoutFormViewSwitch} athlete={athlete}/>
+            <Nav 
+                logFormViewSwitch={logFormViewSwitch} 
+                workoutFormViewSwitch={workoutFormViewSwitch} 
+                athlete={athlete}/>
+
             <div className="inner-dash">
                 <LogList logs={logs}/>
                 <Calendar logs={logs} />
@@ -45,7 +58,15 @@ const Dashboard = () => {
             {workoutFormView === true &&
                 <div>
                     <div onClick={workoutFormViewSwitch} className="dimmed-bg" />
-                    <CreateWorkoutForm workoutFormViewSwitch={workoutFormViewSwitch} createWorkout={createWorkout} />
+                    <CreateWorkoutForm 
+                        workoutFormViewSwitch={workoutFormViewSwitch} 
+                        createWorkout={createWorkout} />
+                </div>
+            }
+            {logFormView === true &&
+                <div>
+                    <div onClick={logFormViewSwitch} className="dimmed-bg" />
+                    <CreateLogForm logFormViewSwitch={logFormViewSwitch} createLog={createLog}/>
                 </div>
             }
         </div>

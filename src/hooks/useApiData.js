@@ -4,7 +4,8 @@ function useApiData() {
     const [logs, setLogs] = useState([]);
     const [athlete, setAthlete] = useState({});
 
-    useEffect(() => {
+    // useEffect(() => {
+    const initialCall = e => {
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
         const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
         const refreshToken = process.env.REACT_APP_STRAVA_REFRESH_TOKEN;
@@ -71,7 +72,9 @@ function useApiData() {
 
                     });
             });
-    }, []);
+    }
+
+    // }, []);
 
     const createLog = log => {
         fetch("http://localhost:5000/logs", {
@@ -81,7 +84,7 @@ function useApiData() {
                 Accept: "application/json"
             },
             body: JSON.stringify({
-                "lid": log.stravaLog.id,
+                "lid": log.lid,
                 "body": log.body,
                 "date": log.date, 
                 "time": log.time,
@@ -95,7 +98,8 @@ function useApiData() {
     return {
         logs,
         athlete,
-        createLog
+        createLog, 
+        initialCall
     };
 }
 
