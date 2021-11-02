@@ -66,7 +66,7 @@ const Dashboard = () => {
             {logFormView === true &&
                 <div>
                     <div onClick={logFormViewSwitch} className="dimmed-bg" />
-                    <CreateLogForm logFormViewSwitch={logFormViewSwitch} createLog={createLog}/>
+                    <CreateLogForm logFormViewSwitch={logFormViewSwitch} />
                 </div>
             }
         </div>

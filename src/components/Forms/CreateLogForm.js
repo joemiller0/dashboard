@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "./form.css";
-// import { useApiData } from "../../hooks/hooks"; this is causing api calls when the model just switched on -- passing in the function instead
+import { useApiData } from "../../hooks/hooks";
 
-const CreateWorkoutForm = ({ logFormViewSwitch, createLog }) => {
+const CreateWorkoutForm = ({ logFormViewSwitch }) => {
     const [body, setBody] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [stravalog, setStravalog] = useState(null);
     const [lid, setLid] = useState(Math.floor(Math.random() * 9000000) + 1000000);
+
+    const { createLog } = useApiData();
 
     const onChange = e => {
         if (e.target.name === "body"){

@@ -4,7 +4,6 @@ function useApiData() {
     const [logs, setLogs] = useState([]);
     const [athlete, setAthlete] = useState({});
 
-    // useEffect(() => {
     const initialCall = e => {
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
         const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
@@ -59,8 +58,9 @@ function useApiData() {
                                             logsObj[date].push(log)
                                         }
                                     } else {
-                                        if (!logsObj[log.date]) {
-                                            logsObj[log.date] = [log]
+                                        const date = log.date.split('T')[0];
+                                        if (!logsObj[date]) {
+                                            logsObj[date] = [log]
                                         } else {
                                             logsObj[log.date].push(log)
                                         }
@@ -74,11 +74,9 @@ function useApiData() {
             });
     }
 
-    // }, []);
-
     const createLog = log => {
         fetch("http://localhost:5000/logs", {
-            mehod: "POST",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json"
