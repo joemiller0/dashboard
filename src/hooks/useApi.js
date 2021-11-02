@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function useApiData() {
+function useApi() {
     const [logs, setLogs] = useState([]);
     const [athlete, setAthlete] = useState({});
 
@@ -101,4 +101,4 @@ function useApiData() {
     };
 }
 
-export { useApiData };
+export { useApi };

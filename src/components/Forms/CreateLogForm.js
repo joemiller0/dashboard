@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./form.css";
-import { useApiData } from "../../hooks/hooks";
+import { useApi } from "../../hooks/hooks";
 
 const CreateWorkoutForm = ({ logFormViewSwitch }) => {
     const [body, setBody] = useState('');
@@ -9,7 +9,7 @@ const CreateWorkoutForm = ({ logFormViewSwitch }) => {
     const [stravalog, setStravalog] = useState(null);
     const [lid, setLid] = useState(Math.floor(Math.random() * 9000000) + 1000000);
 
-    const { createLog } = useApiData();
+    const { createLog } = useApi();
 
     const onChange = e => {
         if (e.target.name === "body"){

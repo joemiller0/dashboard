@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useApiData } from "./hooks/hooks";
+import { useApi } from "./hooks/hooks";
 
 import Nav from './components/UI/Nav';
 import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
@@ -14,7 +14,7 @@ import { useEffect } from "react/cjs/react.development";
 
 
 const Dashboard = () => {
-    const { logs, athlete, createLog, initialCall } = useApiData();
+    const { logs, athlete, createLog, initialCall } = useApi();
     console.log(logs)
     const [logFormView, setLogFormView] = useState(false);
     const [workoutFormView, setwWorkoutFormView] = useState(false);

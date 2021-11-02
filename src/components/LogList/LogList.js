@@ -3,20 +3,18 @@ import "./loglist.css";
 
 
 const LogList = ({logs}) => {
+
+    // const objectHelper = (logsObj) => {
+    //     const dates = Object.keys(logsObj)
+    
+    // }
+    const dates = Object.keys(logs)
+
     return (
         <div className="log-list-container">
             <div className="loglist">
                 <h3>Your Logs</h3>
-
-
-
-                {/* {logs ? 
-                    logs.map((log) => {
-                        return <p key={uniqid()}>{log.title}</p>
-                    })
-                :
-                    null
-                } */}
+                {dates.map(date=><p>{date}</p>)}
             </div>
         </div>
     )
