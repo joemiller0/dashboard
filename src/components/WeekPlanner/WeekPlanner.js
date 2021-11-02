@@ -1,5 +1,5 @@
 import TimeSlotContainer from './TimeSlotContainer';
-import "../../stylesheets/weekplanner.css";
+import "./weekplanner.css";
 
 const WeekPlanner = ({workouts}) => {
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];

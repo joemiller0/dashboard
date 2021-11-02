@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import { useForm } from "../../hooks/hooks";
-import "../../stylesheets/workoutform.css";
+import "./workoutform.css";
 
 const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout }) => {
     const {title, desc, time, day, onChangeInput, onSubmitInput } = useForm('');

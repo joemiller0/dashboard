@@ -1,5 +1,5 @@
 import uniqid from 'uniqid';
-import "../../stylesheets/workoutlist.css";
+import "./workoutlist.css";
 
 
 const WorkoutList = ({workouts}) => {

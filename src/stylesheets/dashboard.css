@@ -9,8 +9,15 @@
     border-right: black solid 10px;
 }
 .calendar-container{
-    /* width:85%; */
+    width:100%;
     height:auto;
     border-bottom: black solid 10px;
     background-color: rgb(68, 68, 68);
+}
+.log-list-container{
+    width:15%;
+    height:auto;
+    background: rgb(110, 110, 110);
+    border-bottom: black solid 10px;
+    border-right: black solid 10px;
 }

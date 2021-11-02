@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react";
-import "../../stylesheets/dayModal.css";
+import "./stylesheets/dayModal.css";
 
 const DayModal = ({ viewSwitch, logs, date }) => {
     const getMinMileAvg = (metersPerSecond) => {

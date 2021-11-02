@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Month from './Month';
 import DayModal from './DayModal';
-import "../../stylesheets/calendar.css";
+import "./stylesheets/calendar.css";
 
 const Calendar = ({ logs }) => {
     const [viewState, setViewState] = useState(false);
