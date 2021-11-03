@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function useApi() {
     const [logs, setLogs] = useState([]);
@@ -90,7 +90,12 @@ function useApi() {
             })
         })
             .then(res => res.json())
-            .then(console.log('Log Created'))
+            .then(log => {
+                const allLogs = logs.push(log)
+                console.log(log)
+
+                // this is just the VALUE, YOU NEED A KEY VALUE PAIR IN AN OBJECT, GRAB THE DATE AND MAKE A KEY HERE
+            })
     }
 
     return {

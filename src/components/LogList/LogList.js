@@ -14,7 +14,7 @@ const LogList = ({logs}) => {
         <div className="log-list-container">
             <div className="loglist">
                 <h3>Your Logs</h3>
-                {dates.map(date=><p>{date}</p>)}
+                {dates.map(date=><p key={date}>{date}</p>)}
             </div>
         </div>
     )

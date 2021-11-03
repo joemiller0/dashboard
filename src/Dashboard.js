@@ -14,7 +14,7 @@ import { useEffect } from "react/cjs/react.development";
 
 
 const Dashboard = () => {
-    const { logs, athlete, createLog, initialCall } = useApi();
+    const { logs, athlete, initialCall } = useApi();
     console.log(logs)
     const [logFormView, setLogFormView] = useState(false);
     const [workoutFormView, setwWorkoutFormView] = useState(false);
