@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./form.css";
 import { useApi } from "../../hooks/hooks";
 
-const CreateWorkoutForm = ({ logFormViewSwitch }) => {
+const CreateWorkoutForm = ({ logFormViewSwitch, }) => {
     const [body, setBody] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
@@ -29,11 +29,9 @@ const CreateWorkoutForm = ({ logFormViewSwitch }) => {
         }
     };
 
-console.log(lid)
-
-    const onSubmit = e => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        console.log(e)
+        // console.log(e)
         const log = {
             "lid": lid,
             "body": body,
@@ -42,7 +40,7 @@ console.log(lid)
             "stravaLog": stravalog
         
         }
-        // console.log(log)
+        // console.log(createLog(log))
         createLog(log);
         logFormViewSwitch();
     }

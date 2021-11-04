@@ -3,6 +3,7 @@ import { useState } from "react";
 function useApi() {
     const [logs, setLogs] = useState([]);
     const [athlete, setAthlete] = useState({});
+    const [newLog, setNewLog] = useState([]);
 
     const initialCall = e => {
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
@@ -20,58 +21,59 @@ function useApi() {
             .then(res => res.json())
             .then(tokenData => {
                 fetch(`https://www.strava.com/api/v3/athlete?access_token=${tokenData.access_token}`)
-                .then(res => res.json())
-                .then(athlete => setAthlete(athlete));
-                
+                    .then(res => res.json())
+                    .then(athlete => setAthlete(athlete));
+
                 fetch(`https://www.strava.com/api/v3/activities?access_token=${tokenData.access_token}`)
                     .then(res => res.json())
                     .then(activities => {
-                        activities.forEach( stravaLog => {
-                                fetch("http://localhost:5000/import", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        Accept: "application/json",
-                                    },
-                                    body: JSON.stringify({
-                                        "lid": stravaLog.id,
-                                        "body": null,
-                                        "date": null, 
-                                        "time": null,
-                                        "stravaLog": stravaLog
-                                    })
+                        activities.forEach(stravaLog => {
+                            fetch("http://localhost:5000/import", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Accept: "application/json",
+                                },
+                                body: JSON.stringify({
+                                    "lid": stravaLog.id,
+                                    "body": null,
+                                    "date": null,
+                                    "time": null,
+                                    "stravaLog": stravaLog
                                 })
-                                    .then(res => res.json())
-                                    .then(logs => console.log(logs))
-                        })
-
-                        fetch("http://localhost:5000/logs")
-                            .then((res)=>res.json())
-                            .then(logs => {
-                                let logsObj = {}
-                                logs.forEach((log) => {
-                                    if (log.date === null){
-                                        const date = log.stravalog.start_date_local.split('T')[0];
-                                        if (!logsObj[date]) {
-                                            logsObj[date] = [log]
-                                        } else {
-                                            logsObj[date].push(log)
-                                        }
-                                    } else {
-                                        const date = log.date.split('T')[0];
-                                        if (!logsObj[date]) {
-                                            logsObj[date] = [log]
-                                        } else {
-                                            logsObj[log.date].push(log)
-                                        }
-                                    }
-                                })
-                                setLogs(logsObj)
-                                // setDates(Object.keys(logsObj))
                             })
-
+                                .then(res => res.json())
+                                .then(logs => console.log(logs))
+                        })
                     });
             });
+    }
+
+    const getLogs = () => {
+        fetch("http://localhost:5000/logs")
+            .then((res) => res.json())
+            .then(logs => {
+                let logsObj = {}
+                logs.forEach((log) => {
+                    if (log.date === null) {
+                        const date = log.stravalog.start_date_local.split('T')[0];
+                        if (!logsObj[date]) {
+                            logsObj[date] = [log]
+                        } else {
+                            logsObj[date].push(log)
+                        }
+                    } else {
+                        const date = log.date.split('T')[0];
+                        if (!logsObj[date]) {
+                            logsObj[date] = [log]
+                        } else {
+                            logsObj[log.date].push(log)
+                        }
+                    }
+                })
+                setLogs(logsObj)
+                // setDates(Object.keys(logsObj))
+            })
     }
 
     const createLog = log => {
@@ -84,25 +86,31 @@ function useApi() {
             body: JSON.stringify({
                 "lid": log.lid,
                 "body": log.body,
-                "date": log.date, 
+                "date": log.date,
                 "time": log.time,
                 "stravaLog": log.stravalog
             })
         })
             .then(res => res.json())
             .then(log => {
-                const allLogs = logs.push(log)
-                console.log(log)
+                const newLogObj = {}
+                const newLog = log.shift()
+                const key = newLog.date.split('T')[0]
 
-                // this is just the VALUE, YOU NEED A KEY VALUE PAIR IN AN OBJECT, GRAB THE DATE AND MAKE A KEY HERE
+                newLogObj[key] = [newLog]
+                console.log(newLogObj)
+                setNewLog(newLogObj)
+                console.log(newLog)
             })
-    }
+        }
 
     return {
         logs,
+        newLog,
         athlete,
-        createLog, 
-        initialCall
+        createLog,
+        initialCall, 
+        getLogs
     };
 }
 
