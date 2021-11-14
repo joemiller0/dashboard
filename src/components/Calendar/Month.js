@@ -24,6 +24,8 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
 
     // -----Week Building Functions-----
 
+    //<WeekOne firstDayIndex={firstDayIndex} weekData={weekData} /> optimizations coming soon for all thress of these functions
+
     const buildWeekOne = useCallback(
         (firstDayIndex, weekData) => {
             let date = 1;
