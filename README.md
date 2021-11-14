@@ -11,4 +11,4 @@ A modal appears to show the workout log details when the day is clicked.
 There were no pre-built npm packages used for the calendar component.  
 
 ## What I am adding now
-I am currently refactoring 
+I am currently refactoring   
