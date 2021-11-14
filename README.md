@@ -11,10 +11,4 @@ A modal appears to show the workout log details when the day is clicked.
 There were no pre-built npm packages used for the calendar component.  
 
 ## What I am adding now
-A modular weekly training schedule which shows a sample week in training.
-As an athlete, I find the best way to plan my training is by the week, and then by groups of weeks (not necessarily months). This component is for planning a sample single week. 
-
-The idea is to have a bank of created workout-templates (created by the user) of which the user can assign to a particular day/time on the weekly schedule. 
-This is effectively your weekly training plan. The weekly schedule will act a visual representation of the weekly training for the athlete.
-
-These templates do not get created for every workout, instead they behave like models would in an model-view-controller design framework in app development. Log instances are then created when the workout is completed and then will show up on the calendar component noted above. 
+I am integrating a Node backend to store Logs. 

@@ -1,12 +1,12 @@
 // import { useState } from "react";
 import { useForm } from "../../hooks/hooks";
-import "../../stylesheets/workoutform.css";
+import "./form.css";
 
 const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout }) => {
     const {title, desc, time, day, onChangeInput, onSubmitInput } = useForm('');
 
     return (
-        <div className="workout-form-container">
+        <div className="form-container">
             <form onSubmit={(e)=>onSubmitInput( e, createWorkout, workoutFormViewSwitch)} >
                 <input type="text" value={title} name="title" onChange={onChangeInput} placeholder="title" />
                 <input type="text" name="program" disabled placeholder="program: not available yet" />

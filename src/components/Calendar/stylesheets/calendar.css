@@ -7,6 +7,9 @@
     padding: 40px;
     position: relative;
 }
+.month{
+    margin-top:20px;
+}
 
 .calendar h5 {
     position: absolute;

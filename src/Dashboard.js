@@ -1,22 +1,38 @@
 import { useState } from "react";
+import { useApi } from "./hooks/hooks";
+
 import Nav from './components/UI/Nav';
 import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
+import CreateLogForm from './components/Forms/CreateLogForm.js';
 import Calendar from './components/Calendar/Calendar';
 import WorkoutList from './components/WorkoutList/WorkoutList';
-import { useStravaData } from "./hooks/hooks";
-import "./stylesheets/dashboard.css";
-// import "./stylesheets/calendar.css";
+import LogList from './components/LogList/LogList';
 import WeekPlanner from './components/WeekPlanner/WeekPlanner';
 
+import "./stylesheets/dashboard.css";
+import { useEffect } from "react/cjs/react.development";
+
+
 const Dashboard = () => {
-    const { stravaLogs, athlete } = useStravaData();
-    const [formViewState, setFormViewState] = useState(false);
+    const { logs, newLog, athlete, initialCall, getLogs } = useApi();
+    // const [localLogs, setLocallogs] = useState([]);
+    // console.log(localLogs)
+    console.log(newLog)
+
+    const [logFormView, setLogFormView] = useState(false);
+    const [workoutFormView, setwWorkoutFormView] = useState(false);
     const [workouts, setWorkouts] = useState([]);
 
-    const workoutFormViewSwitch =(e)=> {
-        setFormViewState(!formViewState)
+
+    const logFormViewSwitch = e => {
+        setLogFormView(!logFormView)
     }
-    const createWorkout =(object)=> {
+
+    const workoutFormViewSwitch = e => {
+        setwWorkoutFormView(!workoutFormView)
+    }
+
+    const createWorkout = object => {
         if (workouts) {
             workouts.push(object)
         } else {
@@ -25,18 +41,33 @@ const Dashboard = () => {
     }
     return (
         <div className="dashboard">
-            <Nav workoutFormViewSwitch={workoutFormViewSwitch} athlete={athlete}/>
+            <Nav 
+                logFormViewSwitch={logFormViewSwitch} 
+                workoutFormViewSwitch={workoutFormViewSwitch} 
+                athlete={athlete}/>
 
-                <Calendar stravaLogs={stravaLogs} />
+            <div className="inner-dash">
+                <LogList logs={logs}/>
+                <Calendar logs={logs} />
+            </div>
+
             <div className="inner-dash">
                 <WorkoutList workouts={workouts}/>
                 <WeekPlanner workouts={workouts}/>
             </div>
 
-            {formViewState === true &&
+            {workoutFormView === true &&
                 <div>
                     <div onClick={workoutFormViewSwitch} className="dimmed-bg" />
-                    <CreateWorkoutForm workoutFormViewSwitch={workoutFormViewSwitch} createWorkout={createWorkout} />
+                    <CreateWorkoutForm 
+                        workoutFormViewSwitch={workoutFormViewSwitch} 
+                        createWorkout={createWorkout} />
+                </div>
+            }
+            {logFormView === true &&
+                <div>
+                    <div onClick={logFormViewSwitch} className="dimmed-bg" />
+                    <CreateLogForm logFormViewSwitch={logFormViewSwitch} />
                 </div>
             }
         </div>

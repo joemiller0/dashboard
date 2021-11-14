@@ -1,0 +1,5 @@
+.loglist{
+    padding: 10px;
+    max-height: 350px;
+    overflow:auto;
+}
