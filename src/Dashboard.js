@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useApi } from "./hooks/hooks";
+import { useApi } from "./hooks/hooks";
 
 import Nav from './components/UI/Nav';
 import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
@@ -13,19 +13,15 @@ import "./stylesheets/dashboard.css";
 import { useEffect } from "react/cjs/react.development";
 
 
-const Dashboard = ({logs, newLog, athlete, initialCall, getLogs}) => {
-    // const { logs, athlete, initialCall, getLogs } = useApi();
+const Dashboard = () => {
+    const { logs, newLog, athlete, initialCall, getLogs } = useApi();
     // const [localLogs, setLocallogs] = useState([]);
     // console.log(localLogs)
+    console.log(newLog)
 
     const [logFormView, setLogFormView] = useState(false);
     const [workoutFormView, setwWorkoutFormView] = useState(false);
     const [workouts, setWorkouts] = useState([]);
-
-    useEffect(()=>{
-        initialCall();
-        getLogs();
-    },[])
 
 
     const logFormViewSwitch = e => {

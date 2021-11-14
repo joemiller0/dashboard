@@ -32,7 +32,7 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                 if (i < firstDayIndex) {
                     weekOneArr.push(<Day key={uniqid()} />);
                 } else {
-                    weekData.today.setHours(19);
+                    // weekData.today.setHours(19); Daylight savings 
                     let fullDate = new Date(weekData.year, weekData.monthIndex, date)
                         .toISOString()
                         .split("T")[0];
@@ -58,7 +58,7 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         (startDate, weekData) => {
             let middleWeekArr = [];
             for (let i = 0; i < 7; i++) {
-                weekData.today.setHours(19);
+                // weekData.today.setHours(19); Daylight savings 
                 let fullDate = new Date(weekData.year, weekData.monthIndex, startDate)
                     .toISOString()
                     .split("T")[0];
@@ -86,7 +86,7 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                 if (startDate > totalDays) {
                     endWeekArr.push(<Day key={uniqid()} />);
                 } else {
-                    weekData.today.setHours(19);
+                    // weekData.today.setHours(19); Daylight savings 
                     let fullDate = new Date(weekData.year, weekData.monthIndex, startDate)
                         .toISOString()
                         .split("T")[0];

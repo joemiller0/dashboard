@@ -11,6 +11,7 @@ const Calendar = ({ logs }) => {
     const currentMonthIndex = today.getMonth();
     // is it better to pass these as props instead of redeclaring them in the lower components?
 
+
     const viewSwitch =(e)=> {
         setViewState(!viewState)
         if (e.target.innerHTML === "x") return
@@ -18,6 +19,7 @@ const Calendar = ({ logs }) => {
         setModalDate(e.target.attributes.fulldate.value)
     }
 
+    
     return (
         <div className="calendar-container">
             <div className="calendar">

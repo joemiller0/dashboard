@@ -2,6 +2,7 @@
 import "./stylesheets/dayModal.css";
 
 const DayModal = ({ viewSwitch, logs, date }) => {
+
     const getMinMileAvg = (metersPerSecond) => {
         const milesPerMin = metersPerSecond * 0.037282272
         // 1 meter per second (m/s) = 0.037282272 mile per minute (mi/min)
@@ -18,7 +19,7 @@ const DayModal = ({ viewSwitch, logs, date }) => {
     const roundDistance = (distance) => {
         return Math.round(distance * 100) / 100
     }
-
+//bug here - need to check for stravalog ******************************
     return (
         <div className="log">
             <button onClick={viewSwitch}>x</button>

@@ -40,7 +40,8 @@ const CreateWorkoutForm = ({ logFormViewSwitch, }) => {
             "stravaLog": stravalog
         
         }
-        // console.log(createLog(log))
+        console.log(log)
+        console.log(createLog(log))
         createLog(log);
         logFormViewSwitch();
     }
