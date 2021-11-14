@@ -50,6 +50,7 @@ const Dashboard = () => {
                 <LogList logs={logs}/>
                 <Calendar logs={logs} />
             </div>
+
             <div className="inner-dash">
                 <WorkoutList workouts={workouts}/>
                 <WeekPlanner workouts={workouts}/>
