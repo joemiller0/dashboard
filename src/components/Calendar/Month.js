@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import uniqid from "uniqid";
+import Week from "./Week";
 import Day from "./Day";
 
 const Month = ({ viewSwitch, monthOriginDate, logs }) => {
@@ -10,17 +11,7 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const [fifthWeek, setFifthWeek] = useState([]);
     const [sixthWeek, setSixthWeek] = useState([]);
 
-    const daysInMonth = (m, y) => {
-        return new Date(y, m, 0).getDate();
-    };
-    const year = monthOriginDate.getFullYear();
-    const monthIndex = monthOriginDate.getMonth();
-    const totalDays = daysInMonth(monthIndex + 1, year);
-    const firstDayIndex = new Date(year, monthIndex).getDay();
-    const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const dayNames = abrevDays.map((day) => {
-        return <th key={day}>{day}</th>;
-    });
+    const [initialWeekEndDate, setInitialWeekEndDate] = useState();
 
     // -----Week Building Functions-----
 
@@ -110,6 +101,34 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         [viewSwitch]
     );
 
+    // Calendar utilities
+
+    const daysInMonth = (m, y) => {
+        return new Date(y, m, 0).getDate();
+    };
+    const year = monthOriginDate.getFullYear();
+    const monthIndex = monthOriginDate.getMonth();
+    const totalDays = daysInMonth(monthIndex + 1, year);
+    const firstDayIndex = new Date(year, monthIndex).getDay();
+    const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const dayNames = abrevDays.map((day) => {
+        return <th key={day}>{day}</th>;
+    });
+
+    const monthLabels = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ];
     // -----END Week Building Functions-----
 
     useEffect(() => {
@@ -120,9 +139,10 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
             logs: logs,
         };
         const initialWeek = buildWeekOne(firstDayIndex, weekData);
+        setInitialWeekEndDate(initialWeek.endDate)
 
         setFirstWeek(initialWeek.tableCells);
-        setSecondWeek(buildMiddleWeek(initialWeek.endDate, weekData));
+        // setSecondWeek(buildMiddleWeek(initialWeek.endDate, weekData));
         setThirdWeek(buildMiddleWeek(initialWeek.endDate + 7, weekData));
         setFourthWeek(buildMiddleWeek(initialWeek.endDate + 14, weekData));
         setFifthWeek(buildEndWeek(initialWeek.endDate + 21, weekData, totalDays));
@@ -140,21 +160,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         buildEndWeek,
     ]);
 
-    const monthLabels = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-    ];
-
     return (
         <div className="month">
             <div className="month-header">
@@ -166,7 +171,8 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                 </thead>
                 <tbody>
                     <tr>{firstWeek}</tr>
-                    <tr>{secondWeek}</tr>
+                    {/* <tr>{secondWeek}</tr> */}
+                    <Week monthOriginDate={monthOriginDate} startDate={7} viewSwitch={viewSwitch} logs={logs}/>
                     <tr>{thirdWeek}</tr>
                     <tr>{fourthWeek}</tr>
                     <tr>{fifthWeek}</tr>

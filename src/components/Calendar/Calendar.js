@@ -12,7 +12,7 @@ const Calendar = ({ logs }) => {
     // is it better to pass these as props instead of redeclaring them in the lower components?
 
 
-    const viewSwitch =(e)=> {
+    const viewSwitch = e => {
         setViewState(!viewState)
         if (e.target.innerHTML === "x") return
         if (e.target.className === "dimmed-bg") return

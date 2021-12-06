@@ -15,8 +15,6 @@ import { useEffect } from "react/cjs/react.development";
 
 const Dashboard = () => {
     const { logs, newLog, athlete, initialCall, getLogs } = useApi();
-    // const [localLogs, setLocallogs] = useState([]);
-    // console.log(localLogs)
     console.log(newLog)
 
     const [logFormView, setLogFormView] = useState(false);
