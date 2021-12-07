@@ -9,17 +9,18 @@ const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
     const [week, setWeek] = useState([])
     const [weekData, setWeekData] = useState({})
     
-    // Calendar utilities
-
-    const daysInMonth = (m, y) => {
-        return new Date(y, m, 0).getDate();
-    };
-    const year = monthOriginDate.getFullYear();
-    const monthIndex = monthOriginDate.getMonth();
-    // const totalDays = daysInMonth(monthIndex + 1, year);
-    // const firstDayIndex = new Date(year, monthIndex).getDay();
 
     useEffect(() => {
+        // Calendar utilities
+
+        const daysInMonth = (m, y) => {
+            return new Date(y, m, 0).getDate();
+        };
+        const year = monthOriginDate.getFullYear();
+        const monthIndex = monthOriginDate.getMonth();
+        // const totalDays = daysInMonth(monthIndex + 1, year);
+        // const firstDayIndex = new Date(year, monthIndex).getDay();
+
         const weekData = {
             monthIndex: monthIndex,
             year: year,
@@ -27,8 +28,7 @@ const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
             logs: logs,
         };
         // setWeekData(wData)
-console.log(weekData)
-
+        console.log(weekData)
         let middleWeekArr = [];
         for (let i = 0; i < 7; i++) {
             // weekData.today.setHours(19); Daylight savings 
@@ -50,7 +50,7 @@ console.log(weekData)
         setWeek(middleWeekArr);
 
 
-    })
+    }, [logs, monthOriginDate, startDate, viewSwitch ])
 
     return(
         <tr>{week}</tr>
