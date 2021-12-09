@@ -11,11 +11,10 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const [fifthWeek, setFifthWeek] = useState([]);
     const [sixthWeek, setSixthWeek] = useState([]);
 
-    const [initialWeekEndDate, setInitialWeekEndDate] = useState();
+    const [initialWeekEndDate, setInitialWeekEndDate] = useState(0);
 
     // -----Week Building Functions-----
 
-    //<WeekOne firstDayIndex={firstDayIndex} weekData={weekData} /> optimizations coming soon for all thress of these functions
 
     const buildWeekOne = useCallback(
         (firstDayIndex, weekData) => {
@@ -169,15 +168,17 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                 <thead>
                     <tr>{dayNames}</tr>
                 </thead>
-                <tbody>
-                    <tr>{firstWeek}</tr>
-                    {/* <tr>{secondWeek}</tr> */}
-                    <Week monthOriginDate={monthOriginDate} startDate={7} viewSwitch={viewSwitch} logs={logs}/>
-                    <tr>{thirdWeek}</tr>
-                    <tr>{fourthWeek}</tr>
-                    <tr>{fifthWeek}</tr>
-                    <tr>{sixthWeek}</tr>
-                </tbody>
+                {initialWeekEndDate &&
+                    <tbody>
+                        <tr>{firstWeek}</tr>
+                        {/* <tr>{secondWeek}</tr> */}
+                        <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate} viewSwitch={viewSwitch} logs={logs}/>
+                        <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 7} viewSwitch={viewSwitch} logs={logs}/>
+                        <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 14} viewSwitch={viewSwitch} logs={logs}/>
+                        <tr>{fifthWeek}</tr>
+                        <tr>{sixthWeek}</tr>
+                    </tbody>
+                }
             </table>
         </div>
     );
