@@ -171,7 +171,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                 {initialWeekEndDate &&
                     <tbody>
                         <tr>{firstWeek}</tr>
-                        {/* <tr>{secondWeek}</tr> */}
                         <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate} viewSwitch={viewSwitch} logs={logs}/>
                         <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 7} viewSwitch={viewSwitch} logs={logs}/>
                         <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 14} viewSwitch={viewSwitch} logs={logs}/>
