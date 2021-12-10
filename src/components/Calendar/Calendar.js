@@ -37,11 +37,14 @@ const Calendar = ({ logs }) => {
 
             // there is some issue with the dates being offset
             // new Date(2021, 9, 01) === Fri Oct 01 2021 00:00:00 GMT-0400 (Eastern Daylight Time) {}
+            // new Date('2021-10-01') === Thu Sep 30 2021 20:00:00 GMT-0400 (Eastern Daylight Time) {}
             // so in the IF statements below - the new Date() bits are off because the format that log[0] is too wierd
+            //seems to only be taking the 1st days out? 
 
             // the whole purpose here is get only the logs needed for the particular Month, on the particular month - so that all months do not need to update when logs are updated. 
 
             if(new Date(log[0]).getMonth() === currentMonthIndex-2 ){
+                console.log(new Date(log[0]).getMonth())
                 m1[log[0]] = log[1]
             } 
             if(new Date(log[0]).getMonth() === currentMonthIndex-1 ){
