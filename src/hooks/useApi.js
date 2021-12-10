@@ -11,42 +11,42 @@ function useApi() {
         const refreshToken = process.env.REACT_APP_STRAVA_REFRESH_TOKEN;
         if (!clientId || !clientSecret) return;
 
-        // fetch(`https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         Accept: "application/json",
-        //     },
-        // })
-        //     .then(res => res.json())
-        //     .then(tokenData => {
-        //         fetch(`https://www.strava.com/api/v3/athlete?access_token=${tokenData.access_token}`)
-        //             .then(res => res.json())
-        //             .then(athlete => setAthlete(athlete));
+        fetch(`https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+        })
+            .then(res => res.json())
+            .then(tokenData => {
+                fetch(`https://www.strava.com/api/v3/athlete?access_token=${tokenData.access_token}`)
+                    .then(res => res.json())
+                    .then(athlete => setAthlete(athlete));
 
-        //         fetch(`https://www.strava.com/api/v3/activities?access_token=${tokenData.access_token}`)
-        //             .then(res => res.json())
-        //             .then(activities => {
-        //                 activities.forEach(stravaLog => {
-        //                     fetch("http://localhost:5000/import", {
-        //                         method: "POST",
-        //                         headers: {
-        //                             "Content-Type": "application/json",
-        //                             Accept: "application/json",
-        //                         },
-        //                         body: JSON.stringify({
-        //                             "lid": stravaLog.id,
-        //                             "body": null,
-        //                             "date": null,
-        //                             "time": null,
-        //                             "stravaLog": stravaLog
-        //                         })
-        //                     })
-        //                         .then(res => res.json())
-        //                         .then(logs => console.log(logs))
-        //                 })
-        //             });
-        //     });
+                fetch(`https://www.strava.com/api/v3/activities?access_token=${tokenData.access_token}`)
+                    .then(res => res.json())
+                    .then(activities => {
+                        activities.forEach(stravaLog => {
+                            fetch("http://localhost:5000/import", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Accept: "application/json",
+                                },
+                                body: JSON.stringify({
+                                    "lid": stravaLog.id,
+                                    "body": null,
+                                    "date": null,
+                                    "time": null,
+                                    "stravaLog": stravaLog
+                                })
+                            })
+                                .then(res => res.json())
+                                .then(logs => console.log(logs))
+                        })
+                    });
+            });
         fetch("http://localhost:5000/logs")
             .then((res) => res.json())
             .then(logs => {

@@ -1,9 +1,10 @@
 import uniqid from 'uniqid';
+import { useApi } from "../../hooks/hooks";
 import "./loglist.css";
 
 
-const LogList = ({logs}) => {
-
+const LogList = () => {
+    const { logs } = useApi();
     // const objectHelper = (logsObj) => {
     //     const dates = Object.keys(logsObj)
     

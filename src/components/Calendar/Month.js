@@ -7,6 +7,8 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const [firstWeek, setFirstWeek] = useState([]);
     const [initialWeekEndDate, setInitialWeekEndDate] = useState(0);
 
+// console.log(logs)
+// ===========Calendar Utilities=====================================================================================
     const buildWeekOne = useCallback(
         (firstDayIndex, weekData) => {
             let date = 1;
@@ -15,7 +17,8 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                 if (i < firstDayIndex) {
                     weekOneArr.push(<Day key={uniqid()} />);
                 } else {
-                    // weekData.today.setHours(19); Daylight savings 
+                    // weekData.today.setHours(19); 
+                    // Daylight savings 
                     let fullDate = new Date(weekData.year, weekData.monthIndex, date)
                         .toISOString()
                         .split("T")[0];
@@ -37,9 +40,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         [viewSwitch]
     );
 
-
-    // Calendar utilities
-
     const daysInMonth = (m, y) => {
         return new Date(y, m, 0).getDate();
     };
@@ -47,11 +47,29 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const monthIndex = monthOriginDate.getMonth();
     const totalDays = daysInMonth(monthIndex + 1, year);
     const firstDayIndex = new Date(year, monthIndex).getDay();
+// ===========Calendar Utilities=====================================================================================
+
+
+//=================================================================================================================== 
+    useEffect(() => {
+        const weekData = {
+            monthIndex: monthIndex,
+            year: year,
+            today: new Date(),
+            logs: logs,
+        };
+        const initialWeek = buildWeekOne(firstDayIndex, weekData);
+        setInitialWeekEndDate(initialWeek.endDate)
+        setFirstWeek(initialWeek.tableCells);
+    }, 
+        [firstDayIndex, monthIndex, year, totalDays, logs, buildWeekOne]
+    );
+//=================================================================================================================== 
+
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const dayNames = abrevDays.map((day) => {
         return <th key={day}>{day}</th>;
     });
-
     const monthLabels = [
         "Jan",
         "Feb",
@@ -66,26 +84,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         "Nov",
         "Dec",
     ];
-
-    useEffect(() => {
-        const weekData = {
-            monthIndex: monthIndex,
-            year: year,
-            today: new Date(),
-            logs: logs,
-        };
-        const initialWeek = buildWeekOne(firstDayIndex, weekData);
-        setInitialWeekEndDate(initialWeek.endDate)
-        setFirstWeek(initialWeek.tableCells);
-
-    }, [
-        firstDayIndex,
-        monthIndex,
-        year,
-        totalDays,
-        logs,
-        buildWeekOne,
-    ]);
 
     return (
         <div className="month">
@@ -107,7 +105,8 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                             {(initialWeekEndDate + 28 <= totalDays) ?
                                 <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 28} viewSwitch={viewSwitch} logs={logs}/>
                             : null}
-                        </tbody> : null
+                        </tbody> 
+                    : null
                 }
             </table>
         </div>

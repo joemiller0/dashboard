@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useApi } from "./hooks/hooks";
-
 import Nav from './components/UI/Nav';
 import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
 import CreateLogForm from './components/Forms/CreateLogForm.js';
@@ -8,15 +7,10 @@ import Calendar from './components/Calendar/Calendar';
 import WorkoutList from './components/WorkoutList/WorkoutList';
 import LogList from './components/LogList/LogList';
 import WeekPlanner from './components/WeekPlanner/WeekPlanner';
-
 import "./stylesheets/dashboard.css";
-import { useEffect } from "react/cjs/react.development";
-
 
 const Dashboard = () => {
-    const { logs, newLog, athlete, initialCall, getLogs } = useApi();
-    console.log(newLog)
-
+    const { logs, athlete } = useApi();
     const [logFormView, setLogFormView] = useState(false);
     const [workoutFormView, setwWorkoutFormView] = useState(false);
     const [workouts, setWorkouts] = useState([]);
@@ -37,16 +31,18 @@ const Dashboard = () => {
             setWorkouts(object)
         }
     }
+    
     return (
         <div className="dashboard">
             <Nav 
                 logFormViewSwitch={logFormViewSwitch} 
                 workoutFormViewSwitch={workoutFormViewSwitch} 
-                athlete={athlete}/>
+                athlete={athlete}
+            />
 
             <div className="inner-dash">
-                <LogList logs={logs}/>
-                <Calendar logs={logs} />
+                {/* <LogList /> */}
+                <Calendar logs={logs}/>
             </div>
 
             <div className="inner-dash">

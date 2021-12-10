@@ -20,6 +20,8 @@ const DayModal = ({ viewSwitch, logs, date }) => {
         return Math.round(distance * 100) / 100
     }
 //bug here - need to check for stravalog ******************************
+
+
     return (
         <div className="log">
             <button onClick={viewSwitch}>x</button>

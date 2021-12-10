@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import uniqid from "uniqid";
 import Day from "./Day";
 
@@ -6,16 +6,12 @@ const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
     const [week, setWeek] = useState([])
     
     useEffect(() => {
-
         const daysInMonth = (m, y) => {
             return new Date(y, m, 0).getDate();
         };
         const year = monthOriginDate.getFullYear();
         const monthIndex = monthOriginDate.getMonth();
         const totalDays = daysInMonth(monthIndex + 1, year);
-
-        // ------------------------------------------------
-
         const weekData = {
             monthIndex: monthIndex,
             year: year,
@@ -24,7 +20,6 @@ const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
         };
 
         let weekArr = [];
-
         for (let i = 0; i < 7; i++) {
             if (startDate > totalDays) {
                 weekArr.push(<Day key={uniqid()} />);
