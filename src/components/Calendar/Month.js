@@ -5,16 +5,7 @@ import Day from "./Day";
 
 const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const [firstWeek, setFirstWeek] = useState([]);
-    const [secondWeek, setSecondWeek] = useState([]);
-    const [thirdWeek, setThirdWeek] = useState([]);
-    const [fourthWeek, setFourthWeek] = useState([]);
-    const [fifthWeek, setFifthWeek] = useState([]);
-    const [sixthWeek, setSixthWeek] = useState([]);
-
     const [initialWeekEndDate, setInitialWeekEndDate] = useState(0);
-
-    // -----Week Building Functions-----
-
 
     const buildWeekOne = useCallback(
         (firstDayIndex, weekData) => {
@@ -46,59 +37,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         [viewSwitch]
     );
 
-    const buildMiddleWeek = useCallback(
-        (startDate, weekData) => {
-            let middleWeekArr = [];
-            for (let i = 0; i < 7; i++) {
-                // weekData.today.setHours(19); Daylight savings 
-                let fullDate = new Date(weekData.year, weekData.monthIndex, startDate)
-                    .toISOString()
-                    .split("T")[0];
-                let dateStr = weekData.today.toISOString().split("T")[0];
-                middleWeekArr.push(
-                    <Day
-                        viewSwitch={viewSwitch}
-                        logs={weekData.logs[fullDate]}
-                        date={startDate++}
-                        fullDate={fullDate}
-                        key={uniqid()}
-                        isToday={fullDate === dateStr ? weekData.today : undefined}
-                    />
-                );
-            }
-            return middleWeekArr;
-        },
-        [viewSwitch]
-    );
-
-    const buildEndWeek = useCallback(
-        (startDate, weekData, totalDays) => {
-            let endWeekArr = [];
-            for (let i = 0; i < 7; i++) {
-                if (startDate > totalDays) {
-                    endWeekArr.push(<Day key={uniqid()} />);
-                } else {
-                    // weekData.today.setHours(19); Daylight savings 
-                    let fullDate = new Date(weekData.year, weekData.monthIndex, startDate)
-                        .toISOString()
-                        .split("T")[0];
-                    let dateStr = weekData.today.toISOString().split("T")[0];
-                    endWeekArr.push(
-                        <Day
-                            viewSwitch={viewSwitch}
-                            logs={weekData.logs[fullDate]}
-                            date={startDate++}
-                            fullDate={fullDate}
-                            key={uniqid()}
-                            isToday={fullDate === dateStr ? weekData.today : undefined}
-                        />
-                    );
-                }
-            }
-            return endWeekArr;
-        },
-        [viewSwitch]
-    );
 
     // Calendar utilities
 
@@ -128,7 +66,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         "Nov",
         "Dec",
     ];
-    // -----END Week Building Functions-----
 
     useEffect(() => {
         const weekData = {
@@ -139,15 +76,8 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         };
         const initialWeek = buildWeekOne(firstDayIndex, weekData);
         setInitialWeekEndDate(initialWeek.endDate)
-
         setFirstWeek(initialWeek.tableCells);
-        // setSecondWeek(buildMiddleWeek(initialWeek.endDate, weekData));
-        setThirdWeek(buildMiddleWeek(initialWeek.endDate + 7, weekData));
-        setFourthWeek(buildMiddleWeek(initialWeek.endDate + 14, weekData));
-        setFifthWeek(buildEndWeek(initialWeek.endDate + 21, weekData, totalDays));
 
-        if (initialWeek.endDate + 28 > totalDays) return;
-        setSixthWeek(buildEndWeek(initialWeek.endDate + 28, weekData, totalDays));
     }, [
         firstDayIndex,
         monthIndex,
@@ -155,8 +85,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         totalDays,
         logs,
         buildWeekOne,
-        buildMiddleWeek,
-        buildEndWeek,
     ]);
 
     return (
@@ -170,14 +98,16 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                 </thead>
                 {
                     (initialWeekEndDate) ? 
-                        (<tbody>
+                        <tbody>
                             <tr>{firstWeek}</tr> 
                             <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate} viewSwitch={viewSwitch} logs={logs}/>
                             <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 7} viewSwitch={viewSwitch} logs={logs}/>
                             <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 14} viewSwitch={viewSwitch} logs={logs}/>
-                            <tr>{fifthWeek}</tr>
-                            <tr>{sixthWeek}</tr>
-                        </tbody>) : null
+                            <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 21} viewSwitch={viewSwitch} logs={logs}/>
+                            {(initialWeekEndDate + 28 <= totalDays) ?
+                                <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 28} viewSwitch={viewSwitch} logs={logs}/>
+                            : null}
+                        </tbody> : null
                 }
             </table>
         </div>
