@@ -2,9 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import uniqid from "uniqid";
 import Day from "./Day";
 
-
-// i need to be able to extract the weeks end date which is just the date of the last item in the array. 
-//i need to return an array od day componenets
 const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
     const [week, setWeek] = useState([])
     const [weekData, setWeekData] = useState({})

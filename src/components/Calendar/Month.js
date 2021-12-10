@@ -168,15 +168,16 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                 <thead>
                     <tr>{dayNames}</tr>
                 </thead>
-                {initialWeekEndDate &&
-                    <tbody>
-                        <tr>{firstWeek}</tr>
-                        <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate} viewSwitch={viewSwitch} logs={logs}/>
-                        <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 7} viewSwitch={viewSwitch} logs={logs}/>
-                        <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 14} viewSwitch={viewSwitch} logs={logs}/>
-                        <tr>{fifthWeek}</tr>
-                        <tr>{sixthWeek}</tr>
-                    </tbody>
+                {
+                    (initialWeekEndDate) ? 
+                        (<tbody>
+                            <tr>{firstWeek}</tr> 
+                            <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate} viewSwitch={viewSwitch} logs={logs}/>
+                            <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 7} viewSwitch={viewSwitch} logs={logs}/>
+                            <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 14} viewSwitch={viewSwitch} logs={logs}/>
+                            <tr>{fifthWeek}</tr>
+                            <tr>{sixthWeek}</tr>
+                        </tbody>) : null
                 }
             </table>
         </div>
