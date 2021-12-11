@@ -42,7 +42,6 @@ const CreateWorkoutForm = ({ logFormViewSwitch }) => {
         }
         console.log(log)
         createLog(log);
-        // updateLogProps(log);
         logFormViewSwitch();
     }
 

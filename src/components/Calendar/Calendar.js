@@ -3,14 +3,14 @@ import { useApi } from "../../hooks/hooks";
 import Month from './Month';
 import DayModal from './DayModal';
 import "./stylesheets/calendar.css";
-import { flushSync } from "react-dom";
 
 const Calendar = ({ logs }) => {
     const [viewState, setViewState] = useState(false);
     const [modalDate, setModalDate] = useState("");
-    const [m1Logs, setM1Logs] = useState([]);
-    const [m2Logs, setM2Logs] = useState([]);
-    const [m3Logs, setM3Logs] = useState([]);
+    // const [m1Logs, setM1Logs] = useState([]);
+    // const [m2Logs, setM2Logs] = useState([]);
+    // const [m3Logs, setM3Logs] = useState([]);
+    // when logs update in props, the useEffect runs and updates each one of these. if they all update, then all months update which defeats the purpose of sorting them like this above.
 
     const today = new Date();
     const year = today.getFullYear();
@@ -24,52 +24,36 @@ const Calendar = ({ logs }) => {
         setModalDate(e.target.attributes.fulldate.value)
     }
 
+    // useEffect(()=>{
+    //     let m1 = {};
+    //     let m2 = {};
+    //     let m3 = {};
 
-    useEffect(()=>{
-        let m1 = {};
-        let m2 = {};
-        let m3 = {};
+    //     Object.entries(logs).map((log, index) => {
+    //         const m = parseInt(log[0].slice(5, 7))
 
-        Object.entries(logs).map((log, index) => {
+    //         if(m-1  === currentMonthIndex-2 ){
+    //             m1[log[0]] = log[1]
+    //         } 
+    //         if(m-1 === currentMonthIndex-1 ){
+    //             m2[log[0]] = log[1]
+    //         } 
+    //         if(m-1 === currentMonthIndex ){
+    //             m3[log[0]] = log[1]
+    //         } 
+    //     })
+    //     setM1Logs(m1)
+    //     setM2Logs(m2)
+    //     setM3Logs(m3)
+    // }, [logs])
 
-            console.log(log)
-            console.log(new Date(log[0]).getMonth())
-
-            // there is some issue with the dates being offset
-            // new Date(2021, 9, 01) === Fri Oct 01 2021 00:00:00 GMT-0400 (Eastern Daylight Time) {}
-            // new Date('2021-10-01') === Thu Sep 30 2021 20:00:00 GMT-0400 (Eastern Daylight Time) {}
-            // so in the IF statements below - the new Date() bits are off because the format that log[0] is too wierd
-            //seems to only be taking the 1st days out? 
-
-            // the whole purpose here is get only the logs needed for the particular Month, on the particular month - so that all months do not need to update when logs are updated. 
-
-            if(new Date(log[0]).getMonth() === currentMonthIndex-2 ){
-                console.log(new Date(log[0]).getMonth())
-                m1[log[0]] = log[1]
-            } 
-            if(new Date(log[0]).getMonth() === currentMonthIndex-1 ){
-                m2[log[0]] = log[1]
-            } 
-            if(new Date(log[0]).getMonth() === currentMonthIndex ){
-                m3[log[0]] = log[1]
-            } 
-        })
-
-        setM1Logs(m1)
-        setM2Logs(m2)
-        setM3Logs(m3)
-
-
-    }, [logs])
-
-    console.log(m1Logs)
     return (
         <div className="calendar-container">
             <div className="calendar">
                 <h5>Recent Logs</h5>
-                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-2, 1)} logs={m1Logs}/>
-                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} logs={m2Logs}/>
-                <Month viewSwitch={viewSwitch} monthOriginDate={today} logs={m3Logs}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-2, 1)} logs={logs}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={new Date(year, currentMonthIndex-1, 1)} logs={logs}/>
+                <Month viewSwitch={viewSwitch} monthOriginDate={today} logs={logs}/>
             </div>
             {viewState === true &&
                 <div className="modal-container">

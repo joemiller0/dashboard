@@ -122,9 +122,10 @@ function useApi() {
                 const key = newLog.date.split('T')[0]
 
                 newLogObj[key] = [newLog]
-                console.log(newLogObj)
-                setNewLog(newLogObj)
-                console.log(newLog)
+                // console.log(newLogObj)
+                // setNewLog(newLogObj)
+                // console.log(newLog)
+                setLogs(prevState => ({...prevState, newLogObj}))
             })
         }
 

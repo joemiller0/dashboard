@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useApi } from "./hooks/hooks";
 import Nav from './components/UI/Nav';
 import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
@@ -11,9 +11,17 @@ import "./stylesheets/dashboard.css";
 
 const Dashboard = () => {
     const { logs, athlete } = useApi();
+    const [localLogs, setlocalLogs] = useState([]);
+
     const [logFormView, setLogFormView] = useState(false);
     const [workoutFormView, setwWorkoutFormView] = useState(false);
     const [workouts, setWorkouts] = useState([]);
+
+    useEffect(() => {
+        setlocalLogs(logs)
+    }, 
+        [logs]
+    );
 
 
     const logFormViewSwitch = e => {
@@ -41,13 +49,13 @@ const Dashboard = () => {
             />
 
             <div className="inner-dash">
-                {/* <LogList /> */}
-                <Calendar logs={logs}/>
+                <LogList logs={localLogs} />
+                <Calendar logs={localLogs} />
             </div>
 
             <div className="inner-dash">
-                <WorkoutList workouts={workouts}/>
-                <WeekPlanner workouts={workouts}/>
+                <WorkoutList workouts={workouts} />
+                <WeekPlanner workouts={workouts} />
             </div>
 
             {workoutFormView === true &&
