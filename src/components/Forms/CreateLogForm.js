@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "./form.css";
-import { useApi } from "../../hooks/hooks";
+// import { useApi } from "../../hooks/hooks";
 
-const CreateWorkoutForm = ({ logFormViewSwitch }) => {
+const CreateWorkoutForm = ({ logFormViewSwitch, createLog }) => {
     const [body, setBody] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [stravalog, setStravalog] = useState(null);
     const [lid, setLid] = useState(Math.floor(Math.random() * 9000000) + 1000000);
 
-    const { createLog } = useApi();
+    // const { createLog } = useApi();
 
     const onChange = e => {
         if (e.target.name === "body"){
@@ -42,6 +42,7 @@ const CreateWorkoutForm = ({ logFormViewSwitch }) => {
         }
         console.log(log)
         createLog(log);
+        // easyUpdate(log)
         logFormViewSwitch();
     }
 
@@ -50,10 +51,7 @@ const CreateWorkoutForm = ({ logFormViewSwitch }) => {
             <form onSubmit={onSubmit} >
             <input type="date" value={date} name="date" onChange={onChange} placeholder="date" />
             <input type="time" value={time} name="time" onChange={onChange} placeholder="time" />
-
             <textarea type="text" value={body} name="body" onChange={onChange} placeholder="body" />
-
-                
                 <button type="submit" value="submit">Add Log</button>
             </form>
         </div>

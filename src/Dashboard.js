@@ -11,18 +11,16 @@ import "./stylesheets/dashboard.css";
 
 const Dashboard = () => {
     const { logs, athlete } = useApi();
-    const [localLogs, setlocalLogs] = useState([]);
-
+    const [localLogs, setLocalLogs] = useState({});
     const [logFormView, setLogFormView] = useState(false);
     const [workoutFormView, setwWorkoutFormView] = useState(false);
     const [workouts, setWorkouts] = useState([]);
 
     useEffect(() => {
-        setlocalLogs(logs)
+        setLocalLogs(logs)
     }, 
         [logs]
     );
-
 
     const logFormViewSwitch = e => {
         setLogFormView(!logFormView)
@@ -39,7 +37,36 @@ const Dashboard = () => {
             setWorkouts(object)
         }
     }
-    
+
+    const createLog = log => {
+        fetch("http://localhost:5000/logs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "lid": log.lid,
+                "body": log.body,
+                "date": log.date,
+                "time": log.time,
+                "stravaLog": log.stravalog
+            })
+        })
+            .then(res => res.json())
+            .then(log => {
+                console.log(log)
+                const key = log[0].date.split('T')[0]
+                log[0].date = key
+                console.log(log[0].date)
+
+                setLocalLogs((prevState)=>{
+                    console.log(prevState)
+                    prevState[key] = log[0]
+                })
+            })
+    }
+    console.log(localLogs) //this is undefined after the createLog function runs
     return (
         <div className="dashboard">
             <Nav 
@@ -48,10 +75,12 @@ const Dashboard = () => {
                 athlete={athlete}
             />
 
-            <div className="inner-dash">
-                <LogList logs={localLogs} />
-                <Calendar logs={localLogs} />
-            </div>
+
+                <div className="inner-dash">
+                    <LogList logs={localLogs} />
+                    <Calendar logs={localLogs} />
+                </div>
+
 
             <div className="inner-dash">
                 <WorkoutList workouts={workouts} />
@@ -69,7 +98,7 @@ const Dashboard = () => {
             {logFormView === true &&
                 <div>
                     <div onClick={logFormViewSwitch} className="dimmed-bg" />
-                    <CreateLogForm logFormViewSwitch={logFormViewSwitch} />
+                    <CreateLogForm logFormViewSwitch={logFormViewSwitch} createLog={createLog} />
                 </div>
             }
         </div>

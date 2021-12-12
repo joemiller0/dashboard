@@ -4,7 +4,7 @@ import Day from "./Day";
 
 const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
     const [week, setWeek] = useState([])
-    
+    console.log(logs)
     useEffect(() => {
         const daysInMonth = (m, y) => {
             return new Date(y, m, 0).getDate();
@@ -18,6 +18,7 @@ const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
             today: new Date(),
             logs: logs,
         };
+        // console.log(weekData)
 
         let weekArr = [];
         for (let i = 0; i < 7; i++) {
@@ -36,7 +37,7 @@ const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
                         date={startDate++}
                         fullDate={fullDate}
                         key={uniqid()}
-                        isToday={fullDate === dateStr ? weekData.today : undefined}
+                        isToday={fullDate === dateStr ? weekData.today : null}
                     />
                 );
             }

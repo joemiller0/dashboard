@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 function useApi() {
     const [logs, setLogs] = useState([]);
     const [athlete, setAthlete] = useState({});
-    const [newLog, setNewLog] = useState([]);
+    // const [newLog, setNewLog] = useState([]);
 
     useEffect(()=>{
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
@@ -42,11 +42,10 @@ function useApi() {
                                     "stravaLog": stravaLog
                                 })
                             })
-                                .then(res => res.json())
-                                .then(logs => console.log(logs))
                         })
                     });
             });
+            
         fetch("http://localhost:5000/logs")
             .then((res) => res.json())
             .then(logs => {
@@ -72,6 +71,7 @@ function useApi() {
                 // setDates(Object.keys(logsObj))
             })
     },[])
+
 
     const getLogs = () => {
         fetch("http://localhost:5000/logs")
@@ -100,40 +100,10 @@ function useApi() {
             })
     }
 
-    const createLog = log => {
-        fetch("http://localhost:5000/logs", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify({
-                "lid": log.lid,
-                "body": log.body,
-                "date": log.date,
-                "time": log.time,
-                "stravaLog": log.stravalog
-            })
-        })
-            .then(res => res.json())
-            .then(log => {
-                const newLogObj = {}
-                const newLog = log.shift()
-                const key = newLog.date.split('T')[0]
-
-                newLogObj[key] = [newLog]
-                // console.log(newLogObj)
-                // setNewLog(newLogObj)
-                // console.log(newLog)
-                setLogs(prevState => ({...prevState, newLogObj}))
-            })
-        }
-
     return {
         logs,
-        newLog,
+        // newLog,
         athlete,
-        createLog, 
         getLogs
     };
 }

@@ -6,8 +6,6 @@ import Day from "./Day";
 const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const [firstWeek, setFirstWeek] = useState([]);
     const [initialWeekEndDate, setInitialWeekEndDate] = useState(0);
-
-// console.log(logs)
 // ===========Calendar Utilities=====================================================================================
     const buildWeekOne = useCallback(
         (firstDayIndex, weekData) => {
@@ -47,7 +45,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const monthIndex = monthOriginDate.getMonth();
     const totalDays = daysInMonth(monthIndex + 1, year);
     const firstDayIndex = new Date(year, monthIndex).getDay();
-// ===========Calendar Utilities=====================================================================================
 
 
 //=================================================================================================================== 
@@ -64,7 +61,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     }, 
         [firstDayIndex, monthIndex, year, totalDays, logs, buildWeekOne]
     );
-//=================================================================================================================== 
 
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const dayNames = abrevDays.map((day) => {
