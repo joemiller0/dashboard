@@ -105,18 +105,13 @@ export const Dashboard = () => {
         })
             .then(res => res.json())
             .then(log => {
-                console.log(log)
                 const key = log[0].date.split('T')[0]
                 log[0].date = key
-                console.log(log[0].date)
-
-                setLocalLogs((prevState)=>{
-                    prevState[key] = log[0]
-                })
+                setLogs({...logs, [key]:log[0]})
             })
             .catch(err => console.log(err))
     }
-
+    console.log(logs)
     return (
         <div className="dashboard">
             <Nav 

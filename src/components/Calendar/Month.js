@@ -66,7 +66,6 @@ export const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     ];
 
 
-//=================================================================================================================== 
     useEffect(() => {
         const weekData = {
             monthIndex: monthIndex,
