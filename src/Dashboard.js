@@ -5,10 +5,8 @@ import "./stylesheets/dashboard.css";
 export const Dashboard = () => {
     const [logs, setLogs] = useState([]);
     const [athlete, setAthlete] = useState({});
-    const [localLogs, setLocalLogs] = useState({});
     const [logFormView, setLogFormView] = useState(false);
-    const [workoutFormView, setwWorkoutFormView] = useState(false);
-    const [workouts, setWorkouts] = useState([]);
+    // const [workoutFormView, setwWorkoutFormView] = useState(false);
 
     useEffect(()=>{
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
@@ -84,9 +82,9 @@ export const Dashboard = () => {
         setLogFormView(!logFormView)
     }
 
-    const workoutFormViewSwitch = e => {
-        setwWorkoutFormView(!workoutFormView)
-    }
+    // const workoutFormViewSwitch = e => {
+    //     setwWorkoutFormView(!workoutFormView)
+    // }
 
     const createLog = log => {
         fetch("http://localhost:5000/logs", {
@@ -111,12 +109,12 @@ export const Dashboard = () => {
             })
             .catch(err => console.log(err))
     }
-    console.log(logs)
+
     return (
         <div className="dashboard">
             <Nav 
                 logFormViewSwitch={logFormViewSwitch} 
-                workoutFormViewSwitch={workoutFormViewSwitch} 
+                // workoutFormViewSwitch={workoutFormViewSwitch} 
                 athlete={athlete}
             />
 

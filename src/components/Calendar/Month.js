@@ -6,8 +6,14 @@ export const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const [firstWeek, setFirstWeek] = useState([]);
     const [initialWeekEndDate, setInitialWeekEndDate] = useState(0);
 
+    const daysInMonth = (m, y) => {
+        return new Date(y, m, 0).getDate();
+    };
+    const year = monthOriginDate.getFullYear();
+    const monthIndex = monthOriginDate.getMonth();
+    const totalDays = daysInMonth(monthIndex + 1, year);
+    const firstDayIndex = new Date(year, monthIndex).getDay();
 
-// ===========Calendar Utilities=====================================================================================
     const buildWeekOne = useCallback(
         (firstDayIndex, weekData) => {
             let date = 1;
@@ -39,13 +45,22 @@ export const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         [viewSwitch]
     );
 
-    const daysInMonth = (m, y) => {
-        return new Date(y, m, 0).getDate();
-    };
-    const year = monthOriginDate.getFullYear();
-    const monthIndex = monthOriginDate.getMonth();
-    const totalDays = daysInMonth(monthIndex + 1, year);
-    const firstDayIndex = new Date(year, monthIndex).getDay();
+    useEffect(() => {
+        const weekData = {
+            monthIndex: monthIndex,
+            year: year,
+            today: new Date(),
+            logs: logs,
+        };
+        const initialWeek = buildWeekOne(firstDayIndex, weekData);
+        setInitialWeekEndDate(initialWeek.endDate)
+        setFirstWeek(initialWeek.tableCells);
+    }, 
+        [firstDayIndex, monthIndex, year, totalDays, logs, buildWeekOne]
+    );
+
+
+    //Labels
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const dayNames = abrevDays.map((day) => {
         return <th key={day}>{day}</th>;
@@ -65,25 +80,10 @@ export const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         "Dec",
     ];
 
-
-    useEffect(() => {
-        const weekData = {
-            monthIndex: monthIndex,
-            year: year,
-            today: new Date(),
-            logs: logs,
-        };
-        const initialWeek = buildWeekOne(firstDayIndex, weekData);
-        setInitialWeekEndDate(initialWeek.endDate)
-        setFirstWeek(initialWeek.tableCells);
-    }, 
-        [firstDayIndex, monthIndex, year, totalDays, logs, buildWeekOne]
-    );
-
     return (
         <div className="month">
             <div className="month-header">
-                <p>{monthLabels[monthOriginDate.getMonth()]}</p>
+                <p>{monthLabels[monthIndex]}</p>
             </div>
             <table>
                 <thead>
