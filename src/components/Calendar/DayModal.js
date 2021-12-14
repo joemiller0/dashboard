@@ -1,7 +1,7 @@
 // import { useEffect, useState } from "react";
 import "./stylesheets/dayModal.css";
 
-const DayModal = ({ viewSwitch, logs, date }) => {
+export const DayModal = ({ viewSwitch, logs, date }) => {
 
     const getMinMileAvg = (metersPerSecond) => {
         const milesPerMin = metersPerSecond * 0.037282272
@@ -66,5 +66,3 @@ const DayModal = ({ viewSwitch, logs, date }) => {
         </div>
     );
 };
-
-export default DayModal;

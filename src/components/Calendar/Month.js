@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
+import { Week, Day } from '../components.js';
 import uniqid from "uniqid";
-import Week from "./Week";
-import Day from "./Day";
 
-const Month = ({ viewSwitch, monthOriginDate, logs }) => {
+export const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const [firstWeek, setFirstWeek] = useState([]);
     const [initialWeekEndDate, setInitialWeekEndDate] = useState(0);
+
+
 // ===========Calendar Utilities=====================================================================================
     const buildWeekOne = useCallback(
         (firstDayIndex, weekData) => {
@@ -45,23 +46,6 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
     const monthIndex = monthOriginDate.getMonth();
     const totalDays = daysInMonth(monthIndex + 1, year);
     const firstDayIndex = new Date(year, monthIndex).getDay();
-
-
-//=================================================================================================================== 
-    useEffect(() => {
-        const weekData = {
-            monthIndex: monthIndex,
-            year: year,
-            today: new Date(),
-            logs: logs,
-        };
-        const initialWeek = buildWeekOne(firstDayIndex, weekData);
-        setInitialWeekEndDate(initialWeek.endDate)
-        setFirstWeek(initialWeek.tableCells);
-    }, 
-        [firstDayIndex, monthIndex, year, totalDays, logs, buildWeekOne]
-    );
-
     const abrevDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const dayNames = abrevDays.map((day) => {
         return <th key={day}>{day}</th>;
@@ -80,6 +64,22 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         "Nov",
         "Dec",
     ];
+
+
+//=================================================================================================================== 
+    useEffect(() => {
+        const weekData = {
+            monthIndex: monthIndex,
+            year: year,
+            today: new Date(),
+            logs: logs,
+        };
+        const initialWeek = buildWeekOne(firstDayIndex, weekData);
+        setInitialWeekEndDate(initialWeek.endDate)
+        setFirstWeek(initialWeek.tableCells);
+    }, 
+        [firstDayIndex, monthIndex, year, totalDays, logs, buildWeekOne]
+    );
 
     return (
         <div className="month">
@@ -108,5 +108,3 @@ const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         </div>
     );
 };
-
-export default Month;

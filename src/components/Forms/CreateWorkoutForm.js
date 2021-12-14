@@ -2,7 +2,7 @@
 import { useForm } from "../../hooks/hooks";
 import "./form.css";
 
-const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout }) => {
+export const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout }) => {
     const {title, desc, time, day, onChangeInput, onSubmitInput } = useForm('');
 
     return (
@@ -36,4 +36,3 @@ const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout }) => {
     );
 };
 
-export default CreateWorkoutForm;

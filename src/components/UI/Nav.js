@@ -1,6 +1,6 @@
 import "./nav.css";
 
-const Nav = ({logFormViewSwitch, workoutFormViewSwitch, athlete}) => {
+export const Nav = ({logFormViewSwitch, workoutFormViewSwitch, athlete}) => {
 
     return (
         <div className="nav-container">
@@ -12,6 +12,4 @@ const Nav = ({logFormViewSwitch, workoutFormViewSwitch, athlete}) => {
         </div>
     )
 };
-
-export default Nav;
 

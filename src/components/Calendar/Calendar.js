@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-import { useApi } from "../../hooks/hooks";
-import Month from './Month';
-import DayModal from './DayModal';
+import { useState } from "react";
+import { Month, DayModal } from '../components.js';
 import "./stylesheets/calendar.css";
 
-const Calendar = ({ logs }) => {
+export const Calendar = ({ logs }) => {
     const [viewState, setViewState] = useState(false);
     const [modalDate, setModalDate] = useState("");
     // const [m1Logs, setM1Logs] = useState([]);
@@ -64,6 +62,4 @@ const Calendar = ({ logs }) => {
         </div>
     );
 };
-
-export default Calendar;
 

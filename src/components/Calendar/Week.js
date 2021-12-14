@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import uniqid from "uniqid";
-import Day from "./Day";
+import { Day } from '../components.js';
 
-const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
+export const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
     const [week, setWeek] = useState([])
-    console.log(logs)
+    // console.log(logs)
     useEffect(() => {
         const daysInMonth = (m, y) => {
             return new Date(y, m, 0).getDate();
@@ -49,6 +49,4 @@ const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
         <tr>{week}</tr>
     )
 };
-
-export default Week;
 

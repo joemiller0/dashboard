@@ -1,26 +1,84 @@
 import { useEffect, useState } from "react";
-import { useApi } from "./hooks/hooks";
-import Nav from './components/UI/Nav';
-import CreateWorkoutForm from './components/Forms/CreateWorkoutForm.js';
-import CreateLogForm from './components/Forms/CreateLogForm.js';
-import Calendar from './components/Calendar/Calendar';
-import WorkoutList from './components/WorkoutList/WorkoutList';
-import LogList from './components/LogList/LogList';
-import WeekPlanner from './components/WeekPlanner/WeekPlanner';
+import { Nav, CreateWorkoutForm,  CreateLogForm, Calendar, LogList } from './components/components.js';
 import "./stylesheets/dashboard.css";
 
-const Dashboard = () => {
-    const { logs, athlete } = useApi();
+export const Dashboard = () => {
+    const [logs, setLogs] = useState([]);
+    const [athlete, setAthlete] = useState({});
     const [localLogs, setLocalLogs] = useState({});
     const [logFormView, setLogFormView] = useState(false);
     const [workoutFormView, setwWorkoutFormView] = useState(false);
     const [workouts, setWorkouts] = useState([]);
 
-    useEffect(() => {
-        setLocalLogs(logs)
-    }, 
-        [logs]
-    );
+    useEffect(()=>{
+        const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
+        const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
+        const refreshToken = process.env.REACT_APP_STRAVA_REFRESH_TOKEN;
+        if (!clientId || !clientSecret) return;
+
+        fetch(`https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+        })
+            .then(res => res.json())
+            .then(tokenData => {
+                fetch(`https://www.strava.com/api/v3/athlete?access_token=${tokenData.access_token}`)
+                    .then(res => res.json())
+                    .then(athlete => setAthlete(athlete))
+                    .catch(err => console.log(err))
+
+                fetch(`https://www.strava.com/api/v3/activities?access_token=${tokenData.access_token}`)
+                    .then(res => res.json())
+                    .then(activities => {
+                        activities.forEach(stravaLog => {
+                            fetch("http://localhost:5000/import", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    Accept: "application/json",
+                                },
+                                body: JSON.stringify({
+                                    "lid": stravaLog.id,
+                                    "body": null,
+                                    "date": null,
+                                    "time": null,
+                                    "stravaLog": stravaLog
+                                })
+                            })
+                        })
+                    })
+                    .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
+            
+        fetch("http://localhost:5000/logs")
+            .then((res) => res.json())
+            .then(logs => {
+                let logsObj = {}
+                logs.forEach((log) => {
+                    if (log.date === null) {
+                        const date = log.stravalog.start_date_local.split('T')[0];
+                        if (!logsObj[date]) {
+                            logsObj[date] = [log]
+                        } else {
+                            logsObj[date].push(log)
+                        }
+                    } else {
+                        const date = log.date.split('T')[0];
+                        if (!logsObj[date]) {
+                            logsObj[date] = [log]
+                        } else {
+                            logsObj[log.date].push(log)
+                        }
+                    }
+                })
+                setLogs(logsObj)
+            })
+            .catch(err => console.log(err))
+    },[])
 
     const logFormViewSwitch = e => {
         setLogFormView(!logFormView)
@@ -28,14 +86,6 @@ const Dashboard = () => {
 
     const workoutFormViewSwitch = e => {
         setwWorkoutFormView(!workoutFormView)
-    }
-
-    const createWorkout = object => {
-        if (workouts) {
-            workouts.push(object)
-        } else {
-            setWorkouts(object)
-        }
     }
 
     const createLog = log => {
@@ -61,12 +111,12 @@ const Dashboard = () => {
                 console.log(log[0].date)
 
                 setLocalLogs((prevState)=>{
-                    console.log(prevState)
                     prevState[key] = log[0]
                 })
             })
+            .catch(err => console.log(err))
     }
-    console.log(localLogs) //this is undefined after the createLog function runs
+
     return (
         <div className="dashboard">
             <Nav 
@@ -77,24 +127,18 @@ const Dashboard = () => {
 
 
                 <div className="inner-dash">
-                    <LogList logs={localLogs} />
-                    <Calendar logs={localLogs} />
+                    <LogList logs={logs} />
+                    <Calendar logs={logs} />
                 </div>
 
-
-            <div className="inner-dash">
-                <WorkoutList workouts={workouts} />
-                <WeekPlanner workouts={workouts} />
-            </div>
-
-            {workoutFormView === true &&
+            {/* {workoutFormView === true &&
                 <div>
                     <div onClick={workoutFormViewSwitch} className="dimmed-bg" />
                     <CreateWorkoutForm 
                         workoutFormViewSwitch={workoutFormViewSwitch} 
-                        createWorkout={createWorkout} />
+                    />
                 </div>
-            }
+            } */}
             {logFormView === true &&
                 <div>
                     <div onClick={logFormViewSwitch} className="dimmed-bg" />
@@ -104,5 +148,3 @@ const Dashboard = () => {
         </div>
     );
 }
-
-export default Dashboard;

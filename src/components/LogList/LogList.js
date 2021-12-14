@@ -3,7 +3,7 @@ import { useApi } from "../../hooks/hooks";
 import "./loglist.css";
 
 
-const LogList = () => {
+export const LogList = () => {
     const { logs } = useApi();
     // const objectHelper = (logsObj) => {
     //     const dates = Object.keys(logsObj)
@@ -20,6 +20,4 @@ const LogList = () => {
         </div>
     )
 };
-
-export default LogList;
 

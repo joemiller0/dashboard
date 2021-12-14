@@ -2,14 +2,12 @@ import { useState } from "react";
 import "./form.css";
 // import { useApi } from "../../hooks/hooks";
 
-const CreateWorkoutForm = ({ logFormViewSwitch, createLog }) => {
+export const CreateLogForm = ({ logFormViewSwitch, createLog }) => {
     const [body, setBody] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [stravalog, setStravalog] = useState(null);
     const [lid, setLid] = useState(Math.floor(Math.random() * 9000000) + 1000000);
-
-    // const { createLog } = useApi();
 
     const onChange = e => {
         if (e.target.name === "body"){
@@ -58,4 +56,3 @@ const CreateWorkoutForm = ({ logFormViewSwitch, createLog }) => {
     );
 };
 
-export default CreateWorkoutForm;
