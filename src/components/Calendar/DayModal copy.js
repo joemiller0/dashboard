@@ -30,16 +30,6 @@ console.log(logs)
             <div className="log-container">
                 {logs !== undefined &&
                     logs.map((log) => {
-                        if (log.stravalog === null){
-                            return (
-                                <div key={log.id} className="baseLog">
-                                    {log.body} <br />
-                                    {log.date} <br />
-                                    {log.time} <br />
-                                    {log.id} - {log.lid}
-                                </div>
-                            )
-                        }
                         if (log.stravalog.name[0] === "W") {
                             const whoopDayStrain = log.stravalog.name.split("→")[1]
                             const strain = whoopDayStrain.split(" ")[1]

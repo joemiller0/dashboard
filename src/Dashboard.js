@@ -32,6 +32,7 @@ export const Dashboard = () => {
                     .then(res => res.json())
                     .then(activities => {
                         activities.forEach(stravaLog => {
+                            // console.log(typeof stravaLog.id)
                             fetch("http://localhost:5000/import", {
                                 method: "POST",
                                 headers: {
@@ -87,6 +88,7 @@ export const Dashboard = () => {
     // }
 
     const createLog = log => {
+        console.log(log)
         fetch("http://localhost:5000/logs", {
             method: "POST",
             headers: {
@@ -103,11 +105,15 @@ export const Dashboard = () => {
         })
             .then(res => res.json())
             .then(log => {
+                console.log(log)
                 const key = log[0].date.split('T')[0]
                 log[0].date = key
                 setLogs({...logs, [key]:log[0]})
             })
             .catch(err => console.log(err))
+    }
+    const deleteLog = log => {
+        fetch(`http://localhost:5000/logs/${log.id}`, {method: "DELETE"})
     }
 
     return (
@@ -121,7 +127,7 @@ export const Dashboard = () => {
 
                 <div className="inner-dash">
                     <LogList logs={logs} />
-                    <Calendar logs={logs} />
+                    <Calendar deleteLog={deleteLog} logs={logs} />
                 </div>
 
             {/* {workoutFormView === true &&

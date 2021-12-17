@@ -12,7 +12,7 @@ export const Calendar = ({ logs }) => {
         if (e.target.className === "dimmed-bg") return
         setModalDate(e.target.attributes.fulldate.value)
     }
-    
+    console.log(Array.isArray(logs[modalDate]))
     const year = new Date().getFullYear();
     const currentMonthIndex = new Date().getMonth();
 
@@ -27,7 +27,10 @@ export const Calendar = ({ logs }) => {
             {viewState === true &&
                 <div className="modal-container">
                     <div onClick={viewSwitch} className="dimmed-bg" />
-                    <DayModal viewSwitch={viewSwitch} logs={logs[modalDate]} date={modalDate} />
+                    {Array.isArray(logs[modalDate]) 
+                        ? <DayModal viewSwitch={viewSwitch} logs={logs[modalDate]} date={modalDate} />
+                        : <DayModal viewSwitch={viewSwitch} logs={[logs[modalDate]]} date={modalDate} />
+                    }
                 </div>
             }
         </div>

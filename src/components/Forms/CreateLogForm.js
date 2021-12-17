@@ -19,12 +19,6 @@ export const CreateLogForm = ({ logFormViewSwitch, createLog }) => {
         if (e.target.name === "time"){
             setTime(e.target.value)
         }
-        // if (e.target.name === "stravalog"){
-        //     setStravalog(e.target.value)
-        // }
-        if (e.target.name === "lid"){
-            setLid(e.target.value)
-        }
     };
 
     const onSubmit = (e) => {
@@ -40,7 +34,6 @@ export const CreateLogForm = ({ logFormViewSwitch, createLog }) => {
         }
         console.log(log)
         createLog(log);
-        // easyUpdate(log)
         logFormViewSwitch();
     }
 
