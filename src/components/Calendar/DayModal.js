@@ -20,8 +20,13 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
         return Math.round(distance * 100) / 100
     }
 
-    const confirmDelete = e => {
-        setConfirmMsg(true)
+    const onDelete = id => {
+        if(confirmMsg === true) {
+            deleteLog(id)
+            setConfirmMsg(false)
+        } else {
+            setConfirmMsg(true)
+        }
     }
     
     return (
@@ -39,7 +44,8 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
                                     {log.body} <br />
                                     {log.date} <br />
                                     {log.time} <br />
-                                    {log.id} - {log.lid}
+                                    {log.id} - {log.lid}<br />
+                                    <button id="delete-log-btn" onClick={()=>onDelete(log.id)}> Delete Log </button>
                                 </div>
                             )
                         }
@@ -51,7 +57,7 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
                             return (
                                 <div key={log.stravalog.upload_id} className="whoop">
                                     <div className="log-name">
-                                        {activity}
+                                        {activity}<button id="delete-log-btn" onClick={()=>onDelete()}> Delete Log </button>
                                     </div>
                                     <div className="highlight">
                                         {strain} Strain
@@ -65,22 +71,21 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
                         return (
                             <div className="strava" key={log.stravalog.upload_id}>
                                 <div className="log-name">
-                                    {log.stravalog.name}
+                                    {log.stravalog.name}<button id="delete-log-btn" onClick={()=>onDelete()}> Delete Log </button>
                                 </div>
                                 <div className="highlight">
                                     {totalDistance} mi - {minMileAvg} - <span className="suffer">Suffer Score: {log.stravalog.suffer_score}</span>
-                                </div><br />
+                                </div>
                             </div>
                         )
                     })
                 }
-                <button id="delete-log-btn" onClick={confirmDelete}> Delete Log </button>
             </div>
             {confirmMsg === true &&
                 <div id="confirmMsg">
                     Are you sure you want to delete this record?<br />
-                    <a href="#" class="modalbtn" onClick={ e => deleteLog(e) }>Yes</a>
-                    <a href="#" class="modalbtn" onClick={() => setConfirmMsg(false)}>No</a>
+                    <a href="#" className="modal-btn" onClick={onDelete}>Yes</a>
+                    <a href="#" className="modal-btn" onClick={() => setConfirmMsg(false)}>No</a>
                 </div>
             }
         </div>

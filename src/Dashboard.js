@@ -111,8 +111,9 @@ export const Dashboard = () => {
             })
             .catch(err => console.log(err))
     }
-    const deleteLog = log => {
-        fetch(`http://localhost:5000/logs/${log.id}`, {method: "DELETE"})
+    const deleteLog = id => {
+        console.log(id)
+        // fetch(`http://localhost:5000/logs/${log.id}`, {method: "DELETE"})
     }
 
     return (

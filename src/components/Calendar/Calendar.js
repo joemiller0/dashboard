@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Month, DayModal } from '../components.js';
 import "./stylesheets/calendar.css";
 
-export const Calendar = ({ logs }) => {
+export const Calendar = ({ deleteLog, logs }) => {
     const [viewState, setViewState] = useState(false);
     const [modalDate, setModalDate] = useState("");
 
@@ -28,8 +28,8 @@ export const Calendar = ({ logs }) => {
                 <div className="modal-container">
                     <div onClick={viewSwitch} className="dimmed-bg" />
                     {Array.isArray(logs[modalDate]) 
-                        ? <DayModal viewSwitch={viewSwitch} logs={logs[modalDate]} date={modalDate} />
-                        : <DayModal viewSwitch={viewSwitch} logs={[logs[modalDate]]} date={modalDate} />
+                        ? <DayModal viewSwitch={viewSwitch} deleteLog={deleteLog} logs={logs[modalDate]} date={modalDate} />
+                        : <DayModal viewSwitch={viewSwitch} deleteLog={deleteLog} logs={[logs[modalDate]]} date={modalDate} />
                     }
                 </div>
             }

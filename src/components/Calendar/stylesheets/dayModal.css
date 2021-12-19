@@ -22,6 +22,7 @@
     text-decoration: underline;
 }
 #confirmMsg{
+    position:relative;
     border: 1px solid black;
     width:200px;
     text-align: center;
@@ -29,10 +30,27 @@
     padding:10px;
 }
 #delete-log-btn{
-    left:0;
+    left: 2em;
+    background-color: #444444;
+    border: none;
+    color: white;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
 }
-.modalbtn{
+#delete-log-btn:hover{
+    cursor: pointer;
+    background-color: #696969;
+}
+.modal-btn{
+    position:relative;
     color: white;
     padding: 10px;
-    cursor: pointer !important;
+    height:auto;
+    width:auto;
+}
+.modal-btn:hover{
+    cursor: pointer;
 }

@@ -61,7 +61,6 @@
     background-color: rgb(68, 68, 68);
     box-shadow: 5px 10px 20px #000000;
     color: white;
-    /* z-index: -99999; */
 }
 
 .dimmed-bg {
@@ -93,14 +92,6 @@ td {
     width: 30px;
     padding: 2px;
 }
-/* 
-button {
-    border: none;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-} */
 
 @media only screen and (max-width: 950px) {
     td{
