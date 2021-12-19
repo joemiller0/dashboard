@@ -12,7 +12,7 @@ export const Calendar = ({ logs }) => {
         if (e.target.className === "dimmed-bg") return
         setModalDate(e.target.attributes.fulldate.value)
     }
-    console.log(Array.isArray(logs[modalDate]))
+
     const year = new Date().getFullYear();
     const currentMonthIndex = new Date().getMonth();
 

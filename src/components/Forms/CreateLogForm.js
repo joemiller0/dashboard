@@ -32,7 +32,6 @@ export const CreateLogForm = ({ logFormViewSwitch, createLog }) => {
             "stravaLog": stravalog
         
         }
-        console.log(log)
         createLog(log);
         logFormViewSwitch();
     }

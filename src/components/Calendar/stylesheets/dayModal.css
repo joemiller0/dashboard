@@ -21,3 +21,18 @@
     font-weight:700;
     text-decoration: underline;
 }
+#confirmMsg{
+    border: 1px solid black;
+    width:200px;
+    text-align: center;
+    background-color: blue;
+    padding:10px;
+}
+#delete-log-btn{
+    left:0;
+}
+.modalbtn{
+    color: white;
+    padding: 10px;
+    cursor: pointer !important;
+}

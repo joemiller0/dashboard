@@ -1,8 +1,8 @@
-// import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./stylesheets/dayModal.css";
 
-export const DayModal = ({ viewSwitch, logs, date }) => {
-console.log(logs)
+export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
+    const [ confirmMsg, setConfirmMsg ] = useState(false)
     const getMinMileAvg = (metersPerSecond) => {
         const milesPerMin = metersPerSecond * 0.037282272
         // 1 meter per second (m/s) = 0.037282272 mile per minute (mi/min)
@@ -20,6 +20,9 @@ console.log(logs)
         return Math.round(distance * 100) / 100
     }
 
+    const confirmDelete = e => {
+        setConfirmMsg(true)
+    }
     
     return (
         <div className="log">
@@ -71,7 +74,15 @@ console.log(logs)
                         )
                     })
                 }
+                <button id="delete-log-btn" onClick={confirmDelete}> Delete Log </button>
             </div>
+            {confirmMsg === true &&
+                <div id="confirmMsg">
+                    Are you sure you want to delete this record?<br />
+                    <a href="#" class="modalbtn" onClick={ e => deleteLog(e) }>Yes</a>
+                    <a href="#" class="modalbtn" onClick={() => setConfirmMsg(false)}>No</a>
+                </div>
+            }
         </div>
     );
 };

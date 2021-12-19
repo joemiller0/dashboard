@@ -88,7 +88,6 @@ export const Dashboard = () => {
     // }
 
     const createLog = log => {
-        console.log(log)
         fetch("http://localhost:5000/logs", {
             method: "POST",
             headers: {
