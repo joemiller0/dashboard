@@ -113,7 +113,12 @@ export const Dashboard = () => {
     }
     const deleteLog = id => {
         console.log(id)
-        // fetch(`http://localhost:5000/logs/${log.id}`, {method: "DELETE"})
+        fetch(`http://localhost:5000/logs/${id}`, {method: "DELETE"})
+        logs.map((l)=>{
+            if (l.id === id){
+                console.log(id)
+            }
+        })
     }
 
     return (
