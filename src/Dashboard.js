@@ -102,7 +102,7 @@ export const Dashboard = () => {
                 console.log(log)
                 const key = log[0].date.split('T')[0]
                 log[0].date = key
-                setLogs({ ...logs, [key]: log[0] })
+                setLogs({ ...logs, [key]: log })
             })
             .catch(err => console.log(err))
     }
@@ -114,6 +114,7 @@ export const Dashboard = () => {
         //problem here is that sometimes logs[date] comes in as an object instead of an array. 
         //the log gets created the way we want it here. check console log at 102 - thats the format me want, maybe we can send the whole log up with delete and that way have the id and date with it and limit parameters
                 // if (logs[date])
+                console.log(logs[date])
 
                 console.log(Array.isArray(logs[date]))
                 const newLogs = logs[date].filter(log => log.id != id)
