@@ -33,7 +33,6 @@ export const Calendar = ({ deleteLog, logs, isLoading }) => {
                     <DayModal viewSwitch={viewSwitch} deleteLog={deleteLog} logs={logs[modalDate]} date={modalDate} />
                 </div>
             }
-            
         </div>
     );
 };
