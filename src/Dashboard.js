@@ -110,16 +110,15 @@ export const Dashboard = () => {
         fetch(`http://localhost:5000/logs/${id}`, { method: "DELETE" })
             .then(res => res.json())
             .then(() => {
-                console.log(logs[date])
-                console.log(id)
                 const newLogs = logs[date].filter(log => log.id != id)
-                // delete logs[date]
-
-                console.log({...logs, [date]: newLogs})
-                setLogs({...logs, [date]: newLogs}) // this leaves an empty array in place which doesnt elimnate the day in the state when there are 0 workouts.
-
-                // delete logs[date] //this deletes the entire date. not the specific log.
-                // setLogs({ ...logs })
+                setLogs(() => {
+                    if (newLogs.length) {
+                        return {...logs, [date]: newLogs}
+                    } else {
+                        delete logs[date]
+                        return { ...logs }
+                    }
+                })
             })
             .catch(err => console.log(err.message))
     }
@@ -130,7 +129,6 @@ export const Dashboard = () => {
                 logFormViewSwitch={logFormViewSwitch}
                 athlete={athlete}
             />
-
 
             <div className="inner-dash">
                 <LogList logs={logs} />
