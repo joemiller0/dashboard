@@ -7,6 +7,10 @@
     padding: 40px;
     position: relative;
 }
+.loading{
+    font-size: 4em;
+    color:white;
+}
 .month{
     margin-top:20px;
 }

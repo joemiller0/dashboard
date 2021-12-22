@@ -6,13 +6,14 @@ export const Dashboard = () => {
     const [logs, setLogs] = useState([]);
     const [athlete, setAthlete] = useState({});
     const [logFormView, setLogFormView] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
         const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
         const refreshToken = process.env.REACT_APP_STRAVA_REFRESH_TOKEN;
         if (!clientId || !clientSecret) return;
-
+        setIsLoading(true);
         fetch(`https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`, {
             method: "POST",
             headers: {
@@ -74,6 +75,7 @@ export const Dashboard = () => {
                     }
                 })
                 setLogs(logsObj)
+                setIsLoading(false);
             })
             .catch(err => console.log(err))
     }, [])
@@ -111,12 +113,6 @@ export const Dashboard = () => {
         fetch(`http://localhost:5000/logs/${id}`, { method: "DELETE" })
             .then(res => res.json())
             .then(() => {
-        //problem here is that sometimes logs[date] comes in as an object instead of an array. 
-        //the log gets created the way we want it here. check console log at 102 - thats the format me want, maybe we can send the whole log up with delete and that way have the id and date with it and limit parameters
-                // if (logs[date])
-                console.log(logs[date])
-
-                console.log(Array.isArray(logs[date]))
                 const newLogs = logs[date].filter(log => log.id != id)
                 setLogs(() => {
                     if (newLogs.length) {
@@ -138,8 +134,8 @@ export const Dashboard = () => {
             />
 
             <div className="inner-dash">
-                <LogList logs={logs} />
-                <Calendar deleteLog={deleteLog} logs={logs} />
+                {/* <LogList logs={logs} /> */}
+                <Calendar deleteLog={deleteLog} logs={logs} isLoading={isLoading}/>
             </div>
 
             {logFormView === true &&
