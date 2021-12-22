@@ -111,14 +111,15 @@ export const Dashboard = () => {
             })
             .catch(err => console.log(err))
     }
-    const deleteLog = id => {
+    const deleteLog = (id, date) => {
         console.log(id)
         fetch(`http://localhost:5000/logs/${id}`, {method: "DELETE"})
-        logs.map((l)=>{
-            if (l.id === id){
-                console.log(id)
-            }
+        .then(res=>res.json())
+        .then(() => {
+            delete logs[date]
+            setLogs({...logs})
         })
+        .catch(err => console.log())
     }
 
     return (

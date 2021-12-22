@@ -8,6 +8,7 @@ export const Calendar = ({ deleteLog, logs }) => {
 
     const viewSwitch = e => {
         setViewState(!viewState)
+        if(e === undefined) return
         if (e.target.innerHTML === "x") return
         if (e.target.className === "dimmed-bg") return
         setModalDate(e.target.attributes.fulldate.value)

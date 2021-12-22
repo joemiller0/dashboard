@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./stylesheets/dayModal.css";
 
 export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
-    const [ confirmMsg, setConfirmMsg ] = useState(false)
+    const [confirmMsg, setConfirmMsg ] = useState(false)
     const [primaryKey, setPrimaryKey] = useState();
 
     const getMinMileAvg = (metersPerSecond) => {
@@ -27,8 +27,9 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
             setPrimaryKey(e.target.dataset.id)
         }
         if(confirmMsg === true) {
-            deleteLog(primaryKey)
+            deleteLog(primaryKey, date)
             setConfirmMsg(false)
+            viewSwitch()
         } else {
             setConfirmMsg(true)
         }
