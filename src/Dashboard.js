@@ -106,10 +106,16 @@ export const Dashboard = () => {
             })
             .catch(err => console.log(err))
     }
+
     const deleteLog = (id, date) => {
         fetch(`http://localhost:5000/logs/${id}`, { method: "DELETE" })
             .then(res => res.json())
             .then(() => {
+        //problem here is that sometimes logs[date] comes in as an object instead of an array. 
+        //the log gets created the way we want it here. check console log at 102 - thats the format me want, maybe we can send the whole log up with delete and that way have the id and date with it and limit parameters
+                // if (logs[date])
+
+                console.log(Array.isArray(logs[date]))
                 const newLogs = logs[date].filter(log => log.id != id)
                 setLogs(() => {
                     if (newLogs.length) {
