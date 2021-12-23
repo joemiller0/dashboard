@@ -1,13 +1,10 @@
 import { useState } from "react";
 import "./form.css";
-// import { useApi } from "../../hooks/hooks";
 
 export const CreateLogForm = ({ logFormViewSwitch, createLog }) => {
     const [body, setBody] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
-    const [stravalog, setStravalog] = useState(null);
-    const [lid, setLid] = useState(Math.floor(Math.random() * 9000000) + 1000000);
 
     const onChange = e => {
         if (e.target.name === "body"){
@@ -25,11 +22,11 @@ export const CreateLogForm = ({ logFormViewSwitch, createLog }) => {
         e.preventDefault();
         // console.log(e)
         const log = {
-            "lid": lid,
+            "lid": Math.floor(Math.random() * 9000000) + 1000000,
             "body": body,
             "date": date, 
             "time": time,
-            "stravaLog": stravalog
+            "stravaLog": null
         
         }
         createLog(log);

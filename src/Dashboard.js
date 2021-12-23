@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { Nav, CreateWorkoutForm, CreateLogForm, Calendar, LogList } from './components/components.js';
+import { Nav, CreateLogForm, CreateProgramForm, Calendar, ProgramManager } from './components/components.js';
 import "./stylesheets/dashboard.css";
 
 export const Dashboard = () => {
     const [logs, setLogs] = useState([]);
+    const [workouts, setWorkouts] = useState([]);
+    const [programs, setPrograms] = useState([]);
     const [athlete, setAthlete] = useState({});
     const [logFormView, setLogFormView] = useState(false);
+    const [programFormView, setProgramFormView] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -83,6 +86,9 @@ export const Dashboard = () => {
     const logFormViewSwitch = e => {
         setLogFormView(!logFormView)
     }
+    const programFormViewSwitch = e => {
+        setProgramFormView(!programFormView)
+    }
 
     const createLog = log => {
         fetch("http://localhost:5000/logs", {
@@ -126,15 +132,56 @@ export const Dashboard = () => {
             .catch(err => console.log(err.message))
     }
 
+    const createProgram = program => {
+        fetch("http://localhost:5000/programs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                // "star_date":
+                // "end_date":
+                // "workouts":
+            })
+        })
+            .then(res => res.json())
+            .then(program => {
+                console.log(program)
+            })
+            .catch(err => console.log(err))
+    }
+
+    // const createSomething = (thingToCreate, payload) => {
+    //     fetch(`http://localhost:5000/${thingToCreate}`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Accept: "application/json"
+    //         },
+    //         body: JSON.stringify({
+    //             payload
+    //         })
+    //     })
+    //         .then(res => res.json())
+    //         .then(thingCreated => {
+    //             console.log(thingCreated)
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+
     return (
         <div className="dashboard">
             <Nav
                 logFormViewSwitch={logFormViewSwitch}
+                programFormViewSwitch={programFormViewSwitch}
                 athlete={athlete}
             />
+            <div className="flex">
+                <ProgramManager createProgram={createProgram}/>
+            </div>
 
-            <div className="inner-dash">
-                {/* <LogList logs={logs} /> */}
+            <div className="flex">
                 <Calendar deleteLog={deleteLog} logs={logs} isLoading={isLoading}/>
             </div>
 
@@ -142,6 +189,12 @@ export const Dashboard = () => {
                 <div>
                     <div onClick={logFormViewSwitch} className="dimmed-bg" />
                     <CreateLogForm logFormViewSwitch={logFormViewSwitch} createLog={createLog} />
+                </div>
+            }
+            {programFormView === true &&
+                <div>
+                    <div onClick={programFormViewSwitch} className="dimmed-bg" />
+                    <CreateProgramForm programFormViewSwitch={programFormViewSwitch} createProgram={createProgram} workouts={workouts}/>
                 </div>
             }
         </div>
