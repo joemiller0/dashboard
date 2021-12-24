@@ -11,6 +11,7 @@ export const Dashboard = () => {
     const [programFormView, setProgramFormView] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    //API Authentication and initial import and formatting of logs from strava 
     useEffect(() => {
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
         const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
@@ -83,6 +84,7 @@ export const Dashboard = () => {
             .catch(err => console.log(err))
     }, [])
 
+    // initial import of programs
     useEffect(()=>{
         fetch("http://localhost:5000/programs")
             .then(res=>res.json())

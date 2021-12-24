@@ -9,3 +9,4 @@ export { Day } from "./Calendar/Day";
 export { DayModal } from "./Calendar/DayModal";
 export { LogList } from "./LogList/LogList";
 export { ProgramManager } from "./ProgramManager/ProgramManager";
+export { Program } from "./ProgramManager/Program";
