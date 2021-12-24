@@ -83,6 +83,12 @@ export const Dashboard = () => {
             .catch(err => console.log(err))
     }, [])
 
+    useEffect(()=>{
+        fetch("http://localhost:5000/programs")
+            .then(res=>res.json())
+            .then(programs=>setPrograms(programs))
+    }, [])
+
     const logFormViewSwitch = e => {
         setLogFormView(!logFormView)
     }
@@ -150,6 +156,7 @@ export const Dashboard = () => {
             .then(res => res.json())
             .then(program => {
                 console.log(program)
+                setPrograms([...programs, program[0]])
             })
             .catch(err => console.log(err))
     }
@@ -180,7 +187,7 @@ export const Dashboard = () => {
                 athlete={athlete}
             />
             <div className="flex">
-                <ProgramManager createProgram={createProgram}/>
+                <ProgramManager createProgram={createProgram} programs={programs}/>
             </div>
 
             <div className="flex">
