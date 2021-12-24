@@ -132,7 +132,7 @@ export const Dashboard = () => {
             .catch(err => console.log(err.message))
     }
 
-    const createProgram = program => {
+    const createProgram = ({title, startDate, endDate, description}) => {
         fetch("http://localhost:5000/programs", {
             method: "POST",
             headers: {
@@ -140,9 +140,11 @@ export const Dashboard = () => {
                 Accept: "application/json"
             },
             body: JSON.stringify({
-                // "star_date":
-                // "end_date":
-                // "workouts":
+                "title": title,
+                "start_date": startDate,
+                "end_date": endDate,
+                "description": description,
+                "workouts":[]
             })
         })
             .then(res => res.json())

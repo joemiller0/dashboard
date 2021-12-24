@@ -35,6 +35,7 @@ export const CreateLogForm = ({ logFormViewSwitch, createLog }) => {
 
     return (
         <div className="form-container">
+            <h4>Create Log</h4>
             <form onSubmit={onSubmit} >
             <input type="date" value={date} name="date" onChange={onChange} placeholder="date" />
             <input type="time" value={time} name="time" onChange={onChange} placeholder="time" />
