@@ -8,7 +8,7 @@ export const CreateWorkoutForm = ({viewSwitch, workoutFormViewSwitch, createWork
 
     useEffect(()=>{
         setProgram_id(program.id)
-    }, [])
+    }, [program.id])
 
     const onChange = e => {
         switch (e.target.name){
@@ -18,6 +18,7 @@ export const CreateWorkoutForm = ({viewSwitch, workoutFormViewSwitch, createWork
             case 'description':
                 setDescription(e.target.value)
                 break;
+            default: return null;
         }
     }
 

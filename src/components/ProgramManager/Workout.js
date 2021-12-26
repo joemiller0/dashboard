@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import "./program_manager.css";
-import { Program } from '../components.js';
 
+import "./program_manager.css";
 
 export const Workout = ({ workout }) => {
 

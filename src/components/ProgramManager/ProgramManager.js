@@ -19,6 +19,7 @@ export const ProgramManager = ({ createWorkout, workouts, programs }) => {
                         if (program.id === workout.program_id){
                             localWorkouts.push(workout)
                         }
+                        return null
                     })
                     return <Program key={program.id} workouts={localWorkouts} program={program} createWorkout={createWorkout}/>
                 })}

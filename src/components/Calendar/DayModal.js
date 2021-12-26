@@ -90,8 +90,8 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
             {confirmMsg === true &&
                 <div id="confirmMsg">
                     Are you sure you want to delete this record?<br />
-                    <a href="#" className="modal-btn" onClick={onDelete}>Yes</a>
-                    <a href="#" className="modal-btn" onClick={() => setConfirmMsg(false)}>No</a>
+                    <button className="modal-btn" onClick={onDelete}>Yes</button>
+                    <button className="modal-btn" onClick={() => setConfirmMsg(false)}>No</button>
                 </div>
             }
         </div>

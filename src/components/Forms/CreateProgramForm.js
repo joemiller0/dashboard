@@ -29,6 +29,7 @@ export const CreateProgramForm = ({ programFormViewSwitch, createProgram, workou
                     setHasWorkouts(false)
                 }
                 break;
+            default: return null;
         }
     }
 

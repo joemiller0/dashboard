@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import { Workout } from '../components.js';
-
 
 export const ProgramModal = ({ workouts, workoutFormViewSwitch, program }) => {
 

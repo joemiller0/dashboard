@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { ProgramModal, CreateWorkoutForm, Workout } from '../components.js';
+import { useState } from "react";
+import { ProgramModal, CreateWorkoutForm } from '../components.js';
 
 export const Program = ({ createWorkout, workouts, program }) => {
     const [viewState, setViewState] = useState(false);
