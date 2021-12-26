@@ -7,7 +7,7 @@ export const Workout = ({ workout }) => {
 
     return (
         <div className="workout">
-            test - workout
+            {workout.title}
         </div>
 
     )

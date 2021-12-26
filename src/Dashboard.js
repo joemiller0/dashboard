@@ -91,6 +91,13 @@ export const Dashboard = () => {
             .then(programs=>setPrograms(programs))
     }, [])
 
+    //Initial import of Workouts
+    useEffect(()=>{
+        fetch("http://localhost:5000/workouts")
+            .then(res=>res.json())
+            .then(workouts=>setWorkouts(workouts))
+    }, [])
+
     const logFormViewSwitch = e => {
         setLogFormView(!logFormView)
     }

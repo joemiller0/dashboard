@@ -1,7 +1,15 @@
-export const ProgramModal = ({ workoutFormViewSwitch, program }) => {
+import { useState, useEffect } from "react";
+import { Workout } from '../components.js';
+
+
+export const ProgramModal = ({ workouts, workoutFormViewSwitch, program }) => {
+
     return (
         <div className="program-modal">
-            <p>{program.title}</p>
+            <h4>{program.title}</h4>
+            <h5>workouts</h5>
+            {workouts.map((workout) => <p key={workout.id}>{workout.title}</p> )}
+
             <button onClick={workoutFormViewSwitch}>Create Workout</button>
         </div>
     )

@@ -3,7 +3,11 @@ import "./program_manager.css";
 import { Program } from '../components.js';
 
 
-export const ProgramManager = ({ workouts, programs }) => {
+export const ProgramManager = ({ createWorkout, workouts, programs }) => {
+
+    // useEffect(()=>{
+        
+    // }, [])
 
     if (programs === undefined || !programs.length) {
         return <div className="program-container"> There are no programs yet </div>
@@ -13,7 +17,15 @@ export const ProgramManager = ({ workouts, programs }) => {
         <div className="program-container">
             <h4>Programs</h4>
             <div className="flex inner">
-                {programs.map((program) => <Program key={program.id} workouts={workouts} program={program} />)}
+                {programs.map((program) => {
+                    const localWorkouts = []
+                    workouts.map((workout)=>{
+                        if (program.id === workout.program_id){
+                            localWorkouts.push(workout)
+                        }
+                    })
+                    return <Program key={program.id} workouts={localWorkouts} program={program} createWorkout={createWorkout}/>
+                })}
             </div>
         </div>
 

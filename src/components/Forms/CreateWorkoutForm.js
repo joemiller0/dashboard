@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./form.css";
 
-export const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout, program}) => {
+export const CreateWorkoutForm = ({viewSwitch, workoutFormViewSwitch, createWorkout, program}) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [program_id, setProgram_id] = useState('');
@@ -28,6 +28,7 @@ export const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout, program
             "description": description,
             "program_id": program_id
         }
+        // viewSwitch();
         createWorkout(workout)
         workoutFormViewSwitch()
     }
