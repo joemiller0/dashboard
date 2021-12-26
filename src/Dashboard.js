@@ -163,6 +163,27 @@ export const Dashboard = () => {
             .catch(err => console.log(err))
     }
 
+    const createWorkout = ({title, description, program_id}) => {
+        fetch("http://localhost:5000/workouts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                "title": title,
+                "description": description,
+                "program_id": program_id
+            })
+        })
+            .then(res => res.json())
+            .then(workout => {
+                console.log(workout)
+                setWorkouts([...workouts, workout[0]])
+            })
+            .catch(err => console.log(err))
+    }
+
     // const createSomething = (thingToCreate, payload) => {
     //     fetch(`http://localhost:5000/${thingToCreate}`, {
     //         method: "POST",
@@ -189,7 +210,7 @@ export const Dashboard = () => {
                 athlete={athlete}
             />
             <div className="flex">
-                <ProgramManager createProgram={createProgram} programs={programs}/>
+                <ProgramManager createWorkout={createWorkout} createProgram={createProgram} workouts={workouts} programs={programs}/>
             </div>
 
             <div className="flex">

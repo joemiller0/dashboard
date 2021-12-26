@@ -1,36 +1,46 @@
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./form.css";
 
-export const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout }) => {
+export const CreateWorkoutForm = ({workoutFormViewSwitch, createWorkout, program}) => {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [program_id, setProgram_id] = useState('');
 
-    // return (
-    //     <div className="form-container">
-    //         <form onSubmit={(e)=>onSubmitInput( e, createWorkout, workoutFormViewSwitch)} >
-    //             <input type="text" value={title} name="title" onChange={onChangeInput} placeholder="title" />
-    //             <input type="text" name="program" disabled placeholder="program: not available yet" />
-    //             <div className="select-container">
+    useEffect(()=>{
+        setProgram_id(program.id)
+    }, [])
 
-    //                 <select name='time' value={time} onChange={onChangeInput} >
-    //                     <option value="am" >AM</option>
-    //                     <option value="lunch">Lunch</option>
-    //                     <option value="pm">PM</option>
-    //                 </select>
+    const onChange = e => {
+        switch (e.target.name){
+            case 'title' :
+                setTitle(e.target.value)
+                break;
+            case 'description':
+                setDescription(e.target.value)
+                break;
+        }
+    }
 
-    //                 <select name='day' value={day} onChange={onChangeInput}>
-    //                     <option value="Sunday">Sunday</option>
-    //                     <option value="Monday">Monday</option>
-    //                     <option value="Tuesday">Tuesday</option>
-    //                     <option value="Wednesday">Wednesday</option>
-    //                     <option value="Thursday">Thursday</option>
-    //                     <option value="Friday">Friday</option>
-    //                     <option value="Saturday">Saturday</option>
-    //                 </select>
+    const onSubmit = e => {
+        e.preventDefault();
+        const workout = {
+            "title": title,
+            "description": description,
+            "program_id": program_id
+        }
+        createWorkout(workout)
+        workoutFormViewSwitch()
+    }
 
-    //             </div>
-    //             <textarea rows="5" type="text" value={desc} name="desc" onChange={onChangeInput} placeholder="desc" />
-    //             <button type="submit" value="submit">Add Workout</button>
-    //         </form>
-    //     </div>
-    // );
+    return  (
+        <div className="form-container">
+            <h4>Create Workout</h4>
+            <form onSubmit={onSubmit} >
+                <input onChange={onChange} type="text" value={title} name="title" placeholder="Title" />
+                <textarea onChange={onChange} type="text" value={description} name="description" placeholder="description" />
+                <button type="submit" value="submit">Create Workout</button>
+            </form>
+        </div>
+    )
 };
 

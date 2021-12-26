@@ -11,3 +11,5 @@ export { LogList } from "./LogList/LogList";
 export { ProgramManager } from "./ProgramManager/ProgramManager";
 export { Program } from "./ProgramManager/Program";
 export { ProgramModal } from "./ProgramManager/ProgramModal";
+export { Workout } from "./ProgramManager/Workout";
+
