@@ -1,4 +1,7 @@
  # Dashboard
+
+ #### React - React Hooks - Node - Postgres
+
 A personal app I am creating to plan and manage my own physical training. 
 For a number of years, I have used a combination of google docs, strava, and imagination to visualize and plan my training. 
 This app seeks to relieve my imagination and provide the tools I need to plan and continue to monitor my training, all in one place. 
