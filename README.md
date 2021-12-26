@@ -3,16 +3,11 @@ A personal app I am creating to plan and manage my own physical training.
 For a number of years, I have used a combination of google docs, strava, and imagination to visualize and plan my training. 
 This app seeks to relieve my imagination and provide the tools I need to plan and continue to monitor my training, all in one place. 
 
-It pulls my data from the Strava API, which has an integration with WHOOP. The WHOOP data that comes in from Strava is less than perfect and may be omitted at some point, but currently there is no direct WHOOP API, and the WHOOP strap is such a powerful fitnes tool it cannot be just omitted - it makes loggin workouts basically seamless. 
-
-These activities, which come in from Strava, are reformatted and saved to a local database using Node.js and Postgres, and then displayed over a custom calendar component. The calendar currently features three Month componemts rendering out clickable days to show the contents of the logs which occured on those days in a modal window. The fucntionality to add and delete logs has also been added should there be a need to make those changes. However, ideally this will never be needed if the WHOOP data starts to become more consistently accurate- the idea is automate as much as possible in terms of logging workouts. I think the hassle of laggin workouts is a major painpoint in workout logging in general. 
-
-Because this app will be highly specialized to my needs as it scales in complexity, I chose not to use any libraries and packages for the calendar. My philosphy is to start small and scale as needed. Currently, the calendar component relies on JS date objects soley. 
 
 ## What I am adding now
 Training Programs. 
 
-Programs will have workouts within them, not logs. 
+Programs have workouts within them
 
 These workouts are templates for me to follow, I would create one for each of the planned workouts I have in the program, which is normally for me, somewhere around 4-10 unique workouts. 
 
