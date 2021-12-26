@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import "./program_manager.css";
 import { Program } from '../components.js';
 
 
 export const ProgramManager = ({ createWorkout, workouts, programs }) => {
-
-    // useEffect(()=>{
-        
-    // }, [])
 
     if (programs === undefined || !programs.length) {
         return <div className="program-container"> There are no programs yet </div>
