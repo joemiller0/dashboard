@@ -10,7 +10,7 @@ This app seeks to relieve my imagination and provide the tools I need to plan an
 Dashboard is integrated with the Strava API, which itself has an integration with Whoop. (Whoop is a fitness tracker, Strava is a running app)
 My activites come in from Strava - get sorted and stored locally using Node and Postgres, and then displayed over a custom calendar component. 
 
-The calendar was made entirely without libraries because as my app develops my use case will likey become more and more unique and I wanted control over all factors. The calendar has clickable says which trigger a view modal with more information on the logs it holds. logs can be added in addition or deleted although they still get inevitably reuploaded if they are coming from strava. I can't find a real need to delete anything coming from Strava permanantly, so that hasnt been touched. 
+The calendar was made entirely without libraries because as my app develops my use case will likey become more and more unique and I wanted control over all factors. The calendar has clickable days which trigger a view modal with more information on the logs it holds. logs can be added in addition or deleted although they still get inevitably reuploaded if they are coming from strava. I can't find a real need to delete anything coming from Strava permanantly, so that hasnt been touched. 
 
 
 ## What I am adding now
