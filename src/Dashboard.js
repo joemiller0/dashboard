@@ -3,10 +3,12 @@ import { Nav, CreateLogForm, CreateProgramForm, Calendar, ProgramManager } from 
 import "./stylesheets/dashboard.css";
 
 export const Dashboard = () => {
+
     const [logs, setLogs] = useState([]);
     const [workouts, setWorkouts] = useState([]);
     const [programs, setPrograms] = useState([]);
     const [athlete, setAthlete] = useState({});
+
     const [logFormView, setLogFormView] = useState(false);
     const [programFormView, setProgramFormView] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -137,12 +139,16 @@ export const Dashboard = () => {
                 const newLogs = logs[date].filter(log => log.id !== id)
                 setLogs(() => {
                     if (newLogs.length) {
+                        console.log('if')
                         return {...logs, [date]: newLogs}
                     } else {
+                        console.log('else')
                         delete logs[date]
                         return { ...logs }
                     }
                 })
+                console.log(logs)
+//issue here - no time to fix today
             })
             .catch(err => console.log(err.message))
     }
@@ -217,23 +223,39 @@ export const Dashboard = () => {
                 athlete={athlete}
             />
             <div className="flex">
-                <ProgramManager createWorkout={createWorkout} createProgram={createProgram} workouts={workouts} programs={programs}/>
+                <ProgramManager 
+                    createWorkout={createWorkout} 
+                    createProgram={createProgram} 
+                    workouts={workouts} 
+                    programs={programs}
+                />
             </div>
 
             <div className="flex">
-                <Calendar deleteLog={deleteLog} logs={logs} isLoading={isLoading}/>
+                <Calendar 
+                    deleteLog={deleteLog} 
+                    logs={logs} 
+                    isLoading={isLoading}
+                />
             </div>
 
             {logFormView === true &&
                 <div>
                     <div onClick={logFormViewSwitch} className="dimmed-bg" />
-                    <CreateLogForm logFormViewSwitch={logFormViewSwitch} createLog={createLog} />
+                    <CreateLogForm 
+                        logFormViewSwitch={logFormViewSwitch} 
+                        createLog={createLog} 
+                    />
                 </div>
             }
             {programFormView === true &&
                 <div>
                     <div onClick={programFormViewSwitch} className="dimmed-bg" />
-                    <CreateProgramForm programFormViewSwitch={programFormViewSwitch} createProgram={createProgram} workouts={workouts}/>
+                    <CreateProgramForm 
+                        programFormViewSwitch={programFormViewSwitch} 
+                        createProgram={createProgram} 
+                        workouts={workouts}
+                    />
                 </div>
             }
         </div>

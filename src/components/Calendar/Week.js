@@ -2,16 +2,12 @@ import { useEffect, useState } from "react";
 import uniqid from "uniqid";
 import { Day } from '../components.js';
 
-export const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
+export const Week = ({ monthOriginDate, startDate, totalDays, viewSwitch, logs}) => {
     const [week, setWeek] = useState([])
     // console.log(logs)
     useEffect(() => {
-        const daysInMonth = (m, y) => {
-            return new Date(y, m, 0).getDate();
-        };
         const year = monthOriginDate.getFullYear();
         const monthIndex = monthOriginDate.getMonth();
-        const totalDays = daysInMonth(monthIndex + 1, year);
         const weekData = {
             monthIndex: monthIndex,
             year: year,
@@ -43,7 +39,7 @@ export const Week = ({ monthOriginDate, startDate, viewSwitch, logs}) => {
             }
         }
         setWeek(weekArr);
-    }, [logs, monthOriginDate, startDate, viewSwitch ])
+    }, [logs, monthOriginDate, startDate, totalDays, viewSwitch ])
 
     return(
         <tr>{week}</tr>

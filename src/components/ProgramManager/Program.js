@@ -9,9 +9,6 @@ export const Program = ({ createWorkout, workouts, program }) => {
 
     const viewSwitch = e => {
         setViewState(!viewState)
-        if (e === undefined) return
-        if (e.target.innerHTML === "x") return
-        if (e.target.className === "dimmed-bg") return
     }
 
     const workoutFormViewSwitch = e => {
@@ -25,7 +22,12 @@ export const Program = ({ createWorkout, workouts, program }) => {
 
             {viewState === true &&
                 <div className="program-modal-container">
-                    <ProgramModal workouts={workouts} viewSwitch={viewSwitch} workoutFormViewSwitch={workoutFormViewSwitch} program={program} />
+                    <ProgramModal 
+                        workouts={workouts} 
+                        viewSwitch={viewSwitch} 
+                        workoutFormViewSwitch={workoutFormViewSwitch} 
+                        program={program} 
+                    />
                     <div onClick={viewSwitch} className="dimmed-bg2" />
                 </div>
             }
@@ -42,4 +44,7 @@ export const Program = ({ createWorkout, workouts, program }) => {
         </div>
     )
 };
-
+// There is a difference here between this component and the calendar component which deals with similar logic
+// the modal fpr the day is on the calendar - I did this because it seemed like it made the most sense and the daat struture of the logs object works in that way. 
+// the modal is deeper in the HTML tree here, which seems to cause some issues with click handlers with the layers of divs
+// question here - is it better to nest hte modal deep in the HTMl structure like this - or in a more shallow way like i did with the Calendar/DayModal components?

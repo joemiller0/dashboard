@@ -28,4 +28,3 @@ export const ProgramManager = ({ createWorkout, workouts, programs }) => {
 
     )
 };
-

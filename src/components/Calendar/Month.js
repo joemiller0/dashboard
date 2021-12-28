@@ -56,7 +56,7 @@ export const Month = ({ viewSwitch, monthOriginDate, logs }) => {
         setInitialWeekEndDate(initialWeek.endDate)
         setFirstWeek(initialWeek.tableCells);
     }, 
-        [firstDayIndex, monthIndex, year, totalDays, logs, buildWeekOne]
+        [firstDayIndex, monthIndex, year, logs, buildWeekOne]
     );
 
 
@@ -96,9 +96,9 @@ export const Month = ({ viewSwitch, monthOriginDate, logs }) => {
                             <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate} viewSwitch={viewSwitch} logs={logs}/>
                             <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 7} viewSwitch={viewSwitch} logs={logs}/>
                             <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 14} viewSwitch={viewSwitch} logs={logs}/>
-                            <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 21} viewSwitch={viewSwitch} logs={logs}/>
+                            <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 21} totalDays={totalDays} viewSwitch={viewSwitch} logs={logs}/>
                             {(initialWeekEndDate + 28 <= totalDays) ?
-                                <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 28} viewSwitch={viewSwitch} logs={logs}/>
+                                <Week monthOriginDate={monthOriginDate} startDate={initialWeekEndDate + 28} totalDays={totalDays} viewSwitch={viewSwitch} logs={logs}/>
                             : null}
                         </tbody> 
                     : null
