@@ -2,7 +2,6 @@
 import "./program_manager.css";
 import { Program } from '../components.js';
 
-
 export const ProgramManager = ({ createWorkout, workouts, programs }) => {
 
     if (programs === undefined || !programs.length) {
@@ -25,6 +24,5 @@ export const ProgramManager = ({ createWorkout, workouts, programs }) => {
                 })}
             </div>
         </div>
-
     )
 };

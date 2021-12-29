@@ -3,7 +3,6 @@ import { Nav, CreateLogForm, CreateProgramForm, Calendar, ProgramManager } from 
 import "./stylesheets/dashboard.css";
 
 export const Dashboard = () => {
-
     const [logs, setLogs] = useState([]);
     const [workouts, setWorkouts] = useState([]);
     const [programs, setPrograms] = useState([]);
@@ -13,7 +12,6 @@ export const Dashboard = () => {
     const [programFormView, setProgramFormView] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    //API Authentication and initial import and formatting of logs from strava 
     useEffect(() => {
         const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
         const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
@@ -86,14 +84,12 @@ export const Dashboard = () => {
             .catch(err => console.log(err))
     }, [])
 
-    // initial import of programs
     useEffect(()=>{
         fetch("http://localhost:5000/programs")
             .then(res=>res.json())
             .then(programs=>setPrograms(programs))
     }, [])
 
-    //Initial import of Workouts
     useEffect(()=>{
         fetch("http://localhost:5000/workouts")
             .then(res=>res.json())
@@ -226,7 +222,6 @@ export const Dashboard = () => {
                     programs={programs}
                 />
             </div>
-
             <div className="flex">
                 <Calendar 
                     deleteLog={deleteLog} 
@@ -234,7 +229,6 @@ export const Dashboard = () => {
                     isLoading={isLoading}
                 />
             </div>
-
             {logFormView === true &&
                 <div>
                     <div onClick={logFormViewSwitch} className="dimmed-bg" />

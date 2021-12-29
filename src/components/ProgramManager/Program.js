@@ -45,6 +45,7 @@ export const Program = ({ createWorkout, workouts, program }) => {
     )
 };
 // There is a difference here between this component and the calendar component which deals with similar logic
-// the modal fpr the day is on the calendar - I did this because it seemed like it made the most sense and the daat struture of the logs object works in that way. 
+// the modal for the day is on the calendar instead of nested deeply into the day - I did this because it seemed like it made the most sense and the data struture of the logs object works in that way. 
 // the modal is deeper in the HTML tree here, which seems to cause some issues with click handlers with the layers of divs
-// question here - is it better to nest hte modal deep in the HTMl structure like this - or in a more shallow way like i did with the Calendar/DayModal components?
+// question here - i think it might be better to have the modals render in a more shallow way on the HTML but I actually do not know to be certain. 
+// div>div has to be, in a basic sense, more to load than just div>

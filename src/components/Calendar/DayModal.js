@@ -51,7 +51,7 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
                                     {log.body} <br />
                                     {log.date} <br />
                                     {log.time} <br />
-                                    {log.id} - {log.lid}<br />
+                                    {log.id} - {log.lid} <br />
                                     <button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
                                 </div>
                             )
