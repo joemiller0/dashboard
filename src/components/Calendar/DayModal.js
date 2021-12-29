@@ -24,7 +24,8 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
 
     const onDelete = e => {
         if (e) {
-            setPrimaryKey(e.target.dataset.id)
+            const key = parseInt(e.target.dataset.id)
+            setPrimaryKey(key)
         }
         if(confirmMsg === true) {
             deleteLog(primaryKey, date)

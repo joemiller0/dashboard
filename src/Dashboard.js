@@ -136,7 +136,9 @@ export const Dashboard = () => {
         fetch(`http://localhost:5000/logs/${id}`, { method: "DELETE" })
             .then(res => res.json())
             .then(() => {
+                console.log(id)
                 const newLogs = logs[date].filter(log => log.id !== id)
+                console.log(newLogs)
                 setLogs(() => {
                     if (newLogs.length) {
                         console.log('if')
