@@ -35,14 +35,17 @@ export const CreateWorkoutForm = ({viewSwitch, workoutFormViewSwitch, createWork
     }
 
     return  (
-        <div className="form-container">
-            <h4>Create Workout</h4>
-            <form onSubmit={onSubmit} >
-                <input onChange={onChange} type="text" value={title} name="title" placeholder="Title" />
-                <textarea onChange={onChange} type="text" value={description} name="description" placeholder="description" />
-                <button type="submit" value="submit">Create Workout</button>
-            </form>
-        </div>
+        <>
+            <div className="form-container">
+                <h4>Create Workout</h4>
+                <form onSubmit={onSubmit} >
+                    <input onChange={onChange} type="text" value={title} name="title" placeholder="Title" />
+                    <textarea onChange={onChange} type="text" value={description} name="description" placeholder="description" />
+                    <button type="submit" value="submit">Create Workout</button>
+                </form>
+            </div>
+            <div onClick={workoutFormViewSwitch} className="dimmed-bg2" />
+        </>
     )
 };
 

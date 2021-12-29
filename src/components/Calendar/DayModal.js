@@ -37,64 +37,67 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
     }
     
     return (
-        <div className="log">
-            <button onClick={viewSwitch}>x</button>
-            <div className="log-header">
-                <p className="log-start-date">{date}</p>
-            </div>
-            <div className="log-container">
-                {logs !== undefined &&
-                    logs.map((log) => {
-                        if (log.stravalog === null){
+        <>
+            <div onClick={viewSwitch} className="dimmed-bg" />
+            <div className="log">
+                <button onClick={viewSwitch}>x</button>
+                <div className="log-header">
+                    <p className="log-start-date">{date}</p>
+                </div>
+                <div className="log-container">
+                    {logs !== undefined &&
+                        logs.map((log) => {
+                            if (log.stravalog === null){
+                                return (
+                                    <div key={log.id} className="baseLog">
+                                        {log.body} <br />
+                                        {log.date} <br />
+                                        {log.time} <br />
+                                        {log.id} - {log.lid} <br />
+                                        <button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
+                                    </div>
+                                )
+                            }
+                            if (log.stravalog.name[0] === "W") {
+                                const whoopDayStrain = log.stravalog.name.split("→")[1]
+                                const strain = whoopDayStrain.split(" ")[1]
+                                const whoopActivity = log.stravalog.name.split("→")[0]
+                                const activity = whoopActivity.slice(6)
+                                return (
+                                    <div key={log.id} className="whoop">
+                                        <div className="log-name">
+                                            {activity}<button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
+                                        </div>
+                                        <div className="highlight">
+                                            {strain} Strain
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            const metersToMiles = log.stravalog.distance / 1609
+                            const totalDistance = roundDistance(metersToMiles)
+                            const minMileAvg = getMinMileAvg(log.stravalog.average_speed)
                             return (
-                                <div key={log.id} className="baseLog">
-                                    {log.body} <br />
-                                    {log.date} <br />
-                                    {log.time} <br />
-                                    {log.id} - {log.lid} <br />
-                                    <button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
-                                </div>
-                            )
-                        }
-                        if (log.stravalog.name[0] === "W") {
-                            const whoopDayStrain = log.stravalog.name.split("→")[1]
-                            const strain = whoopDayStrain.split(" ")[1]
-                            const whoopActivity = log.stravalog.name.split("→")[0]
-                            const activity = whoopActivity.slice(6)
-                            return (
-                                <div key={log.id} className="whoop">
+                                <div className="strava" key={log.id}>
                                     <div className="log-name">
-                                        {activity}<button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
+                                        {log.stravalog.name}<button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
                                     </div>
                                     <div className="highlight">
-                                        {strain} Strain
+                                        {totalDistance} mi - {minMileAvg} - <span className="suffer">Suffer Score: {log.stravalog.suffer_score}</span>
                                     </div>
                                 </div>
                             )
-                        }
-                        const metersToMiles = log.stravalog.distance / 1609
-                        const totalDistance = roundDistance(metersToMiles)
-                        const minMileAvg = getMinMileAvg(log.stravalog.average_speed)
-                        return (
-                            <div className="strava" key={log.id}>
-                                <div className="log-name">
-                                    {log.stravalog.name}<button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
-                                </div>
-                                <div className="highlight">
-                                    {totalDistance} mi - {minMileAvg} - <span className="suffer">Suffer Score: {log.stravalog.suffer_score}</span>
-                                </div>
-                            </div>
-                        )
-                    })
+                        })
+                    }
+                </div>
+                {confirmMsg === true &&
+                    <div id="confirmMsg">
+                        Are you sure you want to delete this record?<br />
+                        <button className="modal-btn" onClick={onDelete}>Yes</button>
+                        <button className="modal-btn" onClick={() => setConfirmMsg(false)}>No</button>
+                    </div>
                 }
             </div>
-            {confirmMsg === true &&
-                <div id="confirmMsg">
-                    Are you sure you want to delete this record?<br />
-                    <button className="modal-btn" onClick={onDelete}>Yes</button>
-                    <button className="modal-btn" onClick={() => setConfirmMsg(false)}>No</button>
-                </div>
-            }
-        </div>
+        </>
     );
 };

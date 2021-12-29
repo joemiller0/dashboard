@@ -29,7 +29,6 @@ export const Calendar = ({ deleteLog, logs, isLoading }) => {
             }
             {viewState === true &&
                 <div className="modal-container">
-                    <div onClick={viewSwitch} className="dimmed-bg" />
                     <DayModal viewSwitch={viewSwitch} deleteLog={deleteLog} logs={logs[modalDate]} date={modalDate} />
                 </div>
             }

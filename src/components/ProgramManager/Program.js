@@ -5,8 +5,6 @@ export const Program = ({ createWorkout, workouts, program }) => {
     const [viewState, setViewState] = useState(false);
     const [workoutFormView, setWorkoutFormView] = useState(false);
 
-    // console.log(workouts)
-
     const viewSwitch = e => {
         setViewState(!viewState)
     }
@@ -28,7 +26,6 @@ export const Program = ({ createWorkout, workouts, program }) => {
                         workoutFormViewSwitch={workoutFormViewSwitch} 
                         program={program} 
                     />
-                    <div onClick={viewSwitch} className="dimmed-bg2" />
                 </div>
             }
             {workoutFormView === true &&
@@ -38,7 +35,6 @@ export const Program = ({ createWorkout, workouts, program }) => {
                         createWorkout={createWorkout} 
                         program={program} 
                     />
-                    <div onClick={workoutFormViewSwitch} className="dimmed-bg2" />
                 </div>
             }
         </div>
