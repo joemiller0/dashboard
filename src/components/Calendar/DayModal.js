@@ -52,7 +52,7 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
                                     {log.date} <br />
                                     {log.time} <br />
                                     {log.id} - {log.lid}<br />
-                                    <button data-id={log.id} id="delete-log-btn" onClick={e => onDelete(e)}> Delete Log </button>
+                                    <button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
                                 </div>
                             )
                         }
@@ -64,7 +64,7 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
                             return (
                                 <div key={log.id} className="whoop">
                                     <div className="log-name">
-                                        {activity}<button data-id={log.id} id="delete-log-btn" onClick={e => onDelete(e)}> Delete Log </button>
+                                        {activity}<button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
                                     </div>
                                     <div className="highlight">
                                         {strain} Strain
@@ -78,7 +78,7 @@ export const DayModal = ({ viewSwitch, deleteLog, logs, date }) => {
                         return (
                             <div className="strava" key={log.id}>
                                 <div className="log-name">
-                                    {log.stravalog.name}<button data-id={log.id} id="delete-log-btn" onClick={e => onDelete(e)}> Delete Log </button>
+                                    {log.stravalog.name}<button data-id={log.id} id="delete-log-btn" onClick={onDelete}> Delete Log </button>
                                 </div>
                                 <div className="highlight">
                                     {totalDistance} mi - {minMileAvg} - <span className="suffer">Suffer Score: {log.stravalog.suffer_score}</span>
